@@ -48,8 +48,8 @@ app.post('/consent', (req, res) => {
     console.log('User wants to consent session: ', req.query.sessionToken);
 
     portabilityApi.store(req.query.sessionToken, req.body)
-    .then((res) => {
-        console.log('Stored in AF Connect Outbox', res);
+    .then((body) => {
+        console.log('Stored in AF Connect Outbox', body);
         res.sendStatus(200);
     })
     .catch((err) => {

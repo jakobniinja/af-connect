@@ -5,7 +5,7 @@ var selectedProfile = -1;
 
 const config = {
     cookie: 'AMV_SSO_COOKIE',
-    authUrl: 'https://secure.arbetsformedlingen.se/AuthenticationDispatcher/Dispatch?CT_ORIG_URL=https://demotest.arbetsformedlingen.se',
+    authUrl: 'https://secure.arbetsformedlingen.se/AuthenticationDispatcher/Dispatch?CT_ORIG_URL=https://connectstage.arbetsformedlingen.se',
     cvUrl: '/fetchCV',
     consentForm: '/consentForm',
     consent: '/consent'
