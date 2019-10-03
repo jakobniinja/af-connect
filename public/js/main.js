@@ -1,10 +1,19 @@
 "use strict"
 
+var cv;
+var selectedProfile = -1;
+
 const config = {
     cookie: 'AMV_SSO_COOKIE',
-    authUrl: 'https://secure.arbetsformedlingen.se/AuthenticationDispatcher/Dispatch?CT_ORIG_URL=https://demotest.arbetsformedlingen.se',
+    authUrl: 'https://secure.arbetsformedlingen.se/AuthenticationDispatcher/Dispatch?CT_ORIG_URL=https://connectstage.arbetsformedlingen.se',
     cvUrl: '/fetchCV',
-    consentForm: '/consentForm'
+    consentForm: '/consentForm',
+    consent: '/consent'
+}
+
+let getSessionToken = () => {
+    var url = new URL(window.location.href);
+    return url.searchParams.get("sessionToken");
 }
 
 let getCookie = (name) => {
@@ -13,7 +22,9 @@ let getCookie = (name) => {
     if (parts.length == 2) return parts.pop().split(';').shift();
 }
 
-function onResponse(cv) {
+function onResponse(data) {
+    cv = data;
+
     // Render the consent form
     fetch(config.consentForm, {
         method: 'POST',
@@ -41,8 +52,32 @@ function onResponse(cv) {
 }
 
 function onConsent() {
-    // TODO: Record consent and store envelope in AF Connect OutBox
-    window.close();
+    // Record CV in AF Connect OutBox
+    cv.profile = cv.profiles[selectedProfile];
+    delete cv.profiles;
+    let save = JSON.stringify(cv);
+
+    console.log('Consenting to CV: ', cv);
+    fetch(config.consent + '?sessionToken=' + getSessionToken(), {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: save
+    })
+    .then(response => {
+        if (response.status !== 200) {
+            console.log('Failed to consent. Status code: ',
+                response.status);
+            return;
+        }
+
+        console.log("Successfully saved to Outbox! session: ", getSessionToken());
+
+        return response.text();
+    })
+
+    //window.close();
 }
 
 new Promise((resolve, reject) => {            
@@ -50,20 +85,16 @@ new Promise((resolve, reject) => {
     let cookie = getCookie(config.cookie);
     if (cookie === undefined) {    
         // Open AF login page if AMV_SSO_COOKIE is not set
-        window.location.href = config.authUrl;
+        window.location.href = config.authUrl + '/?sessionToken=' + getSessionToken();
     } else {
         // Cookie already exists, so just pass it along.
         resolve(cookie);
     }
 })
 .then((cookie) => {
-    console.log('Received cookie...');
-    console.log('Fetching CV...');
     return fetch(config.cvUrl);
 })
 .then(response => {
-    console.log('Received response...');
-
     if (response.status === 401) {
         // Open AF login page because the AMV_SSO_COOKIE has expired
         window.location.href = config.authUrl;
@@ -83,7 +114,6 @@ new Promise((resolve, reject) => {
     }
 )
 .then(cv => {
-    console.log('Handle response...');
     if (onResponse) {
         onResponse(cv);
     }
