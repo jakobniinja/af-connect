@@ -39,7 +39,25 @@ app.use('/fonts', express.static(__dirname+'/public/fonts'));
 app.use('/vendor', express.static(__dirname+'/public/vendor'));
 app.use('/favicon.ico', express.static(__dirname+'/public/favicon.ico'));
 
-app.get('/', (req, res) => { res.render('pages/index'); });
+app.get('/', (req, res) => {
+    console.log('Request CV for session: ' + req.query.sessionToken); 
+    res.render('pages/index');
+});
+
+app.post('/consent', (req, res) => {
+    console.log('User wants to consent session: ', req.query.sessionToken);
+
+    portabilityApi.store(req.query.sessionToken, req.body)
+    .then((res) => {
+        console.log('Stored in AF Connect Outbox', res);
+        res.sendStatus(200);
+    })
+    .catch((err) => {
+        console.log('Failed to store in AF Connect Outbox, error:', err);
+        res.sendStatus(500);
+    });
+
+});
 
 app.post('/consentForm', (req, res) => {
     res.render('partials/consentForm', { data: req.body });

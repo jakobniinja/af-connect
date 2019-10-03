@@ -35,7 +35,7 @@
         <% if (data.profiles.length) { %>
             <% for(var i=0; i<data.profiles.length; i++) {%>
                 <div class="p-2">
-                    <button class="btn btn-block btn-light" type="button" data-toggle="collapse" data-target="#profile_<%= i %>"><%= data.profiles[i].profileName %></button>
+                    <button class="btn btn-block btn-light" type="button" data-toggle="collapse" data-target="#profile_<%= i %>" onclick="selectedProfile = <%= i %>;"><%= data.profiles[i].profileName %></button>
                 </div>
                 <div id="profile_<%= i %>" class="collapse p-2" data-parent="#profileSelect">
                     <div class="card">
