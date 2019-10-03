@@ -77,7 +77,7 @@ function onConsent() {
         return response.text();
     })
 
-    //window.close();
+    window.close();
 }
 
 new Promise((resolve, reject) => {            
