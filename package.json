@@ -1,0 +1,25 @@
+{
+  "name": "af-connect",
+  "version": "0.1.0",
+  "description": "AF Connect",
+  "main": "index.js",
+  "dependencies": {
+    "dotenv": "^8.1.0",
+    "ejs": "^2.7.1",
+    "express": "^4.17.1",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.2"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "local": "node index.js localhost",
+    "dev": "nodemon",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "author": "",
+  "license": "Apache-2.0"
+}
