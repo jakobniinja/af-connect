@@ -57,7 +57,7 @@ function onConsent() {
     delete cv.profiles;
     let save = JSON.stringify(cv);
 
-    console.log('Consenting to CV: ', cv);
+    console.log('Consenting to CV: ', save);
     fetch(config.consent + '?sessionToken=' + getSessionToken(), {
         method: 'POST',
         headers: {
@@ -74,10 +74,8 @@ function onConsent() {
 
         console.log("Successfully saved to Outbox! session: ", getSessionToken());
 
-        return response.text();
+        window.close();
     })
-
-    window.close();
 }
 
 new Promise((resolve, reject) => {            
