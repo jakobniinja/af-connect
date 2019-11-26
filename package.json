@@ -4,6 +4,7 @@
   "description": "AF Connect",
   "main": "index.js",
   "dependencies": {
+    "ajv": "^6.10.2",
     "dotenv": "^8.1.0",
     "ejs": "^2.7.1",
     "express": "^4.17.1",
@@ -11,13 +12,16 @@
     "request-promise": "^4.2.4"
   },
   "devDependencies": {
+    "jest": "^24.9.0",
+    "json-schema-ref-parser": "^7.1.2",
+    "jsonschema": "^1.2.4",
     "nodemon": "^1.19.2"
   },
   "scripts": {
     "start": "node index.js",
     "local": "node index.js localhost",
     "dev": "nodemon",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": "",
   "author": "",
