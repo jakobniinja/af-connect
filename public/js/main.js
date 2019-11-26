@@ -138,7 +138,6 @@ function onConsent() {
           getSessionToken()
         );
 
-        response.text();
         window.close();
       });
     })
