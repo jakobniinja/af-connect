@@ -36,6 +36,23 @@ test("build envelope from cv document", () => {
     .withData(cv)
     .build();
 
+  expect(envelope.source.sourceId).toBe("01");
+  expect(envelope.source.sourceName).toBe("Arbetsformedlingen");
+  expect(envelope.source.allowsWrite).toBe(true);
+  expect(envelope.consent.consentTimestamp).toBe(
+    consentTimestamp.toISOString()
+  );
+  expect(envelope.consent.consentStatus).toBe(true);
+  expect(envelope.consent.consentedTimePeriod).toBe(
+    consentedTimePeriod.toISOString()
+  );
+  expect(envelope.data.size).toBe("0");
+  expect(envelope.data.documentType).toBe("CV");
+  expect(envelope.data.dataStructureLink).toBe(
+    "https://github.com/MagnumOpuses/common-cv-model/tree/master/common%20data%20structure"
+  );
+  expect(envelope.data.data).toBe(cv);
+
   let refParser = require("json-schema-ref-parser");
   return refParser
     .dereference("./lib/common-cv-model/envelope/DataEnvelope.json", {})
