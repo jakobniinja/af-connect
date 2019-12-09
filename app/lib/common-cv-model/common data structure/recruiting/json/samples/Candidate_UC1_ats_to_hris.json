@@ -1,0 +1,177 @@
+{
+    "documentId": {
+        "value": "1456297999",
+        "schemeId": "Resume Mirror"
+    },
+    "alternateIds": [
+        {
+            "value": "a6f872ed3326eacc57e452a8500777cf2a1e93a2",
+            "schemeId": "Talemetry"
+        }
+    ],
+    "person": {
+        "name": {
+            "formattedName": "Jane Smith",
+            "given": "Jane",
+            "family": "Smith"
+        },
+        "communication": {
+            "address": [
+                {
+                    "useCode": "private",
+                    "countryCode": "US",
+                    "countrySubDivisions": [
+                        {
+                            "type": "state",
+                            "value": "CA"
+                        }
+                    ],
+                    "city": "San Francisco",
+                    "line": "800 North Point St",
+                    "postalCode": "94109",
+                    "geoLocation": {
+                        "longitude": -122.420889,
+                        "latitude": 37.8037544
+                    },
+                    "formattedAddress": "800 North Point St, San Francisco, CA 94109"
+                }
+            ],
+            "email": [
+                {
+                    "useCode": "private",
+                    "address": "resume-example@sixapart.com"
+                }
+            ]
+        }
+    },
+    "profiles": [
+        {
+            "languageCode": "en",
+            "associatedPositionOpenings": [
+                {
+                    "positionOpeningId": {
+                        "value": "JAVA1-1A",
+                        "schemeId": "ABC Company"
+                    },
+                    "positionTitle": "Java Developer",
+                    "positionUri": "http://abccompany.ttcportals.com/jobs/6013930-java-developer",
+                    "candidateAppliedIndicator": true
+                }
+            ],
+            "employment": [
+                {
+                    "id": {
+                        "value": "WH-1"
+                    },
+                    "organization": {
+                        "name": "UC San Francisco"
+                    },
+                    "start": "2003-09",
+                    "current": true,
+                    "positionHistories": [
+                        {
+                            "title": "Lab Assistant III",
+                            "start": "2003-09",
+                            "current": true,
+                            "descriptions": [
+                                "Managed day-to-day functions of the lab \\n Tracked supplies and ordered new ones as necessary \\n Made up stock solutions \\n Managed student volunteers \\n Studied Bar and Foo mutations in Drosophila melanogaster \\n Sequenced three unique alleles of Foo \\n Employed fast and regular PCR techniques \\n Introduced fast PCR techniques into the lab where it is now an established method \\n \\n Published paper titled 'Bar and Foo Variations in Drosphila' in the journal Drosophila: New Genetics \\n \\n Presented paper at the 2008 Drosophila conference"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": {
+                        "value": "WH-2"
+                    },
+                    "organization": {
+                        "name": "Stanford University"
+                    },
+                    "start": "2000-09",
+                    "end": "2003-08",
+                    "positionHistories": [
+                        {
+                            "title": "QA",
+                            "start": "2000-09",
+                            "end": "2003-08",
+                            "descriptions": [
+                                "Managed communications between three collaborating labs, located around the world \\n Summarized and distributed relevant findings \\n Managed weekly calls and supporting technical communications \\n Prioritized work on this project for student volunteers \\n \\n Ran genetic screens of Saccharomyces cerevisiae \\n Maintained strain collections \\n Employed PCR techniques \\n Presented poster at the 2008 Yeast conference"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": {
+                        "value": "WH-3"
+                    },
+                    "organization": {
+                        "name": "UC Berkeley"
+                    },
+                    "start": "1998-07",
+                    "end": "2000-07",
+                    "positionHistories": [
+                        {
+                            "title": "Lab Intern",
+                            "start": "1998-07",
+                            "end": "2000-07",
+                            "descriptions": [
+                                "Assisted with daily tasks in the lab \\n Worked with graduate students and post docs \\n Made up stock solutions \\n Ordered supplies when requested"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "education": [
+                {
+                    "id": {
+                        "value": "ED-01"
+                    },
+                    "start": "1996",
+                    "end": "2000",
+                    "institution": {
+                        "name": "University of California, Berkeley",
+                        "communication": {
+                            "address": [
+                                {
+                                    "countryCode": "US",
+                                    "countrySubDivisions": [
+                                        {
+                                            "type": "state",
+                                            "value": "CA"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    "educationDegrees": [
+                        {
+                            "name": "Bachelor of Science",
+                            "iscedEducationLevelCode": "6",
+                            "degreeGrantedStatus": "Granted",
+                            "date": "2000",
+                            "specializations": [
+                                {
+                                    "name": "Molecular Biology",
+                                    "type": "major"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "attachments": [
+                {
+                    "id": {
+                        "value": "resume"
+                    },
+                    "content": {
+                        "value": "SmFuZSBTbWl0aApTYW4gRnJhbmNpc2NvLCBDQQpyZXN1bWUtZXhhbXBsZUBzaXhhcGFydC5jb20KwqAKT2JqZWN0aXZlClRvIGZpbmQgYSBmdWxsZmlsbGluZyBhbmQgY2hhbGxlbmdpbmcgcG9zaXRpb24gaW4gdGhlIExpZmUgU2NpZW5jZXMgYXJlbmEgdGhhdCB1dGlsaXplcyBteSB0ZWNobmljYWwgYW5kIG90aGVyIHNraWxscyBpbmNsdWRpbmc6IFBDUiAvIEZhc3QgUENSLCBXZXN0ZXJuIGFuZCBOb3J0aGVybiBCbG90cywgR2VsIEVsZWN0cm9waG9yZXNpcywgQ2hyb21hdG9ncmFwaHkgYW5kIGV4dGVuc2l2ZSBtYW5hZ2VyaWFsIGV4cGVyaWVuY2UuCsKgCldvcmsgRXhwZXJpZW5jZQpMYWIgQXNzaXN0YW50IElJSQpVQyBTYW4gRnJhbmNpc2NvClNlcHRlbWJlciAyMDAzIHRvIFByZXNlbnQKwqAKTWFuYWdlZCBkYXktdG8tZGF5IGZ1bmN0aW9ucyBvZiB0aGUgbGFiCsKgIMKgIMKgIMKgIMKgIFRyYWNrZWQgc3VwcGxpZXMgYW5kIG9yZGVyZWQgbmV3IG9uZXMgYXMgbmVjZXNzYXJ5CsKgIMKgIMKgIMKgIMKgIE1hZGUgdXAgc3RvY2sgc29sdXRpb25zCsKgIMKgIMKgIMKgIMKgIE1hbmFnZWQgc3R1ZGVudCB2b2x1bnRlZXJzCsKgClN0dWRpZWQgQmFyIGFuZCBGb28gbXV0YXRpb25zIGluIERyb3NvcGhpbGEgbWVsYW5vZ2FzdGVyCsKgIMKgIMKgIMKgIMKgIFNlcXVlbmNlZCB0aHJlZSB1bmlxdWUgYWxsZWxlcyBvZiBGb28KwqAgwqAgwqAgwqAgwqAgRW1wbG95ZWQgZmFzdCBhbmQgcmVndWxhciBQQ1IgdGVjaG5pcXVlcwrCoCDCoCDCoCDCoCDCoCBJbnRyb2R1Y2VkIGZhc3QgUENSIHRlY2huaXF1ZXMgaW50byB0aGUgbGFiIHdoZXJlIGl0IGlzIG5vdyBhbiBlc3RhYmxpc2hlZCBtZXRob2QKwqAKUHVibGlzaGVkIHBhcGVyIHRpdGxlZCAiQmFyIGFuZCBGb28gVmFyaWF0aW9ucyBpbiBEcm9zcGhpbGEiIGluIHRoZSBqb3VybmFsIERyb3NvcGhpbGE6IE5ldyBHZW5ldGljcwrCoApQcmVzZW50ZWQgcGFwZXIgYXQgdGhlIDIwMDggRHJvc29waGlsYSBjb25mZXJlbmNlCsKgCkxhYiBBc3Npc3RhbnQgSUkKU3RhbmZvcmQgVW5pdmVyc2l0eQpTZXB0ZW1iZXIgMjAwMCB0byBBdWd1c3QgMjAwMwrCoApNYW5hZ2VkIGNvbW1uaWNhdGlvbnMgYmV0d2VlbiB0aHJlZSBjb2xsYWJvcmF0aW5nIGxhYnMsIGxvY2F0ZWQgYXJvdW5kIHRoZSB3b3JsZArCoCDCoCDCoCDCoCDCoCBTdW1tYXJpemVkIGFuZCBkaXN0cmlidXRlZCByZWxldmFudCBmaW5kaW5ncwrCoCDCoCDCoCDCoCDCoCBNYW5hZ2VkIHdlZWtseSBjYWxscyBhbmQgc3VwcG9ydGluZyB0ZWNobmljYWwgY29tbXVuaWNhdGlvbnMKwqAgwqAgwqAgwqAgwqAgUHJpb3JpdGl6ZWQgd29yayBvbiB0aGlzIHByb2plY3QgZm9yIHN0dWRlbnQgdm9sdW50ZWVycwrCoApSYW4gZ2VuZXRpYyBzY3JlZW5zIG9mIFNhY2NoYXJvbXljZXMgY2VyZXZpc2lhZQrCoCDCoCDCoCDCoCDCoCBNYWludGFpbmVkIHN0cmFpbiBjb2xsZWN0aW9ucwrCoCDCoCDCoCDCoCDCoCBFbXBsb3llZCBQQ1IgdGVjaG5pcXVlcwrCoApQcmVzZW50ZWQgcG9zdGVyIGF0IHRoZSAyMDA4IFllYXN0IGNvbmZlcmVuY2UKwqAKTGFiIEludGVybgpVQyBCZXJrZWxleQpKdWx5IDE5OTggdG8gSnVseSAyMDAwCsKgCkFzc2lzdGVkIHdpdGggZGFpbHkgdGFza3MgaW4gdGhlIGxhYgrCoCDCoCDCoCDCoCDCoCBXb3JrZWQgd2l0aCBncmFkdWF0ZSBzdHVkZW50cyBhbmQgcG9zdCBkb2NzCsKgIMKgIMKgIMKgIMKgIE1hZGUgdXAgc3RvY2sgc29sdXRpb25zCsKgIMKgIMKgIMKgIMKgIE9yZGVyZWQgc3VwcGxpZXMgd2hlbiByZXF1ZXN0ZWQKwqAKRWR1Y2F0aW9uClVuaXZlcnNpdHkgb2YgQ2FsaWZvcm5pYSwgQmVya2VsZXkKMTk5Ni0yMDAwCkJTIE1vbGVjdWxhciBCaW9sb2d5CsKgCg==",
+                        "encoding": "base64",
+                        "mimeType": "text/plain",
+                        "filename": "janesmith.txt"
+                    }
+                }
+            ]
+        }
+    ]
+}

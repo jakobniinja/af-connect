@@ -1,0 +1,35 @@
+{
+	"$schema": "http://schema.hropenstandards.org/4_0/common/json/meta/hros.json",
+	"version": "4.1.0",
+	"title": "DependentType ",
+	"description": "Contains information to describe the dependent, including the relationship between the primary insured and dependent.",
+	"definitions": {
+		"RelationshipCodeList": {
+			"enum": [
+				"AdoptedChild",
+				"Child",
+				"Brother",
+				"Sister",
+				"Mother",
+				"Father",
+				"Spouse",
+				"Exspouse",
+				"Grandmother",
+				"Grandfather",
+				"Grandson",
+				"Granddaughter",
+				"LifePartner"
+			]
+		}
+	},
+	"type": "object",
+	"properties": {
+		"id": { "$ref": "../../common/json/base/IdentifierType.json#" },
+		"relationshipCode": { "$ref": "#/definitions/RelationshipCodeList" },
+		"person": { "$ref": "SubscriberPersonType.json#" },
+		"custodialParent": { "$ref": "../../common/json/person/PersonReferenceType.json#" },
+		"responsible": { "$ref": "../../common/json/person/SpecifiedPersonType.json#" },
+		"fullTimeStudentIndicator": { "$ref": "../../common/json/base/IndicatorType.json#" },
+		"educationOrganization": { "$ref": "../../common/json/organization/OrganizationType.json#" }
+	}
+}

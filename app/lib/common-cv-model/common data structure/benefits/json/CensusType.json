@@ -1,0 +1,34 @@
+{
+    "$schema": "http://schema.hropenstandards.org/4_0/common/json/meta/hros.json",
+    "version": "4.1.0",
+    "title": "CensusType",
+    "description": "The data involved in initial creation and maintenance of employee census changes.",
+    "type": "object",
+    "allOf": [
+        { "$ref": "../../common/json/base/NounType.json#" }
+    ],
+    "properties": {
+        "person": {
+            "description": "Information to identify the person, including name, communication, demographic details and other identifiers.",
+            "$ref": "SubscriberPersonType.json#"
+        },
+        "employee": {
+            "description": "Information to identify the employee.",
+            "$ref": "../../common/json/work/EmployeeType.json#"
+        },
+        "employment": {
+            "description": "Information about an employee's employment.",
+            "$ref": "EmploymentType.json#"
+        },
+        "deployment": {
+            "description": "Information about an employee's deployment.",
+            "type": "array",
+            "items": { "$ref": "../../common/json/work/DeploymentType.json#" }
+        },
+        "dependent": {
+            "description": "Information on the dependents of a person.",
+            "type": "array",
+            "items": { "$ref": "DependentType.json#" }
+        }
+    }
+}

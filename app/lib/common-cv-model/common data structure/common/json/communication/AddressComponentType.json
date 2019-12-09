@@ -1,0 +1,21 @@
+{
+    "$schema": "http://schema.hropenstandards.org/4_0/common/json/meta/hros.json",
+    "version": "4.1.0",
+    "title": "AddressComponentType",
+    "description": "Holds address extension components",
+    "type": "object",
+    "properties": {
+        "type": {
+            "description": "Specify purpose of this extension (province, secondary line, house number, etc)",
+            "type": "string"
+        },
+        "value": {
+            "description": "Actual component value",
+            "type": "string"
+        }
+    },
+    "required": [
+        "type",
+        "value"
+    ]
+}

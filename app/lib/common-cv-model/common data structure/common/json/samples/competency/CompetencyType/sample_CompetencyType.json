@@ -1,0 +1,10 @@
+{
+    "$schema": "http://schema.hropenstandards.org/4_0/common/json/meta/hros.json",
+    "version": "4.0.1",
+    "title": "sample_CompetencyType",
+    "description": "A schema to demonstrate data type usage.",
+    "type": "object",
+    "properties": {
+        "competencyType": { "$ref": "../../../competency/CompetencyType.json#" }
+    }
+}

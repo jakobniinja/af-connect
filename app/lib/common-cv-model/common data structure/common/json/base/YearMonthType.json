@@ -1,0 +1,8 @@
+{
+    "$schema": "http://schema.hropenstandards.org/4_0/common/json/meta/hros.json",
+    "version": "4.1.0",
+    "title": "YearMonthType",
+    "description": "A single year and month, in the format YYYY-MM",
+    "type": "string",
+    "pattern": "^([0-9]{4})-(1[0-2]|0[1-9])$"
+}

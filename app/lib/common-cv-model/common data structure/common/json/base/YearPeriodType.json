@@ -1,0 +1,11 @@
+{
+    "$schema": "http://schema.hropenstandards.org/4_0/common/json/meta/hros.json",
+    "version": "4.1.0",
+    "title": "YearPeriodType",
+    "description": "Single period between years. Both start and end are required.",
+    "type": "object",
+    "allOf": [
+        { "$ref": "YearOpenEndPeriodType.json#" }
+    ],
+    "required": [ "end" ]
+}

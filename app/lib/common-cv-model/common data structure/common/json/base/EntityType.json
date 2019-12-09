@@ -1,0 +1,22 @@
+{
+    "$schema": "http://schema.hropenstandards.org/4_0/common/json/meta/hros.json",
+    "version": "4.1.0",
+    "title": "EntityType",
+    "description": "A description of an entity with id, name and code.",
+    "type": "object",
+    "properties": {
+        "id": {
+            "description": "A unique identifier which cannot be expressed as enumeration",
+            "$ref": "IdentifierType.json#"
+        },
+        "name": {
+            "description": "Free text description for that entity",
+            "type": "string"
+        },
+        "code": {
+            "description": "A code which can be expressed as enumeration",
+            "$ref": "CodeType.json#"
+        }
+    },
+    "minProperties": 1
+}

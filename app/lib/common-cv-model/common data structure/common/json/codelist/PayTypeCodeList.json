@@ -1,0 +1,18 @@
+{
+    "$schema": "http://schema.hropenstandards.org/4_0/common/json/meta/hros.json",
+    "version": "4.1.0",
+    "title": "PayTypeCodeList",
+    "description": "Values that classify the various pay types.",
+    "enum": [
+        "BasePay",
+        "Commission",
+        "Bonus",
+        "ShortTermIncentive",
+        "ShiftPay",
+        "OnCall",
+        "Hazard",
+        "VariablePay",
+        "Allowance",
+        "Overtime"
+    ]
+}

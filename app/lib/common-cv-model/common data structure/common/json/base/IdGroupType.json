@@ -1,0 +1,18 @@
+{
+    "$schema": "http://schema.hropenstandards.org/4_0/common/json/meta/hros.json",
+    "version": "4.1.0",
+    "title": "IdGroupType",
+    "description": "A set of identifiers for an object, with a primary identifier and an array of alternate identifiers.",
+    "type": "object",
+    "properties": {
+        "Id": {
+            "description": "The unique and/or primary identifier.",
+            "$ref": "IdentifierType.json#"
+        },
+        "alternateIds": {
+            "description": "Associated alternative identifiers.",
+            "type": "array",
+            "items": { "$ref": "IdentifierType.json#" }
+        }
+    }
+}

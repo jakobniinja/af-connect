@@ -1,0 +1,26 @@
+{
+    "$schema": "http://schema.hropenstandards.org/4_0/common/json/meta/hros.json",
+    "version": "4.1.0",
+    "title": "PartyType",
+    "description": "A collection of information about the party who is the supplier/customer/requester of the associated entity.",
+    "type": "object",
+    "allOf": [
+        { "$ref": "../base/EntityType.json#" }
+    ],
+    "properties": {
+        "legalId": {
+            "description": "A government assigned identifier to distinguish the party (organization, person, or legal entity) to a transaction.",
+            "$ref": "../base/IdentifierType.json#"
+        },
+        "taxId": {
+            "description": "An identifer assigned by a government tax authority to distinguish the party (organization, person, or legal entity) to a transaction.",
+            "$ref": "../base/IdentifierType.json#"
+        },
+        "communication": { "$ref": "../communication/CommunicationType.json#" },
+        "personContacts": {
+            "type": "array",
+            "items": { "$ref": "../person/SpecifiedPersonType.json#" }
+        }
+    },
+    "required": [ "id" ]
+}

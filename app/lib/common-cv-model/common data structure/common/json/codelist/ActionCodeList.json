@@ -1,0 +1,13 @@
+{
+    "$schema": "http://schema.hropenstandards.org/4_0/common/json/meta/hros.json",
+    "version": "4.1.0",
+    "title": "ActionCodeList",
+    "description": "Action values code list",
+    "enum": [
+        "Create",
+        "Update",
+        "Delete",
+        "Replace",
+        "Merge"
+    ]
+}

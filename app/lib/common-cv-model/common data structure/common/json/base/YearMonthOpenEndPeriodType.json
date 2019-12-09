@@ -1,0 +1,13 @@
+{
+    "$schema": "http://schema.hropenstandards.org/4_0/common/json/meta/hros.json",
+    "version": "4.1.0",
+    "title": "YearMonthOpenEndPeriodType",
+    "description": "Single period between year/months. The end year/month is optional and should be used in cases where the end of the period is unknown or uncertain.",
+    "type": "object",
+    "properties": {
+        "start": { "$ref": "YearMonthType.json#" },
+        "end": { "$ref": "YearMonthType.json#" }
+    },
+    "required": [ "start" ],
+    "additionalProperties": false
+}

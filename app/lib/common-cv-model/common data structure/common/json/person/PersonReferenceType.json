@@ -1,0 +1,14 @@
+{
+    "$schema": "http://schema.hropenstandards.org/4_0/common/json/meta/hros.json",
+    "version": "4.1.0",
+    "title": "PersonReferenceType",
+    "description": "A schema to reference to a person.",
+    "type": "object",
+    "properties": {
+        "id": { "$ref": "../base/IdentifierType.json#" },
+        "name": { "$ref": "PersonNameType.json#" },
+        "communication": { "$ref": "../communication/CommunicationType.json#" },
+        "primaryLanguage": { "$ref": "../codelist/LanguageCodeList.json#" }
+    },
+    "minProperties": 1
+}
