@@ -1,0 +1,74 @@
+{
+    "$schema": "http://schema.hropenstandards.org/4_0/common/json/meta/hros.json",
+    "version": "4.1.0",
+    "title": "EmploymentType",
+    "description": "Describes the work life cycle of a person, i.e details for leave of absence, termination or retirement. ",
+    "definitions": {
+        "HireType": {
+            "type": "object",
+            "properties": {
+                "typeCode": {
+                    "enum": [
+                        "NewHire",
+                        "Rehire",
+                        "Acquisition",
+                        "Transfer"
+                    ]
+                },
+                "date": { "$ref": "../../common/json/base/DateType.json#" },
+                "firstWorkDate": { "$ref": "../../common/json/base/DateType.json#" },
+                "expectedFirstWorkDate": { "$ref": "../../common/json/base/DateType.json#" },
+                "originalDate": { "$ref": "../../common/json/base/DateType.json#" },
+                "adjustedDate": { "$ref": "../../common/json/base/DateType.json#" },
+                "cancelDate": { "$ref": "../../common/json/base/DateType.json#" }
+            }
+        },
+        "LeaveType": {
+            "type": "object",
+            "properties": {
+                "statusCode": {
+                    "enum": [
+                        "Active",
+                        "Inactive"
+                    ]
+                },
+                "remunerationCode": {
+                    "enum": [
+                        "Paid",
+                        "Unpaid"
+                    ]
+                },
+                "reasonCode": { "$ref": "../../common/json/base/CodeType.json#" },
+                "startDate": { "$ref": "../../common/json/base/DateType.json#" },
+                "lastWorkedDate": { "$ref": "../../common/json/base/DateType.json#" },
+                "lastPaidDate": { "$ref": "../../common/json/base/DateType.json#" },
+                "scheduledWorkReturnDate": { "$ref": "../../common/json/base/DateType.json#" },
+                "workReturnDate": { "$ref": "../../common/json/base/DateType.json#" }
+            }
+        },
+        "TerminationType": {
+            "type": "object",
+            "properties": {
+                "reasonCode": { "$ref": "../../common/json/base/CodeType.json#" },
+                "date": { "$ref": "../../common/json/base/DateType.json#" },
+                "lastWorkedDate": { "$ref": "../../common/json/base/DateType.json#" },
+                "lastPaidDate": { "$ref": "../../common/json/base/DateType.json#" }
+            }
+        },
+        "RetirementType": {
+            "type": "object",
+            "properties": {
+                "intendedDate": { "$ref": "../../common/json/base/DateType.json#" },
+                "firstDayDate": { "$ref": "../../common/json/base/DateType.json#" }
+            }
+        }
+    },
+    "type": "object",
+    "properties": {
+        "hire": { "$ref": "#/definitions/HireType" },
+        "leave": { "$ref": "#/definitions/LeaveType" },
+        "termination": { "$ref": "#/definitions/TerminationType" },
+        "retirement": { "$ref": "#/definitions/RetirementType" }
+    }
+}
+

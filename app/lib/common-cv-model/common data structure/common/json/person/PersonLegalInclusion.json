@@ -1,0 +1,65 @@
+{
+    "$schema": "http://schema.hropenstandards.org/4_0/common/json/meta/hros.json",
+    "version": "4.1.0",
+    "title": "PersonLegalInclusion",
+    "description": "A collection of demographic and personal data about a person.",
+    "type": "object",
+    "properties": {
+        "passportId": {
+            "description": "The passport identification number from the issuing country",
+            "$ref": "../base/IdentifierType.json#"
+        },
+        "fatherName": {
+            "description": "The surname of the father of the person.",
+            "type": "string"
+        },
+        "motherName": {
+            "description": "The surname of the mother of the person.",
+            "type": "string"
+        },
+        "race": {
+            "description": "The identified race(s) of the person. A race is defined as a group of people sharing the same culture, history, language, etc.",
+            "type": "array",
+            "items": { "type": "string" }
+        },
+        "birthPlace": {
+            "description": "The birth place of the person.",
+            "type": "string"
+        },
+        "deathDate": {
+            "description": "If the person is deceased, the legal date that the person died.",
+            "$ref": "../base/DateTimeType.json#"
+        },
+        "nationality": {
+            "description": "The nationality (or nationalities) of the person. Nationality is acquirable by descent, by birth or adoption in the country and/or by marriage. It is not a legal status like citizenship.",
+            "type": "array",
+            "items": { "type": "string" }
+        },
+        "maritalStatus": {
+            "description": "The marital status of the person.",
+            "type": "string"
+        },
+        "visa": {
+            "description": "The visas that this person holds.",
+            "type": "array",
+            "items": { "type": "string" }
+        },
+        "religion": {
+            "description": "The religions of the person of the person.",
+            "type": "array",
+            "items": { "type": "string" }
+        },
+        "studentType": {
+            "description": "The type of student (if the person is a student).",
+            "$ref": "../base/CodeType.json#"
+        },
+        "studentIndicator": {
+            "description": "An indicator that this person is a student.",
+            "$ref": "../base/IndicatorType.json#"
+        },
+        "studentStatus": {
+            "description": "The status of the student (if the person is a student).",
+            "$ref": "../base/CodeType.json#"
+        }
+    }
+}

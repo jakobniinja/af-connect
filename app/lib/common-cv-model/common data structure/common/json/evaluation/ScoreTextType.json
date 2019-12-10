@@ -1,0 +1,23 @@
+{
+    "$schema": "http://schema.hropenstandards.org/4_0/common/json/meta/hros.json",
+    "version": "4.1.0",
+    "title": "ScoreTextType",
+    "description": "A non-numeric or textual representation of a Score.",
+    "type": "object",
+    "properties": {
+        "value": { "type": "string" },
+        "scoreTextCode": {
+            "description": "Default: CourseGrade. A code used to textually classify the type scoring methodology or convention.",
+            "type": "string"
+        },
+        "minimum": {
+            "description": "Optional. Describes the minumum score.",
+            "type": "string"
+        },
+        "maximum": {
+            "description": "Optional. Describes the maximum score.",
+            "type": "string"
+        }
+    },
+    "required": [ "value" ]
+}

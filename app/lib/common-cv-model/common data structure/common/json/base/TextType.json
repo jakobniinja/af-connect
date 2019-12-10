@@ -1,0 +1,17 @@
+{
+    "$schema": "http://schema.hropenstandards.org/4_0/common/json/meta/hros.json",
+    "version": "4.1.0",
+    "title": "TextType",
+    "description": "Text is a character string, such as a finite set of characters, generally in the form of words of a language.",
+    "type": "object",
+    "properties": {
+        "value": { 
+            "description": "The text.",
+            "type": "string" 
+        },
+        "languageCode": { 
+            "description": "The language of the text.",
+            "$ref": "../codelist/LanguageCodeList.json#" 
+        }
+    }
+}

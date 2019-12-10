@@ -1,0 +1,17 @@
+{
+    "order": {
+        "documentId": { "value": "AP000001" },
+        "subject": {
+            "subjectId": { "value": "C001211" }
+        },
+        "assessmentRequesterName": "Modern Recruiting ATS",
+        "packageId": { "value": "123456" },
+        "party": {
+            "customer": {
+                "id": {
+                    "value": "00000123"
+                }
+            }
+        }
+    }
+}

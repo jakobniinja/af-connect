@@ -1,0 +1,20 @@
+{
+    "$schema": "http://schema.hropenstandards.org/4_0/common/json/meta/hros.json",
+    "version": "4.1.0",
+    "title": "PublicationTypeCodeList",
+    "description": "Publication type code list",
+    "enum": [
+        "Book",
+        "Paper",
+        "Article",
+        "Conference",
+        "Thesis",
+        "WhitePaper",
+        "Report",
+        "TechnicalDocumentation",
+        "Study",
+        "Manual",
+        "ResearchPaper",
+        "OtherPublication"
+    ]
+}

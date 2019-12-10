@@ -1,0 +1,44 @@
+{
+    "$schema": "http://schema.hropenstandards.org/4_0/common/json/meta/hros.json",
+    "version": "4.1.0",
+    "title": "EmployeeType",
+    "description": "The information about a person and their relationship as an employee.",
+    "definitions": {
+        "SpecialClassificationTypeArray": {
+            "description": "A special classification of the Employee e.g. a VIP, Owner, Highly Compensated, Stock Owner, Executive, Officer, etc.",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "code": { 
+                        "description": "A code indicating the special classification.",
+                        "$ref": "../base/CodeType.json#" 
+                    },
+                    "indicator": { 
+                        "description": "An indicator of the special classification.",
+                        "$ref": "../base/IndicatorType.json#" 
+                    },
+                    "percentage": { 
+                        "description": "The percentage of a person's allocation that is considered the special classification.",
+                        "$ref": "../base/PercentType.json#" 
+                    }
+                }
+            }
+        }
+    },
+    "allOf": [
+        { "$ref": "../person/PersonBaseType.json#" }
+    ],
+    "type": "object",
+    "properties": {
+        "securityTag": { "$ref": "../base/IdentifierType.json#" },
+        "positionTypeCode": { "$ref": "../codelist/PositionTypeCodeList.json#" },
+        "laborBargainingUnitMemberIndicator": {
+            "description": "An indicator that an employee is a memeber of a labor bargaining unit.",
+            "$ref": "../base/IndicatorType.json#"
+        },
+        "specialClassifications": { "$ref": "#/definitions/SpecialClassificationTypeArray" },
+        "specialProvisions": { "type": "string" },
+        "reportingCode": { "type": "string" }
+    }
+}

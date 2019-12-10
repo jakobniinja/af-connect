@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "ajv": "^6.10.2",
+    "browserify": "^16.5.0",
     "dotenv": "^8.1.0",
     "ejs": "^2.7.1",
     "express": "^4.17.1",
@@ -18,10 +19,11 @@
     "nodemon": "^1.19.2"
   },
   "scripts": {
-    "start": "node index.js",
-    "local": "node index.js localhost",
+    "start": "node app/src/index.js",
+    "local": "node app/src/index.js localhost",
     "dev": "nodemon",
-    "test": "jest"
+    "test": "jest",
+    "build": "browserify app/public/js/main.js > app/public/js/main.bundle.js"
   },
   "repository": "",
   "author": "",

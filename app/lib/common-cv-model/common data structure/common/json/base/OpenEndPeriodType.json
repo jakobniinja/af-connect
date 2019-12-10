@@ -1,0 +1,13 @@
+{
+    "$schema": "http://schema.hropenstandards.org/4_0/common/json/meta/hros.json",
+    "version": "4.1.0",
+    "title": "OpenEndPeriodType",
+    "description": "Single date/timespan/month/year or period between two dates/months/years. The end date is optional and should be used in cases where the end of the period is unknown or uncertain.",
+    "anyOf": [
+        { "$ref": "FormattedDateTimeType.json#" },
+        { "$ref": "DateTimeOpenEndPeriodType.json#" },
+        { "$ref": "DateOpenEndPeriodType.json#" },
+        { "$ref": "YearMonthOpenEndPeriodType.json#" },
+        { "$ref": "YearOpenEndPeriodType.json#" }
+    ]
+}

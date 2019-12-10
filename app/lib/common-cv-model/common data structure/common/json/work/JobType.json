@@ -1,0 +1,41 @@
+{
+  "$schema": "http://schema.hropenstandards.org/4_0/common/json/meta/hros.json",
+  "version": "4.1.0",
+  "title": "JobType",
+  "description": "A type representing the specific job (position) at an organization and related identifiers and classifications.",
+  "type": "object",
+	"properties": {
+		"id": { 
+			"description": "The id of the job.",
+			"$ref": "../base/IdentifierType.json#" 
+		},
+		"title": { 
+			"description": "The title of a job.",
+			"type": "string" 
+		},
+		"categoryCode": {
+			"description": "A code classifying the job category code. Examples include Officials And Managers, Professionals, Technicians, Sales, Official And Clerical, Craft Worker Skilled, Operative Semi-Skilled, Laborers Unskilled, Service Workers, etc.",
+			"$ref": "../base/CodeType.json#"
+		},
+		"jobFunction": {
+			"description": "A code classifying the job function e.g., HR, Finance, Marketing, Sales, Product Development, etc.",
+			"$ref": "../base/CodeType.json#"
+		},		
+		"planCode": {
+			"description": "The code representing a plan of the particdular job at an organization.",
+			"$ref": "../base/CodeType.json#" 
+		},
+		"gradeCode": { 
+			"description": "The code representing a grade of the particular job at an organization.",
+			"$ref": "../base/CodeType.json#" 
+		},
+		"stepCode": { 
+			"description": "The code representing a step of the particular job at an organization.",
+			"$ref": "../base/CodeType.json#" 
+		},
+		"description": { 
+			"description": "The description of a job.",
+			"type": "string" 
+		}
+	}
+}

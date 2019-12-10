@@ -1,0 +1,32 @@
+{
+    "$schema": "http://schema.hropenstandards.org/4_0/common/json/meta/hros.json",
+    "version": "4.1.0",
+    "title": "OrganizationReferenceType",
+    "description": "Basic information to reference a specific organization.",
+    "definitions": {
+        "ResponsibilityCodeList": {
+            "title": "ResponsibilityCodeList",
+            "description": "Values that classify the various organization type responsibility codes",
+            "enum": [
+                "Unit",
+                "Department",
+                "Division",
+                "Parent",
+                "Group",
+                "Plant",
+                "Subsidiary",
+                "Joint Venture",
+                "Branch",
+                "Holding Affiliate"
+            ]
+        }
+    },
+    "allOf": [
+        { "$ref": "../base/EntityType.json#" }
+    ],
+    "type": "object",
+    "properties": {
+        "responsibilityCode": { "$ref": "#/definitions/ResponsibilityCodeList" },
+        "communication": { "$ref": "../communication/CommunicationType.json#" }
+    }
+}

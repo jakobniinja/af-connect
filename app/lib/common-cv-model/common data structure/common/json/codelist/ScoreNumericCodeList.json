@@ -1,0 +1,18 @@
+{
+    "$schema": "http://schema.hropenstandards.org/4_0/common/json/meta/hros.json",
+    "version": "4.1.0",
+    "title": "ScoreNumericCodeList",
+    "description": "A set of enumerations describing the numeric type of scoring scheme.",
+    "enum": [
+        "Percentile",
+        "RawScore",
+        "Stanine",
+        "Sten",
+        "T-score",
+        "Z-score",
+        "IntelligenceQuotient",
+        "Scaled",
+        "NormalCurve",
+        "GPA"
+    ]
+}

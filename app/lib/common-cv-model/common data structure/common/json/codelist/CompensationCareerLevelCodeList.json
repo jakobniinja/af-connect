@@ -1,0 +1,14 @@
+{
+    "$schema": "http://schema.hropenstandards.org/4_0/common/json/meta/hros.json",
+    "version": "4.1.0",
+    "title": "CompensationCareerLevelCodeList",
+    "description": "A set of codes classifying the compensation career level codes.",
+    "enum": [
+        "EntryLevel",
+        "SomeRelevantExperience",
+        "Experienced",
+        "SeniorLevel",
+        "MasteryLevel",
+        "IndustryExpert"
+    ]
+}

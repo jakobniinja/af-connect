@@ -1,0 +1,23 @@
+{
+    "$schema": "http://schema.hropenstandards.org/4_0/common/json/meta/hros.json",
+    "version": "4.1.0",
+    "title": "CandidateContactType",
+    "description": "Contact information regarding the candidate to invite.",
+    "allOf": [
+        { "$ref": "../../common/json/base/EntityType.json#" }
+    ],
+    "type": "object",
+    "properties": {
+        "candidateName": {
+            "description": "The candidate's name.",
+            "type": "object",
+            "allOf": [
+                { "$ref": "../../common/json/person/PersonNameType.json#" }
+            ]
+        },
+        "candidateContact": {
+            "description": "The phone number, email or other communication method for contacting the candidate.",
+            "$ref": "../../common/json/communication/CommunicationType.json#"
+        }
+    }
+}

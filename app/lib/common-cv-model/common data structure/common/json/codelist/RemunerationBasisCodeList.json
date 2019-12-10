@@ -1,0 +1,13 @@
+{
+    "$schema": "http://schema.hropenstandards.org/4_0/common/json/meta/hros.json",
+    "version": "4.1.0",
+    "title": "RemunerationBasisCodeList",
+    "description": "A code classifying the primary method of payment for the associated position or employment. This classifies the method by which remuneration for a position is provided or calculated.",
+    "enum": [
+        "Hourly",
+        "Salaried",
+        "SalariedPlusBonus",
+        "SalariedPlusCommission",
+        "CommissionOnly"
+    ]
+}

@@ -1,0 +1,134 @@
+{
+    "$schema": "http://schema.hropenstandards.org/4_0/common/json/meta/hros.json",
+    "version": "4.1.0",
+    "title": "RateBasedCoverageType",
+    "description": "Specifies details for rate-based coverage (typically voluntary benefits offered by an employer), such as type and dates of coverage. ",
+    "definitions": {
+        "RateBasedProductCodeList": {
+            "enum": [
+                "Life",
+                "AD&D",
+                "STD",
+                "LTD"
+            ]
+        },
+        "ProductTypeCodeList": {
+            "enum": [
+                "Basic",
+                "Group",
+                "Supplemental",
+                "NotApplicable"
+            ]
+        },
+        "CoverageEntityCodeList": {
+            "enum": [
+                "Self",
+                "Spouse",
+                "CommonLawSpouse",
+                "Dependent",
+                "Child"
+            ]
+        },
+        "CoverageLevelType": {
+            "type": "object",
+            "properties": {
+                "amount": { "$ref": "../../common/json/base/AmountType.json#" },
+                "multiplier": { "$ref": "../../common/json/base/NumberType.json#" },
+                "typeCode": {
+                    "enum": [
+                        "Salary",
+                        "YearsOfService",
+                        "Fixed"
+                    ]
+                },
+                "volumeAmount": { "$ref": "../../common/json/base/AmountType.json#" }
+            }
+        },
+        "QuestionAnswerType": {
+            "type": "object",
+            "properties": {
+                "id": { "$ref": "../../common/json/base/IdentifierType.json#" },
+                "questionSetId": { "$ref": "../../common/json/base/IdentifierType.json#" },
+                "question": { "type": "string" },
+                "answer": { "type": "string" }
+            }
+        },
+        "FamilyRelationshipCodeList": {
+            "enum": [
+                "AdoptedChild",
+                "BrotherOrSister",
+                "BrotherInLawOrSisterInLaw",
+                "Child",
+                "CollateralDependent",
+                "CourtAppointedGardian",
+                "Cousin",
+                "DependentOfAMinorDependent",
+                "ExSpouse",
+                "Father",
+                "FatheOrMother",
+                "FatherInLawOrMotherInLaw",
+                "FosterChild",
+                "GrandfatherOrGrandmother",
+                "GrandsonOrGranddaughter",
+                "Guardian",
+                "LifePartner",
+                "Mother",
+                "NephewOrNiece",
+                "Self",
+                "SonInLawOrDaughterInLaw",
+                "SponsoredDependent",
+                "SpouseStepfather",
+                "Stepmother",
+                "StepsonOrStepdaughter",
+                "UncleOrAunt",
+                "Ward"
+            ]
+        },
+        "BeneficiaryType": {
+            "allOf": [
+                { "$ref": "../../common/json/person/PersonBaseType.json#" }
+            ],
+            "type": "object",
+            "properties": {
+                "designationSequence": { "$ref": "../../common/json/base/PercentType.json#" },
+                "familyRelationshipCode": { "$ref": "#/definitions/FamilyRelationshipCodeList" },
+                "inheritanceAmount": { "$ref": "../../common/json/base/AmountType.json#" }
+            }
+        }
+    },
+    "allOf": [
+        { "$ref": "CoverageType.json#" }
+    ],
+    "type": "object",
+    "properties": {
+        "rateBasedProductCode": { "$ref": "#/definitions/RateBasedProductCodeList" },
+        "productTypeCode": { "$ref": "#/definitions/ProductTypeCodeList" },
+        "coverageEntityCode": { "$ref": "#/definitions/CoverageEntityCodeList" },
+        "eligibilityRegionCode": { "$ref": "../../common/json/base/CodeType.json#" },
+        "effectivePeriod": { "$ref": "../../common/json/base/EffectiveTimePeriodType.json#" },
+        "lateEntranceIndicator": { "$ref": "../../common/json/base/IndicatorType.json#" },
+        "approvedCoverageLevel": { "$ref": "#/definitions/CoverageLevelType" },
+        "requestedCoverageLevel": { "$ref": "#/definitions/CoverageLevelType" },
+        "questionAnswerPair": {
+			"type": "array",
+			"items": { "$ref": "#/definitions/QuestionAnswerType" }
+		},
+        "eoiOnFileWithEmployerIndicator": { 
+		"description": "Indicates if the Evidence of Insurability document is on file with the employer.",
+		"$ref": "../../common/json/base/IndicatorType.json#" },
+        "eoiRequiredIndictator": { 
+		"description": "Indicates if the Evidence of Insurability document is required.",
+		"$ref": "../../common/json/base/IndicatorType.json#" },
+        "beneficiary": {
+            "type": "array",
+            "items": { "$ref": "#/definitions/BeneficiaryType" }
+        },
+        "lifeCoverageStatus": {
+            "enum": [
+                "Member is active",
+                "Premium waived due to disability"
+            ]
+        }
+    }
+}
+

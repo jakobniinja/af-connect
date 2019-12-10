@@ -1,0 +1,14 @@
+{
+    "$schema": "http://schema.hropenstandards.org/4_0/common/json/meta/hros.json",
+    "version": "4.1.0",
+    "title": "EmailType",
+    "type": "object",
+    "properties": {
+        "address": {
+            "description": "Actual email address",
+            "type": "string",
+            "format": "email"
+        }
+    },
+    "required": [ "address" ]
+}

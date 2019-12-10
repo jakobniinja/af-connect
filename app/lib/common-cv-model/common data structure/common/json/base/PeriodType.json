@@ -1,0 +1,13 @@
+{
+    "$schema": "http://schema.hropenstandards.org/4_0/common/json/meta/hros.json",
+    "version": "4.1.0",
+    "title": "PeriodType",
+    "description": "Single date/timespan/month/year or period between two dates/months/years.",
+    "anyOf": [
+        { "$ref": "FormattedDateTimeType.json#" },
+        { "$ref": "DateTimePeriodType.json#" },
+        { "$ref": "DatePeriodType.json#" },
+        { "$ref": "YearMonthPeriodType.json#" },
+        { "$ref": "YearPeriodType.json#" }
+    ]
+}

@@ -1,0 +1,20 @@
+{
+	"$schema": "http://schema.hropenstandards.org/4_0/common/json/meta/hros.json",
+	"version": "4.1.0",
+	"title": "MatchType",
+	"description": "Survey details to match jobs across organization",
+	"type": "object",
+	"properties": {
+		"surveyJobCode": { "$ref": "../../common/json/base/CodeType.json#" },
+		"matchPercent": { "$ref": "../../common/json/base/PercentType.json#" },
+		"surveyJobCodeLevel": {
+			"description": "Code classifying the survey job code levels e.g., 1, 2, 3, 4",
+			"$ref": "../../common/json/base/CodeType.json#" 
+		},
+		"surveyJobCodeSpeciality": {
+			"description": "Code classifying the survey job code specialities e.g., 'Exec Comp', 'Cash Comp', 'Sales Comp', etc.",
+			"$ref": "../../common/json/base/CodeType.json#" 
+		}
+	},
+	"required": ["surveyJobCode"]
+}

@@ -1,0 +1,12 @@
+{
+    "$schema": "http://schema.hropenstandards.org/4_0/common/json/meta/hros.json",
+    "version": "4.1.0",
+    "title": "EducationDegreeGrantedStatusCodeList",
+    "description": "Values that classify the education degree granted status.",
+    "enum": [
+        "Granted",
+        "InProgress",
+        "Postponed",
+        "NotGranted"
+    ]
+}
