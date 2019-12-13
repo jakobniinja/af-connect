@@ -6,7 +6,7 @@ var selectedProfile = -1;
 const config = {
   cookie: "AMV_SSO_COOKIE",
   authUrl:
-    "https://connectstage.arbetsformedlingen.se:9999/AuthenticationDispatcher/Dispatch?CT_ORIG_URL=https://connectstage.arbetsformedlingen.se",
+    "https://af-connect.local:9999/AuthenticationDispatcher/Dispatch?CT_ORIG_URL=https://af-connect.local",
   cvUrl: "/fetchCV",
   consentForm: "/consentForm",
   consent: "/consent"

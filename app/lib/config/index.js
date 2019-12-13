@@ -2,18 +2,16 @@
 const dotenv = require("dotenv");
 dotenv.config();
 module.exports = {
-  host: process.env.HOST || "demotest.arbetsformedlingen.se",
+  host: process.env.HOST || "af-connect.local",
   port: process.env.PORT || 3000,
   localPort: process.env.LOCAL_PORT || 443,
   afLoginUrl:
-    process.env.AF_LOGIN_URL || "https://www.arbetsformedlingen.se/loggain",
+    process.env.AF_LOGIN_URL || "https://af-connect.local:9999/loggain",
   afJwtUrl:
     process.env.AF_JWT_URL ||
-    "http://jwt.arbetsformedlingen.se/jwt/rest/idp/v0/klientID",
+    "https://af-connect.local:9999/jwt/rest/idp/v0/klientID",
   afJwtHost: process.env.AF_JWT_HOST || "jwt.arbetsformedlingen.se",
-  portabilityUrl:
-    process.env.PORTABILITY_URL ||
-    "https://portabilitystage.arbetsformedlingen.se/portability-api",
+  portabilityUrl: process.env.PORTABILITY_URL || "http://af-connect.local:8080",
   portabilityHost:
     process.env.PORTABILITY_HOST || "portabilitystage.arbetsformedlingen.se",
   ssoCookieName: process.env.SSO_COOKIE_NAME || "AMV_SSO_COOKIE",
