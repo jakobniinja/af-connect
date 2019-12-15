@@ -1,0 +1,43 @@
+{
+    "$schema": "http://schema.hropenstandards.org/4_0/common/json/meta/hros.json",
+    "version": "4.1.0",
+    "title": "CertificationType",
+    "description": "A document or confirmation certifying the status or acquirements of the bearer, or his fulfilment of conditions which authorize him to act or practise in a specified way; hence, often equal to a certificate.",
+    "type": "object",
+    "properties": {
+        "id": {
+            "description": "A unique identifier to the certificate as defined by the issuing authority.",
+            "$ref": "../base/IdentifierType.json#"
+        },
+        "name": {
+            "description": "The common name of the certificate.",
+            "type": "string"
+        },
+        "type": {
+            "description": "The type of the certificate.",
+            "$ref": "../base/EntityType.json#"
+        },
+        "status": {
+            "description": "The status of the certificate. While this is an open string, common status include active, expired, pending, suspended.",
+            "type": "string"
+        },
+        "effectiveTimePeriod": {
+            "description": "The time period for which the certificiate is valid and considered active.",
+            "$ref": "../base/EffectiveTimePeriodType.json#"
+        },
+        "firstIssued": {
+            "description": "The original issue date of the certificate. Often this is useful when the certifiates need to be renewed often, and it is important to know how long the certificate has been held.",
+            "$ref": "../base/FormattedDateTimeType.json#"
+        },
+        "issuingAuthority": {
+            "description": "The organization that issued the certificate.",
+            "$ref": "../organization/OrganizationType.json#"
+        },
+        "attachmentReferences": {
+            "description": "References to attachments in the message that provide evidence of the issue or the validity of the license.",
+            "type": "array",
+            "items": { "$ref": "../base/AttachmentReferenceType.json#" }
+        },
+        "descriptions": { "$ref": "../base/StringTypeArray.json#" }
+    }
+}

@@ -1,0 +1,70 @@
+{
+    "$schema": "http://schema.hropenstandards.org/4_0/common/json/meta/hros.json",
+    "version": "4.1.0",
+    "title": "DeploymentType",
+    "description": "Contains a collection of information about the work of a human resource  within an employment or work context. Deployment details include information about a resource's job, position, work schedule, assignment entry reason, as well as information identifying the organization and/or organizational sub-units associated with the deployment.",
+    "definitions": {
+        "WorkerAssignmentSourceType": {
+            "description": "Defines the source of the worker and related assignment. For example, the source might be expatriate with the home country in Germany but the person is working in Belgium.",
+            "type": "object",
+            "properties": {
+                "sourceCode": { "$ref": "../codelist/WorkerAssignmentSourceCodeList.json#" },
+                "homeCountry": { "$ref": "../codelist/CountryCodeList.json#" },
+                "hostCountry": { "$ref": "../codelist/CountryCodeList.json#" }
+            }
+        }
+    },
+    "type": "object",
+    "properties": {
+        "workerAssignmentSource": { "$ref": "#/definitions/WorkerAssignmentSourceType" },
+        "workLocation": { "$ref": "../organization/WorkLocationType.json#" },
+        "communication": { "$ref": "../communication/CommunicationType.json#" },
+        "resourceRelationshipCode": {
+            "description": "Describes the relationship between the employer and worker, e.g, Employee, Vendor Employee.",
+            "$ref": "../codelist/ResourceRelationshipCodeList.json#"
+        },
+        "organizationIds": {
+            "type": "array",
+            "items": { "$ref": "../base/IdentifierType.json#" }
+        },
+        "job": { "$ref": "../work/JobType.json#" },
+        "position": { "$ref": "../work/PositionType.json#" },
+        "scheduledHours": {
+            "description": "Do Not Use. This property will be removed in the next major release. Please use ScheduleHours property instead.",
+            "$ref": "../base/RateType.json#"
+        },
+        "scheduleHours": {
+            "description": "The hours a person is scheduled to work.",
+            "$ref": "../base/QuantityType.json#"
+        },
+        "assignmentReasonCode": {
+            "description": "The reason a person is assigend to the position, e.g. Hire, Transfer, Promotion, etc.",
+            "$ref": "../codelist/AssignmentReasonCodeList.json#"
+        },
+        "fullTimeEquivalentRatio": { "$ref": "../base/RatioType.json#" },
+        "effectivePeriod": { "$ref": "../base/EffectiveTimePeriodType.json#" },
+        "employeeReportingCode": {
+            "description": "An element that allows further classification of the employee using employer or program-specific codes and controlled vocabularies. This information may be collected to use for return reporting back to the employer.",
+            "$ref": "../base/CodeType.json#"
+        },
+        "wageHourLawCoverageCountryCode": { "$ref": "../codelist/CountryCodeList.json#" },
+        "wageHourLawCoverageIndicator": {
+            "description": "This determines if a person is covered by wage hour laws. In the US, a person would be considered non-exempt if the indicator is true (they are covered under the law).",
+            "$ref": "../base/IndicatorType.json#"
+        },
+        "laborBargainingUnitIndicator": {
+            "description": "Indicates if the person is part of a labor bargaining unit, such as a union.",
+            "$ref": "../base/IndicatorType.json#"
+        },
+        "newHireProbationaryIndicator": { "$ref": "../base/IndicatorType.json#" },
+        "organization": { "$ref": "../organization/OrganizationType.json#" },
+        "license": {
+            "description": "Any Licenses the person carries for the related position.",
+            "$ref": "../profile/LicenseType.json#"
+        },
+        "certification": {
+            "description": "Any certifications the person carries for the related position.",
+            "$ref": "../profile/CertificationType.json#"
+        }
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "$schema": "http://schema.hropenstandards.org/4_0/common/json/meta/hros.json",
+    "version": "4.1.0",
+    "title": "GenderCodeList",
+    "description": "Gender code list",
+    "enum": [
+        "Male",
+        "Female"
+    ]
+}

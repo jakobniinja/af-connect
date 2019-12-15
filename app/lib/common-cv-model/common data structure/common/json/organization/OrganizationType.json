@@ -1,0 +1,63 @@
+{
+    "$schema": "http://schema.hropenstandards.org/4_0/common/json/meta/hros.json",
+    "version": "4.1.0",
+    "title": "OrganizationType",
+    "description": "Basic information to identify and reference a specific organization.",
+    "definitions": {
+        "GeographicResponsibilityCodeList": {
+            "title": "GeographicResponsibilityCodeList",
+            "description": "Values that classify the various geographic responsibility codes",
+            "enum": [
+                "Global",
+                "National",
+                "Regional",
+                "Local"
+            ]
+        },
+        "OwnershipTypeCodeList": {
+            "title": "OwnershipTypeCodeList",
+            "description": "Values that classify the various organization ownership types",
+            "enum": [
+                "Public",
+                "Private",
+                "NonProfit",
+                "Government",
+                "Joint Venture",
+                "Mutual"
+            ]
+        }
+    },
+    "allOf": [
+        { "$ref": "OrganizationReferenceType.json#" }
+    ],
+    "type": "object",
+    "properties": {
+        "taxId": { "$ref": "../base/IdentifierType.json#" },
+        "legalId": { "$ref": "../base/IdentifierType.json#" },
+        "industryCodes": {
+            "description": "The industry codes with which the organization is engaged.",
+            "type": "array",
+            "items": { "$ref": "../base/CodeType.json#" }
+        },
+        "headCount": { "$ref": "../base/NumberType.json#" },
+        "revenue": { "$ref": "../base/AmountType.json#" },
+        "description": { "$ref": "../base/TextType.json#" },
+        "geographicResponsibilityCode": { "$ref": "#/definitions/GeographicResponsibilityCodeList" },
+        "ownershipType": { "$ref": "#/definitions/OwnershipTypeCodeList" },
+        "stockSymbol": { "$ref": "../base/CodeType.json#" },
+        "workEnvironmentCode": { 
+            "description": "Work Environment type e.g., Office, Workshop, Factory, etc",
+            "$ref": "../base/CodeType.json#" 
+        },
+        "contacts": {
+            "description": "The people at the organization who can be used contacts.",
+            "type": "array",
+            "items": { "$ref": "../person/SpecifiedPersonType.json#" }
+        },
+        "domainName": {
+            "description": "The internet domain to help identify the organization and a reference to find additional information.",
+            "type": "string",
+            "format": "uri"
+        }
+    }
+}

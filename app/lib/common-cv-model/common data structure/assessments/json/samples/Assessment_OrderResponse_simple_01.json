@@ -1,0 +1,22 @@
+{
+    "order": {
+        "documentId": { "value": "AP000001" },
+        "orderId": "order_0001",
+        "subject": {
+            "subjectId": { "value": "C001211" }
+        },
+        "assessmentRequesterName": "Modern Recruiting ATS",
+        "packageId": { "value": "123456" },
+        "assessmentAccessURL": {
+            "uri": "https://www.atsvendor.com/guid",
+            "message": "Click here to begin your assessment."
+        },
+        "party": {
+            "customer": {
+                "id": {
+                    "value": "00000123"
+                }
+            }
+        }
+    }
+}

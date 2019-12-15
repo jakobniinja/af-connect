@@ -1,0 +1,12 @@
+{
+    "$schema": "http://schema.hropenstandards.org/4_0/common/json/meta/hros.json",
+    "version": "4.1.0",
+    "title": "RecruitingDocumentStatusCodeList",
+    "description": "Values that describe the disposition of a position opening document.",
+    "enum": [
+        "Active",
+        "Closed",
+        "Incomplete",
+        "OnHold"
+    ]
+}

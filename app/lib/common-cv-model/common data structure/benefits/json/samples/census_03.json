@@ -1,0 +1,56 @@
+ {
+     "person": {
+         "id": { "value": "776482846" },
+         "legalId": { "value": "776482846" },
+         "name": {
+             "formattedName": "Jill Newhire",
+             "given": "Jill",
+             "family": "Newhire"
+         },
+         "communication": {
+             "phone": [{
+                     "formattedNumber": "413-555-5555"
+                 },
+                 {
+                     "useCode": "fax",
+                     "formattedNumber": "413-555-5656"
+                 }
+             ],
+             "email": [{
+                 "address": "Jill.Newhire@newco.com"
+             }]
+         },
+         "birthDate": "1998-10-28",
+         "gender": "Female",
+         "maritalStatus": "Married",
+         "primaryLanguage": "en",
+         "citizenship": ["US"],
+         "residenceCountry": ["US"]
+     },
+     "employee": {
+         "id": { "value": "776482846" },
+         "positionTypeCode": "DirectHire",
+         "laborBargainingUnitMemberIndicator": false
+     },
+     "employment": {
+         "hire": {
+             "expectedFirstWorkDate": "2017-03-01",
+             "typeCode": "NewHire",
+             "date": "2017-02-01",
+             "firstWorkDate": "2017-03-01"
+         }
+     },
+     "deployment": [{
+         "resourceRelationshipCode": "Employee",
+         "job": {
+             "categoryCode": "Professionals"
+         },
+         "position": {
+             "remunerationBasisCode": "Hourly"
+         },
+         "scheduleHours": {
+             "value": 40,
+             "unitCode": "WEE"
+         }
+     }]
+ }

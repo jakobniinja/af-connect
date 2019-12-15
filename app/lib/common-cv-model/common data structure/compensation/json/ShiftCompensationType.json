@@ -1,0 +1,21 @@
+{
+	"$schema": "http://schema.hropenstandards.org/4_0/common/json/meta/hros.json",
+	"version": "4.1.0",
+	"title": "ShiftCompensationType",
+	"description": "Details of Shift Compensation",
+	"type": "object",
+	"properties": {
+		"type": { 
+			"description": "A code that classifies ShiftCompensationType e.g., 'Base Pay','Variable Pay', 'Commission','Bonus','Short Term Incentive','Shift Pay','OnCall','Hazard','Allowance'",
+			"$ref": "../../common/json/base/CodeType.json#" 
+		},
+		"differential": {
+			"type": "object",
+			"properties": {
+				"flatPremiumAmount": { "$ref": "../../common/json/base/AmountType.json#" },
+				"hourlyBaseRatePercent": { "$ref": "../../common/json/base/PercentType.json#" },
+				"bonusSupplement": { "$ref": "../../common/json/base/AmountType.json#" }
+			}
+		}
+	}
+}

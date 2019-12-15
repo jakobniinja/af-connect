@@ -1,0 +1,68 @@
+ {
+     "person": {
+         "id": { "value": "1234" },
+         "legalId": { "value": "111111111" },
+         "name": {
+             "formattedName": "John Open",
+             "given": "John",
+             "family": "Open"
+         },
+         "communication": {
+             "address": [{
+                 "line": "1 Smith Drive",
+                 "city": "Smithville",
+                 "countrySubDivision": {
+                     "type": "state",
+                     "value": "MA"
+                 },
+
+                 "postalCode": "02341"
+             }],
+             "phone": [{
+                     "formattedNumber": "508-555-5555"
+                 },
+                 {
+                     "useCode": "fax",
+                     "formattedNumber": "508-555-5656"
+                 }
+             ],
+             "email": [{
+                 "address": "J.Smith@company.com"
+             }]
+         },
+         "birthDate": "1996-02-05",
+         "deceasedIndicator": false,
+         "gender": "Male",
+         "maritalStatus": "Unmarried",
+         "primaryLanguage": "en",
+         "citizenship": ["US"],
+         "residenceCountry": ["US"]
+     },
+     "employee": {
+         "id": { "value": "M12354" },
+         "positionTypeCode": "DirectHire",
+         "laborBargainingUnitMemberIndicator": false,
+         "specialClassificationTypeArray": [{
+             "code": "Executive",
+             "indicator": true
+         }]
+     },
+     "employment": {
+         "hire": {
+             "expectedFirstWorkDate": "2016-10-01"
+         }
+     },
+     "deployment": [{
+         "resourceRelationshipCode": "Employee",
+         "job": {
+             "categoryCode": "Professionals"
+         },
+         "position": {
+             "remunerationBasisCode": "Salaried"
+         },
+         "scheduleHours": {
+             "value": 40,
+             "unitCode": "WEE"
+         }
+     }]
+ }

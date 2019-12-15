@@ -1,0 +1,11 @@
+{
+    "$schema": "http://schema.hropenstandards.org/4_0/common/json/meta/hros.json",
+    "version": "4.1.0",
+    "title": "BenefitsType",
+    "description": "Represents the Benefits Specification.",
+    "type": "object",
+    "properties": {
+        "census": { "$ref": "CensusType.json#" },
+        "enrollment": { "$ref": "EnrollmentType.json#" }
+    }
+}

@@ -1,0 +1,21 @@
+{
+    "$schema": "http://schema.hropenstandards.org/4_0/common/json/meta/hros.json",
+    "version": "4.1.0",
+    "title": "AssessmentStatusCodeList",
+    "description": "A set of codes indicating the status of an assessment The name of the assessment status.",
+    "enum": [
+        "OrderAcknowledged",
+        "TestPendingScheduling",
+        "TestScheduled",
+        "CompletedTestPendingScoring",
+        "ScoredTestPendingReview",
+        "SubjectDeclinedTest",
+        "OrderComplete",
+        "OrderInProgress",
+        "OrderCancelled",
+        "OrderExpired",
+        "OrderReviewRequired",
+        "Deferred",
+        "Error"
+    ]
+}

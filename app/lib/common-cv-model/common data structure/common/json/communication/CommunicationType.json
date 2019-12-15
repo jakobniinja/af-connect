@@ -1,0 +1,14 @@
+{
+    "$schema": "http://schema.hropenstandards.org/4_0/common/json/meta/hros.json",
+    "version": "4.1.0",
+    "title": "CommunicationType",
+    "description": "Allows capture of information about a variety of communication channels (telephone, email, fax, messaging, address, etc.)",
+    "type": "object",
+    "properties": {
+        "address": { "$ref": "AddressTypeArray.json#" },
+        "phone": { "$ref": "PhoneTypeArray.json#" },
+        "email": { "$ref": "EmailTypeArray.json#" },
+        "web": { "$ref": "WebTypeArray.json#" }
+    },
+    "minProperties": 1
+}

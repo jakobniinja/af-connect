@@ -1,0 +1,35 @@
+{
+    "candidate": {
+        "candidateName": {
+            "given": "Joe",
+            "family": "Smith"
+        },
+        "candidateContact": {
+            "email": [
+                {
+                    "address": "candidate@email.com"
+                }
+            ]
+        }
+    },
+    "positionId": {
+        "value": "12345"
+    },
+    "languageCode": "en-US",
+    "timezone":"America/Los_Angeles",
+    "sessions":[  
+        {  
+            "name":"Interview Session",
+            "durationMinutes":30,
+            "startTime":"2019-02-28T08:00:00",
+            "participants":[  
+                {  
+                    "username":"recruiter@email.com",
+                    "lastName":"Ruiter",
+                    "fullName":"Rick Ruiter",
+                    "firstName":"Rick"
+                }
+            ]
+        }
+    ]
+}

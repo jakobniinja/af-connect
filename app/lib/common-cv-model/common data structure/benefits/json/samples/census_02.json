@@ -1,0 +1,52 @@
+ {
+     "person": {
+         "id": { "value": "23451" },
+         "legalId": { "value": "222222222" },
+         "name": {
+             "formattedName": "Mary Life-Event",
+             "given": "Mary",
+             "family": "Life-Event"
+         },
+         "communication": {
+             "phone": [{
+                 "formattedNumber": "617-555-5555"
+             }],
+             "email": [{
+                 "address": "MLifeEvent@company.edu"
+             }]
+         },
+         "birthDate": "1980-07-25",
+         "gender": "Female",
+         "maritalStatus": "Married",
+         "primaryLanguage": "fr-CA",
+         "citizenship": ["CA"],
+         "residenceCountry": ["US"]
+     },
+     "employee": {
+         "id": { "value": "23451" },
+         "positionTypeCode": "DirectHire",
+         "laborBargainingUnitMemberIndicator": false,
+         "specialClassificationTypeArray": [{
+             "code": "Officer",
+             "indicator": true
+         }]
+     },
+     "employment": {
+         "hire": {
+             "expectedFirstWorkDate": "2015-01-01"
+         }
+     },
+     "deployment": [{
+         "resourceRelationshipCode": "Employee",
+         "job": {
+             "categoryCode": "Professionals"
+         },
+         "position": {
+             "remunerationBasisCode": "Salaried"
+         },
+         "scheduleHours": {
+             "value": 40,
+             "unitCode": "WEE"
+         }
+     }]
+ }

@@ -1,0 +1,12 @@
+{
+    "$schema": "http://schema.hropenstandards.org/4_0/common/json/meta/hros.json",
+    "version": "4.1.0",
+    "title": "InterviewType",
+    "description": "Represents the Interview Specification.",
+    "type": "object",
+    "properties": {
+        "asynchronousOrder": { "$ref": "AsynchronousOrderType.json#" },
+        "interviewPosition": { "$ref": "InterviewPositionType.json#" },
+        "statusNotification": { "$ref": "StatusNotificationType.json#" }
+    }
+}

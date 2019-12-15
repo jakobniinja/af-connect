@@ -1,0 +1,10 @@
+{
+    "$schema": "http://schema.hropenstandards.org/4_0/common/json/meta/hros.json",
+    "version": "4.1.0",
+    "title": "RelationshipTypeCodeList",
+    "description": "Values used to describe the type of relationship of a reference.",
+    "enum": [
+        "Personal",
+        "Professional"
+    ]
+}

@@ -1,0 +1,19 @@
+{
+    "$schema": "http://schema.hropenstandards.org/4_0/common/json/meta/hros.json",
+    "version": "4.1.0",
+    "title": "PositionTypeCodeList",
+    "description": "These are values that are descriptive in classifying a position or a position opportunity or \"offering\". They are not precise classes useful internally to drive pay, benefits, or HR compliance. Enumerated values are: DirectHire, Temporary, TemporaryToHire, ContractToHire, Contract, Internship, Externship, Apprenticeship, Seasonal, Student, and Volunteer. Consider that \"Temporary\" and \"DirectHire\" are not parallel concepts, but are still commonly used in classifying jobs within advertising.",
+    "enum": [
+        "DirectHire",
+        "Temporary",
+        "TemporaryToHire",
+        "ContractToHire",
+        "Contract",
+        "Internship",
+        "Externship",
+        "Apprenticeship",
+        "Seasonal",
+        "Student",
+        "Volunteer"
+    ]
+}

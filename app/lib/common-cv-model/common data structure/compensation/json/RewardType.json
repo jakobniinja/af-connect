@@ -1,0 +1,60 @@
+{
+    "$schema": "http://schema.hropenstandards.org/4_0/common/json/meta/hros.json",
+    "version": "4.1.0",
+    "title": "RewardType",
+    "description": "Details of the compensation reward",
+    "type": "object",
+    "allOf": [
+        { "$ref": "../../common/json/base/NounType.json#" }
+    ],
+    "properties": {
+        "rewardCode": { "$ref": "../../common/json/codelist/PayTypeCodeList.json#" },
+        "effectiveDate": { "$ref": "../../common/json/base/DateType.json#" },
+        "eligibleIndicator": {
+            "description": "Is the Employee eligible for this reward or not",
+            "$ref": "../../common/json/base/IndicatorType.json#"
+        },
+        "clientProvidedValue": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "description": "Total Reward name.",
+                    "$ref": "../../common/json/base/NameType.json#"
+                },
+                "valueAmount": {
+                    "description": "Total Reward amount (including any additional payments)",
+                    "$ref": "../../common/json/base/AmountType.json#"
+                },
+                "valuePercent": {
+                    "description": "Reward as a percentage of (applicable) Base in case reward is in percentage",
+                    "$ref": "../../common/json/base/PercentType.json#"
+                },
+                "rateIntervalCode": {
+                    "description": "Frequency of reward payments",
+                    "$ref": "../../common/json/codelist/PayRateIntervalCodeList.json#"
+                },
+                "numberOfAdditionalPayments": {
+                    "description": "Additional number of months/weeks included in the Annual pay",
+                    "$ref": "../../common/json/base/NumberType.json#"
+                },
+                "taxableIndicator": { "$ref": "../../common/json/base/IndicatorType.json#" },
+                "cashIndicator": { "$ref": "../../common/json/base/IndicatorType.json#" },
+                "fixedIndicator": { "$ref": "../../common/json/base/IndicatorType.json#" }
+            },
+            "required": [ "rateIntervalCode", "cashIndicator" ]
+        },
+        "clientProvidedTarget": {
+            "type": "object",
+            "properties": {
+                "targetAmount": { "$ref": "../../common/json/base/AmountType.json#" },
+                "targetPercent": { "$ref": "../../common/json/base/PercentType.json#" },
+                "basisOfTarget": {
+                    "description": "Basis of Target e.g., Base Pay, Base Pay plus Mandatory Bonus, etc",
+                    "$ref": "../../common/json/codelist/PayTypeCodeList.json#"
+                }
+            },
+            "required": [ "target", "basisOfTarget" ]
+        }
+    },
+    "required": [ "rewardCode", "eligibleIndicator" ]
+}

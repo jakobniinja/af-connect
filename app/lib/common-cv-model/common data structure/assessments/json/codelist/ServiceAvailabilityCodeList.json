@@ -1,0 +1,11 @@
+{
+    "$schema": "http://schema.hropenstandards.org/4_0/common/json/meta/hros.json",
+    "version": "4.1.0",
+    "title": "ServiceAvailabilityCodeList",
+    "description": "A set of codes classifying the availability of an assessment package.",
+    "enum": [
+        "Available",
+        "Unavailable",
+        "TemporarilyUnavailable"
+    ]
+}

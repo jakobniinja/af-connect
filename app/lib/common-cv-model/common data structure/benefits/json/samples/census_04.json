@@ -1,0 +1,56 @@
+ {
+     "person": {
+         "id": { "value": "898992324" },
+         "legalId": { "value": "898992324" },
+         "name": {
+             "formattedName": "William Crowe",
+             "given": "William",
+             "family": "Crowe"
+         },
+         "communication": {
+             "phone": [{
+                 "formattedNumber": "781-555-5555"
+             }],
+             "email": [{
+                 "address": "William@CroweCo.com"
+             }]
+         },
+         "birthDate": "1954-03-23",
+         "deceasedIndicator": true,
+         "deathDate": "2017-02-22T14:00:00",
+         "certifiedDeathDate": "2017-02-22T16:00:00",
+         "gender": "Male",
+         "maritalStatus": "Married",
+         "primaryLanguage": "en",
+         "citizenship": ["US"],
+         "residenceCountry": ["US"]
+     },
+     "employee": {
+         "id": { "value": "898992324" },
+         "positionTypeCode": "DirectHire",
+         "laborBargainingUnitMemberIndicator": false
+     },
+     "employment": {
+         "hire": {
+             "expectedFirstWorkDate": "1990-05-22"
+         },
+         "termination": {
+             "reasonCode": "Death",
+             "date": "2017-02-22",
+             "lastWorkedDate": "2017-02-21"
+         }
+     },
+     "deployment": [{
+         "resourceRelationshipCode": "Employee",
+         "job": {
+             "categoryCode": "Professionals"
+         },
+         "position": {
+             "remunerationBasisCode": "Salaried"
+         },
+         "scheduleHours": {
+             "value": 40,
+             "unitCode": "WEE"
+         }
+     }]
+ }
