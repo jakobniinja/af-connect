@@ -2,9 +2,10 @@
 const dotenv = require("dotenv");
 dotenv.config();
 module.exports = {
+  useSSL: process.env.USE_SSL || false,
   host: process.env.HOST || "af-connect.local",
   port: process.env.PORT || 3000,
-  localPort: process.env.LOCAL_PORT || 443,
+  localPort: process.env.LOCAL_PORT || 4443,
   afLoginUrl:
     process.env.AF_LOGIN_URL || "https://af-connect.local:9999/loggain",
   afJwtUrl:
