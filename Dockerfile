@@ -1,5 +1,5 @@
 FROM node:10-alpine
-
+## Is used as proxy before node server
 USER root
 ARG ARG_BUILDNAME
 ARG ARG_USER=default
@@ -10,31 +10,29 @@ ENV USER=$ARG_USER
 ENV PASSWD=$ARG_PASSWD
 RUN echo 'kolla:' ${USER} ${PASSWD} ' buildName:'${buildName}
 
-WORKDIR /app
-COPY package.json /app
+WORKDIR /dist
+#COPY package.json /app
+COPY . .
 RUN npm install
-COPY . /app
 
 #Create Document root
 RUN mkdir /opt/nginx
 RUN mkdir /opt/nginx/www
-
-#Copy content do http server
+#Should be empty
 RUN ls -la /opt/nginx/www;
 
 RUN apk update && apk upgrade
 
-RUN apk add --no-cache --update -v \
+RUN apk add --no-cache --update -v curl \
         supervisor \
         nginx \
-        git \
-        curl
+        git
 
-RUN rm -rf /var/cache/apk/*
 
 ENV TZ=Europe/Stockholm
 RUN date +"%Y-%m-%dT%H:%M:%S %Z"
 RUN apk add -q apache2-utils && htpasswd -dbc /etc/nginx/htpasswd $USER $PASSWD
+RUN rm -rf /var/cache/apk/*
 #Move config to image
 RUN mkdir /tmp/conf
 COPY prod-nginx.conf /tmp/conf
@@ -62,6 +60,11 @@ RUN chmod -R 775 /var/lib/nginx && \
     chmod -R 777 /var/log/* && \
     chmod -R 777 /var/tmp/nginx
 #######
+EXPOSE 3000:3000
+EXPOSE 8080:8080
+EXPOSE 4443:4443
+
 USER 10000
+#CMD [ "npm", "run-script", "start" ]
 CMD ["/usr/bin/supervisord", "-n"]
-EXPOSE 8080
+
