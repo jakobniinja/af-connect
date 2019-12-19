@@ -6,7 +6,8 @@ module.exports = {
   port: process.env.PORT || 3000,
   localPort: process.env.LOCAL_PORT || 443,
   afLoginUrl:
-    process.env.AF_LOGIN_URL || "https://af-connect.local:9999/loggain",
+    process.env.AF_LOGIN_URL ||
+    "https://af-connect.local:9999/AuthenticationDispatcher/Dispatch?CT_ORIG_URL=https://af-connect.local",
   afJwtUrl:
     process.env.AF_JWT_URL ||
     "https://af-connect.local:9999/jwt/rest/idp/v0/klientID",

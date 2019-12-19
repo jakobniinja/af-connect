@@ -46,7 +46,7 @@ app.use("/favicon.ico", express.static(__dirname + "/../public/favicon.ico"));
 
 app.get("/", (req, res) => {
   console.log("Request CV for session: " + req.query.sessionToken);
-  res.render("pages/index");
+  res.render("pages/index", { afLoginUrl: config.afLoginUrl });
 });
 
 app.post("/consent", (req, res) => {
