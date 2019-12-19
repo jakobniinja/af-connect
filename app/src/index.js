@@ -11,7 +11,9 @@ const http = require("http");
 const whatHost = process.argv[2] || "deploy";
 let server;
 
-if (whatHost === "localhost") {
+
+
+if (config.useSSL) {
   const privateKey = fs.readFileSync(config.pkey, "utf8");
   const certificate = fs.readFileSync(config.sslcert, "utf8");
   const credentials = { key: privateKey, cert: certificate };
@@ -46,7 +48,7 @@ app.use("/favicon.ico", express.static(__dirname + "/../public/favicon.ico"));
 
 app.get("/", (req, res) => {
   console.log("Request CV for session: " + req.query.sessionToken);
-  res.render("pages/index");
+  res.render("pages/index", { afLoginUrl: config.afLoginUrl });
 });
 
 app.post("/consent", (req, res) => {
@@ -86,8 +88,14 @@ app.get("/fetchCV", (req, res) => {
     });
 });
 
-let usePort = whatHost === "localhost" ? config.localPort : config.port;
+let usePort = config.useSSL ? config.localPort : config.port;
 
-server.listen(usePort, config.host, () =>
-  console.log(`AF Connect listening on: ${config.host}:${usePort} !`)
-);
+if (config.host === "localhost") {
+  server.listen(usePort, () =>
+      console.log(`AF Connect listening on: ${config.host}:${usePort} !`)
+  );
+} else {
+  server.listen(usePort, config.host, () =>
+      console.log(`AF Connect listening on: ${config.host}:${usePort} !`)
+  );
+}
