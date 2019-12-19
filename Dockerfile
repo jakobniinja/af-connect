@@ -14,6 +14,7 @@ WORKDIR /dist
 #COPY package.json /app
 COPY . .
 RUN npm install
+RUN npm run build
 
 #Create Document root
 RUN mkdir /opt/nginx
