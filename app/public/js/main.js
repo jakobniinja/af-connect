@@ -3,10 +3,10 @@
 var cv;
 var selectedProfile = -1;
 
-const config = {
+let configElement = document.getElementById("config");
+let config = {
   cookie: "AMV_SSO_COOKIE",
-  authUrl:
-    "https://af-connect.local:9999/AuthenticationDispatcher/Dispatch?CT_ORIG_URL=https://af-connect.local",
+  afLoginUrl: configElement.getAttribute("data-af_login_url"),
   cvUrl: "/fetchCV",
   consentForm: "/consentForm",
   consent: "/consent"
@@ -147,7 +147,7 @@ new Promise((resolve, reject) => {
   if (cookie === undefined) {
     // Open AF login page if AMV_SSO_COOKIE is not set
     window.location.href =
-      config.authUrl + "/?sessionToken=" + getSessionToken();
+      config.afLoginUrl + "/?sessionToken=" + getSessionToken();
   } else {
     // Cookie already exists, so just pass it along.
     resolve(cookie);
@@ -160,7 +160,7 @@ new Promise((resolve, reject) => {
     console.log(response);
     if (response.status === 401) {
       // Open AF login page because the AMV_SSO_COOKIE has expired
-      window.location.href = config.authUrl;
+      window.location.href = config.afLoginUrl;
       throw "Redirecting to AF login";
     }
 
