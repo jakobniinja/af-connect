@@ -2,12 +2,12 @@
 const config = require("../config");
 const request = require("request-promise");
 
-function cv(token) {
+function cv(ssoCookie) {
   return request({
     url: config.portabilityUrl + "/profile",
     resolveWithFullResponse: true,
     headers: {
-      "X-JWT-Assertion": token,
+      AMV_SSO_COOKIE: ssoCookie,
       host: config.portabilityHost
     }
   }).then(response => {
@@ -20,16 +20,15 @@ function cv(token) {
   });
 }
 
-function store(sessionToken, data) {
+function store(ssoCookie, data) {
   return request({
     url: config.portabilityUrl + "/store",
     resolveWithFullResponse: true,
     headers: {
-      "X-JWT-Assertion": sessionToken,
       host: config.portabilityHost
     },
     body: {
-      token: sessionToken,
+      token: ssoCookie,
       value: JSON.stringify(data)
     },
     method: "POST",
