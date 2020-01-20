@@ -142,6 +142,11 @@ function onResponse(data) {
   console.log(cv);
 }
 
+window.onConsentRejection = function onConsentRejection() {
+  // TODO: Propagate an consent reject message to data consumer service.
+  window.close();
+};
+
 window.onConsent = function onConsent() {
   // Record CV in AF Connect OutBox
   cv.profile = cv.profiles[selectedProfile];

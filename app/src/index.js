@@ -3,15 +3,12 @@ const ejs = require("ejs");
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
-const jwtService = require("../lib/jwt-service");
 const portabilityApi = require("../lib/portability-api");
 const fs = require("fs");
 const https = require("https");
 const http = require("http");
 const whatHost = process.argv[2] || "deploy";
 let server;
-
-
 
 if (config.useSSL) {
   const privateKey = fs.readFileSync(config.pkey, "utf8");
@@ -78,9 +75,8 @@ app.get("/fetchCV", (req, res) => {
     return;
   }
 
-  jwtService
-    .token(cookie)
-    .then(token => portabilityApi.cv(token))
+  portabilityApi
+    .cv(cookie)
     .then(cv => res.send(cv))
     .catch(err => {
       console.log(err);
@@ -92,10 +88,10 @@ let usePort = config.useSSL ? config.localPort : config.port;
 
 if (config.host === "localhost") {
   server.listen(usePort, () =>
-      console.log(`AF Connect listening on: ${config.host}:${usePort} !`)
+    console.log(`AF Connect listening on: ${config.host}:${usePort} !`)
   );
 } else {
   server.listen(usePort, config.host, () =>
-      console.log(`AF Connect listening on: ${config.host}:${usePort} !`)
+    console.log(`AF Connect listening on: ${config.host}:${usePort} !`)
   );
 }
