@@ -8,6 +8,7 @@ const fs = require("fs");
 const https = require("https");
 const http = require("http");
 const whatHost = process.argv[2] || "deploy";
+const logformat = require('../lib/logger/logformat');
 let server;
 
 if (config.useSSL) {
@@ -42,6 +43,12 @@ app.use("/js", express.static(__dirname + "/../public/js"));
 app.use("/fonts", express.static(__dirname + "/../public/fonts"));
 app.use("/vendor", express.static(__dirname + "/../public/vendor"));
 app.use("/favicon.ico", express.static(__dirname + "/../public/favicon.ico"));
+
+app.use(function (req, res, next) {
+  console.log('Time: %d', Date.now());
+  logformat(req, res);
+  next();
+})
 
 app.get("/", (req, res) => {
   console.log("Request CV for session: " + req.query.sessionToken);
