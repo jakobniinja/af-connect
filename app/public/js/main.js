@@ -1,7 +1,6 @@
 "use strict";
 
 var cv;
-var selectedProfile = -1;
 
 let configElement = document.getElementById("config");
 let config = {
@@ -65,10 +64,12 @@ window.onConsentRejection = function onConsentRejection() {
 };
 
 window.onConsent = function onConsent() {
-  // Record CV in AF Connect OutBox
-  cv.profile = cv.profiles[selectedProfile];
+  // Clear out all but the selected profile before saving to Outbox
+  const specificProfile = cv.profiles[selectedProfile];
   delete cv.profiles;
+  cv.profiles = [specificProfile];
 
+  // Record CV in AF Connect OutBox
   return new Promise((resolve, reject) => {
     resolve();
   })
