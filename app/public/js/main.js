@@ -58,6 +58,12 @@ function onResponse(data) {
   console.log(cv);
 }
 
+window.onChangeUser = function onChangeUser() {
+  document.cookie = config.cookie + "=; path=/;";
+  location.reload();
+  return false;
+};
+
 window.onConsentRejection = function onConsentRejection() {
   // TODO: Propagate an consent reject message to data consumer service.
   window.close();
@@ -148,8 +154,6 @@ window.onConsent = function onConsent() {
 new Promise((resolve, reject) => {
   // Start the AF login procedure if the cookie is not set
   let cookie = getCookie(config.cookie);
-  console.log("cookie: ", cookie);
-  console.log("getSessionToken: ", getSessionToken());
   if (cookie === undefined) {
     // Open AF login page if AMV_SSO_COOKIE is not set
     window.location.href =
