@@ -1,6 +1,6 @@
 {
   "name": "af-connect",
-  "version": "0.1.0",
+  "version": "1.0.0-beta",
   "description": "AF Connect",
   "repository": {
     "type": "git",
@@ -14,7 +14,8 @@
     "ejs": "^2.7.1",
     "express": "^4.17.1",
     "request": "^2.88.0",
-    "request-promise": "^4.2.4"
+    "request-promise": "^4.2.4",
+    "winston": "^3.2.1"
   },
   "devDependencies": {
     "jest": "^24.9.0",
