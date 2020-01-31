@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Added possibility to change logged in AF user by clearing sso cookie.
 
+### Fixed
+
+- Catch and recovery from a rejected sso cookie situation.
+
 ## [1.0.0-beta]
 
 ### Fixed
