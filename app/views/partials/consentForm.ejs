@@ -36,7 +36,7 @@
         <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#profileSelect">Välj CV profil</button>
     </div>
     <div id="profileSelect" class="list-group collapse show p-2">
-        <% if (data.profiles.length) { %>
+        <% if (data.profiles !== undefined && data.profiles.length) { %>
             <% for(var i=0; i<data.profiles.length; i++) {%>
                 <div class="p-2">
                     <button class="btn btn-block btn-light" type="button" data-toggle="collapse" data-target="#profile_<%= i %>" onclick="selectedProfile = <%= i %>;"><%= data.profiles[i].profileName %></button>
@@ -87,6 +87,10 @@
                     </div>
                 </div>
             <% } %>
+        <% } else { %>
+            <div class="alert alert-info" role="alert">
+                Du har ingen profil på Arbetsförmedlingen, <a href="https://www.arbetsformedlingen.se/For-arbetssokande/Mina-sidor/Mina-profiler/">klicka här för att skapa profil</a>
+            </div>
         <% } %>
     </div>
 </div>
