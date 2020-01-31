@@ -26,6 +26,12 @@ let getCookie = name => {
       .shift();
 };
 
+let clearCookie = name => {
+  const split = location.hostname.split(".");
+  const tld = split.slice(split.length - 2).join(".");
+  document.cookie = name + "=; path=/; domain=." + tld;
+};
+
 function onResponse(data) {
   cv = data;
 
@@ -59,9 +65,7 @@ function onResponse(data) {
 }
 
 window.onChangeUser = function onChangeUser() {
-  const split = location.hostname.split(".");
-  const tld = split.slice(split.length - 2).join(".");
-  document.cookie = config.cookie + "=; path=/; domain=." + tld;
+  clearCookie(config.cookie);
   location.reload();
   return false;
 };
@@ -169,21 +173,29 @@ new Promise((resolve, reject) => {
     return fetch(config.cvUrl);
   })
   .then(response => {
-    if (response.status === 401) {
-      // Open AF login page because the AMV_SSO_COOKIE has expired
-      window.location.href =
-        config.afLoginUrl + "/?sessionToken=" + getSessionToken();
-      throw "Redirecting to AF login";
+    switch (response.status) {
+      case 200:
+        return response.json().catch(function(err) {
+          console.log("Response parse error:", err);
+        });
+      case 404:
+        // TODO: This response code is a bit ambiguous. The reason
+        // might be that the CV simply does not exist, or the sso
+        // cookie have been rejected. These two cases should be
+        // differentiated in the error propagation and handling.
+        alert("CV not found, clearing sso cookie and retrying");
+        clearCookie(config.cookie);
+        location.reload();
+        break;
+      case 401:
+        // Open AF login page because the AMV_SSO_COOKIE has expired
+        window.location.href =
+          config.afLoginUrl + "/?sessionToken=" + getSessionToken();
+        throw "Redirecting to AF login";
+      default:
+        console.log("Looks like there was a problem. Code: " + response.status);
+        throw "Failed to fetch CV";
     }
-
-    if (response.status !== 200) {
-      console.log("Looks like there was a problem. Code: " + response.status);
-      throw "Failed to fetch CV";
-    }
-
-    return response.json().catch(function(err) {
-      console.log("Response parse error:", err);
-    });
   })
   .then(cv => {
     if (onResponse) {
