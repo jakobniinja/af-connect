@@ -59,7 +59,9 @@ function onResponse(data) {
 }
 
 window.onChangeUser = function onChangeUser() {
-  document.cookie = config.cookie + "=; path=/;";
+  const split = location.hostname.split(".");
+  const tld = split.slice(split.length - 2).join(".");
+  document.cookie = config.cookie + "=; path=/; domain=." + tld;
   location.reload();
   return false;
 };
@@ -167,10 +169,10 @@ new Promise((resolve, reject) => {
     return fetch(config.cvUrl);
   })
   .then(response => {
-    console.log(response);
     if (response.status === 401) {
       // Open AF login page because the AMV_SSO_COOKIE has expired
-      window.location.href = config.afLoginUrl;
+      window.location.href =
+        config.afLoginUrl + "/?sessionToken=" + getSessionToken();
       throw "Redirecting to AF login";
     }
 
