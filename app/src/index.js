@@ -8,7 +8,8 @@ const fs = require("fs");
 const https = require("https");
 const http = require("http");
 const whatHost = process.argv[2] || "deploy";
-const logformat = require('../lib/logger/logformat');
+const logformat = require("../lib/logger/logformat");
+const health = require("../lib/health");
 let server;
 
 if (config.useSSL) {
@@ -30,6 +31,18 @@ function getRequestCookie(req, name) {
       .shift();
 }
 
+health.startServer({
+  host: config.host,
+  port: config.healthPort,
+  health: {
+    compatibleWith: {
+      "af-connect-module": "^1.0.2-beta",
+      "af-connect-mock": "^1.0.1-beta",
+      "af-portability": "^1.0.0-beta"
+    }
+  }
+});
+
 console.log("__dirname: ", __dirname);
 app.set("views", __dirname + "/../views");
 app.set("view engine", "ejs");
@@ -44,11 +57,11 @@ app.use("/fonts", express.static(__dirname + "/../public/fonts"));
 app.use("/vendor", express.static(__dirname + "/../public/vendor"));
 app.use("/favicon.ico", express.static(__dirname + "/../public/favicon.ico"));
 
-app.use(function (req, res, next) {
-  console.log('Time: %d', Date.now());
+app.use(function(req, res, next) {
+  console.log("Time: %d", Date.now());
   logformat(req, res);
   next();
-})
+});
 
 app.get("/", (req, res) => {
   console.log("Request CV for session: " + req.query.sessionToken);

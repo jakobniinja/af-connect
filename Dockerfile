@@ -64,6 +64,7 @@ RUN chmod -R 777 /var/lib/nginx
 EXPOSE 3000:3000
 EXPOSE 8080:8080
 EXPOSE 4443:4443
+EXPOSE 9802:9802
 
 USER 10000
 #CMD [ "npm", "run-script", "start" ]
