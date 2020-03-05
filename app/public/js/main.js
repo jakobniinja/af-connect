@@ -77,10 +77,17 @@ window.onConsentRejection = function onConsentRejection() {
 
 window.onConsent = function onConsent() {
   // Clear out all but the selected profile before saving to Outbox
-  if (cv.profiles !== undefined && selectedProfile !== undefined) {
-    const specificProfile = cv.profiles[selectedProfile];
-    delete cv.profiles;
-    cv.profiles = [specificProfile];
+  if (
+    cv.profiles !== undefined &&
+    cv.profiles.item !== undefined &&
+    selectedProfile !== undefined
+  ) {
+    const specificProfile = cv.profiles.item[selectedProfile];
+    cv.profiles.item = [specificProfile];
+  } else {
+    return new Promise((resolve, reject) => {
+      resolve();
+    });
   }
 
   // Record CV in AF Connect OutBox
