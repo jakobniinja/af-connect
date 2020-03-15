@@ -9,7 +9,19 @@ const https = require("https");
 const http = require("http");
 const whatHost = process.argv[2] || "deploy";
 const logformat = require("../lib/logger/logformat");
-const health = require("../lib/health");
+
+const Health = require("check-connectivity");
+const health = new Health({
+  host: config.host,
+  port: config.healthPort,
+  debug: true,
+  compatibleWith: {
+    "af-connect-module": "^1.0.2-beta",
+    "af-connect-mock": "^1.0.1-beta",
+    "af-portability": "^1.0.0-beta"
+  }
+}).listen();
+
 let server;
 
 if (config.useSSL) {
@@ -30,18 +42,6 @@ function getRequestCookie(req, name) {
       .split(";")
       .shift();
 }
-
-health.startServer({
-  host: config.host,
-  port: config.healthPort,
-  health: {
-    compatibleWith: {
-      "af-connect-module": "^1.0.2-beta",
-      "af-connect-mock": "^1.0.1-beta",
-      "af-portability": "^1.0.0-beta"
-    }
-  }
-});
 
 console.log("__dirname: ", __dirname);
 app.set("views", __dirname + "/../views");
