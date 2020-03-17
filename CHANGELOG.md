@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Added possibility to change logged in AF user by clearing sso cookie.
+- Using 'check-connectivity' module to serve health endpoint.
 
 ### Fixed
 

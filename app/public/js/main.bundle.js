@@ -109,6 +109,12 @@ let getCookie = name => {
       .shift();
 };
 
+let clearCookie = name => {
+  const split = location.hostname.split(".");
+  const tld = split.slice(split.length - 2).join(".");
+  document.cookie = name + "=; path=/; domain=." + tld;
+};
+
 function onResponse(data) {
   cv = data;
 
@@ -141,6 +147,12 @@ function onResponse(data) {
   console.log(cv);
 }
 
+window.onChangeUser = function onChangeUser() {
+  clearCookie(config.cookie);
+  location.reload();
+  return false;
+};
+
 window.onConsentRejection = function onConsentRejection() {
   // TODO: Propagate an consent reject message to data consumer service.
   window.close();
@@ -148,9 +160,11 @@ window.onConsentRejection = function onConsentRejection() {
 
 window.onConsent = function onConsent() {
   // Clear out all but the selected profile before saving to Outbox
-  const specificProfile = cv.profiles[selectedProfile];
-  delete cv.profiles;
-  cv.profiles = [specificProfile];
+  if (cv.profiles !== undefined && selectedProfile !== undefined) {
+    const specificProfile = cv.profiles[selectedProfile];
+    delete cv.profiles;
+    cv.profiles = [specificProfile];
+  }
 
   // Record CV in AF Connect OutBox
   return new Promise((resolve, reject) => {
@@ -231,8 +245,6 @@ window.onConsent = function onConsent() {
 new Promise((resolve, reject) => {
   // Start the AF login procedure if the cookie is not set
   let cookie = getCookie(config.cookie);
-  console.log("cookie: ", cookie);
-  console.log("getSessionToken: ", getSessionToken());
   if (cookie === undefined) {
     // Open AF login page if AMV_SSO_COOKIE is not set
     window.location.href =
@@ -246,21 +258,29 @@ new Promise((resolve, reject) => {
     return fetch(config.cvUrl);
   })
   .then(response => {
-    console.log(response);
-    if (response.status === 401) {
-      // Open AF login page because the AMV_SSO_COOKIE has expired
-      window.location.href = config.afLoginUrl;
-      throw "Redirecting to AF login";
+    switch (response.status) {
+      case 200:
+        return response.json().catch(function(err) {
+          console.log("Response parse error:", err);
+        });
+      case 404:
+        // TODO: This response code is a bit ambiguous. The reason
+        // might be that the CV simply does not exist, or the sso
+        // cookie have been rejected. These two cases should be
+        // differentiated in the error propagation and handling.
+        alert("CV not found, clearing sso cookie and retrying");
+        clearCookie(config.cookie);
+        location.reload();
+        break;
+      case 401:
+        // Open AF login page because the AMV_SSO_COOKIE has expired
+        window.location.href =
+          config.afLoginUrl + "/?sessionToken=" + getSessionToken();
+        throw "Redirecting to AF login";
+      default:
+        console.log("Looks like there was a problem. Code: " + response.status);
+        throw "Failed to fetch CV";
     }
-
-    if (response.status !== 200) {
-      console.log("Looks like there was a problem. Code: " + response.status);
-      throw "Failed to fetch CV";
-    }
-
-    return response.json().catch(function(err) {
-      console.log("Response parse error:", err);
-    });
   })
   .then(cv => {
     if (onResponse) {
