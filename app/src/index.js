@@ -50,6 +50,7 @@ app.engine("html", ejs.__express);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+app.use(health.middleware());
 app.use("/css", express.static(__dirname + "/../public/css"));
 app.use("/img", express.static(__dirname + "/../public/img"));
 app.use("/js", express.static(__dirname + "/../public/js"));
