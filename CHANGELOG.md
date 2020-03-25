@@ -17,6 +17,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Catch and recovery from a rejected sso cookie situation.
 - Implemented handling when the authenticated user does not have any profiles. In that case, the user is informed and provided a link to add a new profile.
 
+### Changed
+
+- Adopted new AF-Portability response document/structure (HROpen-4.2-1)
+
 ## [1.0.0-beta]
 
 ### Fixed
