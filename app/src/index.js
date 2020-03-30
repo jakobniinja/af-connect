@@ -43,7 +43,6 @@ function getRequestCookie(req, name) {
       .shift();
 }
 
-console.log("__dirname: ", __dirname);
 app.set("views", __dirname + "/../views");
 app.set("view engine", "ejs");
 app.engine("html", ejs.__express);
@@ -59,7 +58,6 @@ app.use("/vendor", express.static(__dirname + "/../public/vendor"));
 app.use("/favicon.ico", express.static(__dirname + "/../public/favicon.ico"));
 
 app.use(function(req, res, next) {
-  console.log("Time: %d", Date.now());
   logformat(req, res);
   next();
 });
