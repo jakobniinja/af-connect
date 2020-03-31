@@ -1,19 +1,15 @@
-"use strict";
+const winston = require("winston");
+const expressWinston = require("express-winston");
 
-const { createLogger, format, transports } = require("winston");
-
-const logger = createLogger({
-  level: "debug",
-  exitOnError: false,
-  format: format.combine(
-    format.timestamp({
-      format: "YYYY-MM-DD HH:mm:ss"
-    }),
-    format.json()
-  ),
-  transports: [new transports.Console()]
+const myFormat = winston.format.printf(logEntry => {
+  return JSON.stringify(logEntry);
 });
 
-logger.info("Logger initalized");
-
-module.exports = logger;
+module.exports = expressWinston.logger({
+  transports: [new winston.transports.Console()],
+  format: winston.format.combine(
+    winston.format.timestamp(),
+    winston.format.splat(),
+    myFormat
+  )
+});
