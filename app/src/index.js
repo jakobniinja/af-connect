@@ -8,7 +8,7 @@ const fs = require("fs");
 const https = require("https");
 const http = require("http");
 const whatHost = process.argv[2] || "deploy";
-const logformat = require("../lib/logger/logformat");
+const logger = require("../lib/logger");
 
 const Health = require("check-connectivity");
 const health = new Health({
@@ -57,23 +57,16 @@ app.use("/fonts", express.static(__dirname + "/../public/fonts"));
 app.use("/vendor", express.static(__dirname + "/../public/vendor"));
 app.use("/favicon.ico", express.static(__dirname + "/../public/favicon.ico"));
 
-app.use(function(req, res, next) {
-  logformat(req, res);
-  next();
-});
+app.use(logger);
 
 app.get("/", (req, res) => {
-  console.log("Request CV for session: " + req.query.sessionToken);
   res.render("pages/index", { afLoginUrl: config.afLoginUrl });
 });
 
 app.post("/consent", (req, res) => {
-  console.log("User wants to consent session: ", req.query.sessionToken);
-
   portabilityApi
     .store(req.query.sessionToken, req.body)
     .then(body => {
-      console.log("Stored in AF Connect Outbox", body);
       res.sendStatus(200);
     })
     .catch(err => {

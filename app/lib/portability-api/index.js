@@ -36,7 +36,6 @@ function store(ssoCookie, data) {
   }).then(response => {
     // Read response from Portability api and extract the CV
     if (response.statusCode === 200) {
-      console.log("OK", response.body);
       return response.body;
     } else {
       throw "failed to save cv";
