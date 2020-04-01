@@ -14,27 +14,105 @@
     <title>AF Connect</title>
     <style>
       body {
-        background-color: #c3d5da;
+        background-color: #efefef;
+      }
+      .card {
+        background-color: white;
+        border: 0px;
+      }
+      .card-header {
+        background-color: white;
+        color: "black";
+        padding: 4px;
+        border-bottom: #00005a solid 2px;
+      }
+      .card-header .btn {
+        color: black;
       }
     </style>
   </head>
   <body>
-    <div
-      style="background-color: #aaa; color: #eee; font-weight: 600; padding:4px; text-align: center"
-    >
-      This page does not operate on production data. Find more information at
-      <a
-        style="color: #fff"
-        href="https://github.com/MagnumOpuses/af-connect-module"
-        >https://github.com/MagnumOpuses/af-connect-module</a
-      >
+    <div style="background-color: white">
+      <div class="container">
+        <div class="row" style="height: 69px">
+          <div>
+            <img
+              src="/img/af-logo.svg"
+              style="position: relative; top: 50%; transform: translateY(-50%)"
+            />
+          </div>
+        </div>
+      </div>
     </div>
+    <div style="background-color: #00005a">
+      <div class="container">
+        <div class="row" style="height: 260px">
+          <div class="col-md-7" style="color: white; text-align: left;">
+            <div
+              style="position: relative; top: 45%; transform: translateY(-50%)"
+            >
+              <div style="">
+                Välkommen till
+              </div>
+              <div style="margin-left:16px; font-size: 32pt">
+                AF Connect
+              </div>
+              <div style="margin-left:32px">
+                Transportera ditt CV direkt till mottagaren helt digitalt
+              </div>
+            </div>
+          </div>
+          <div class="col-md-5 d-none d-md-block" style="padding: 0px;">
+            <svg
+              style="position: absolute; bottom: 0; top: 0"
+              width="30"
+              height="260"
+              xmlns="http://www.w3.org/2000/svg"
+              preserveAspectRatio="none"
+            >
+              <polygon points="0,0 30,0 0,260" style="fill: #00005a" />
+            </svg>
+            <img
+              src="img/banner.jpg"
+              style="width: 100%; height: 260px; object-fit: cover; overflow: hidden;"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="container">
       <div class="row">
         <div class="col-md-12 p-2">
-          <img src="/img/af-logo.svg" />
+          <div style="background-color: #1616b2; padding:2px">
+            <div
+              style="margin-left: 8px; background-color: #efefef; padding: 16px"
+            >
+              Denna sida opererar helt på test data. <br />
+              Läs mer här:
+              <a href="https://github.com/MagnumOpuses/af-connect-module"
+                >https://github.com/MagnumOpuses/af-connect-module</a
+              >
+            </div>
+          </div>
         </div>
       </div>
+
+      <div class="row">
+        <div class="col-md-12 p-2">
+          <div style="background-color: #fddc41; padding:2px">
+            <div
+              style="margin-left: 8px; background-color: #efefef; padding: 16px"
+            >
+              Inte du?
+              <a href="#" onClick="onChangeUser();"
+                >Logga in med ett annat Arbetsförmedlingen konto</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="row">
         <div class="col-12 p-2">
           <div id="resultPane" style="display: none;">
@@ -48,24 +126,15 @@
           </div>
         </div>
       </div>
-      <div class="row" id="consentControl" style="display: none;">
-        <div class="col-md-12 p-2">
-          <button
-            type="button"
-            class="btn btn-block btn-primary"
-            onclick="onConsent();"
-          >
-            Jag samtycker och vill dela mitt CV
-          </button>
-        </div>
-        <div class="col-md-12 p-2">
-          <button
-            type="button"
-            class="btn btn-block btn-danger"
-            onclick="onConsentRejection();"
-          >
-            Nej, dela inte min profil
-          </button>
+    </div>
+    <div style="background-color: #00005a">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 p-2">
+            <div style="padding-top: 33px; padding-bottom: 46px">
+              <img src="/img/af-logo-white.svg" />
+            </div>
+          </div>
         </div>
       </div>
     </div>
