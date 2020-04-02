@@ -8,7 +8,7 @@ The AF Connect service is responsible for obtaining informed consent from the us
 
 ##### Versions, current dev state and future
 
-1.0.0-beta
+1.1.0-beta
 
 ##### Getting started
 
