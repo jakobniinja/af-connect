@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Updated "check-connectivity" package to version, commit: 8a073c1
+- Adjusted visual design to comply with Arbetsförmedlingens branding guidelines.
 
 ### Fixed
 
