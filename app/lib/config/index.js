@@ -4,6 +4,7 @@ dotenv.config();
 module.exports = {
   useSSL: process.env.USE_SSL || false,
   host: process.env.HOST || "af-connect.local",
+  healthPort: process.env.HEALTH_PORT || 9801,
   port: process.env.PORT || 3000,
   localPort: process.env.LOCAL_PORT || 4443,
   afLoginUrl:

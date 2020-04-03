@@ -1,6 +1,6 @@
 {
   "name": "af-connect",
-  "version": "1.0.0-beta",
+  "version": "1.1.0-beta",
   "description": "AF Connect",
   "repository": {
     "type": "git",
@@ -10,11 +10,14 @@
   "dependencies": {
     "ajv": "^6.10.2",
     "browserify": "^16.5.0",
+    "check-connectivity": "git+https://git@github.com/MagnumOpuses/check-connectivity.git#8a073c1",
     "dotenv": "^8.1.0",
     "ejs": "^2.7.1",
     "express": "^4.17.1",
+    "express-winston": "^4.0.3",
     "request": "^2.88.0",
     "request-promise": "^4.2.4",
+    "semver": "^7.1.3",
     "winston": "^3.2.1"
   },
   "devDependencies": {

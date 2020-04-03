@@ -16,7 +16,7 @@ Operating the website in development mode utilizes [Nodemon](https://nodemon.io/
 
 ## Versions, current dev state and future
 
-1.0.0-beta
+1.1.0-beta
 
 ## Getting started
 
