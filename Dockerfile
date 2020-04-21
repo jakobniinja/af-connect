@@ -21,6 +21,7 @@ WORKDIR /dist
 #COPY package.json /app
 COPY . .
 RUN npm install
+RUN npm update
 RUN npm run build
 
 #Create Document root
