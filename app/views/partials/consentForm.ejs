@@ -21,13 +21,13 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <label for="name"><strong>Förnamn</strong></label>
-                                <div><%= data.person.name.given %></div>
+                                <div><%= data.data[0].person.name.given %></div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <label for="name"><strong>Efternamn</strong></label>
-                                <div><%= data.person.name.family %></div>
+                                <div><%= data.data[0].person.name.family %></div>
                             </div>
                         </div>
                     </div>
@@ -38,7 +38,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <label for="email"><strong>Email</strong></label>
-                                        <% data.person.communication.email.item.forEach((email) => { %>
+                                        <% data.data[0].person.communication.email.forEach((email) => { %>
                                             <div><%= email.address %></div>
                                         <% }) %>
                                     </div>
@@ -46,7 +46,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <label for="phone"><strong>Telefon</strong></label>
-                                        <% data.person.communication.phone.item.forEach((phone) => { %>
+                                        <% data.data[0].person.communication.phone.forEach((phone) => { %>
                                             <div><%= phone.formattedNumber %></div>
                                         <% }) %>
                                     </div>
@@ -62,11 +62,11 @@
             <div class="col-md-4">
                 <div style="margin-top: 24px; font-size: 16pt">Välj profil som du vill dela</div>
                 <div style="padding: 16px">
-                    <% if (data.profiles && data.profiles.item && data.profiles.item.length) { %>
-                        <% for(var i=0; i<data.profiles.item.length; i++) {%>
+                    <% if (data.data[0].profiles && data.data[0].profiles.length) { %>
+                        <% for(var i=0; i<data.data[0].profiles.length; i++) {%>
                             <div>
                                 <label>
-                                        <input name="profileChoice" type="radio" type="button" data-toggle="collapse" data-target="#profile_<%= i %>" onclick="selectedProfile = <%= i %>;" /> <%= data.profiles.item[i].profileName %>    
+                                        <input name="profileChoice" type="radio" type="button" data-toggle="collapse" data-target="#profile_<%= i %>" onclick="selectedProfile = <%= i %>;" /> <%= data.data[0].profiles[i].profileName %>    
                                 </label>
                             </div>
                         <% } %>
@@ -83,13 +83,13 @@
                 <div style="background-color: #f5f5f5; border-top: #00005a solid 8px; padding: 16px">
                     <div id="profileSelect" class="collapse show">
                         <div class="collapse show" data-parent="#profileSelect">Ingen profil vald</div>
-                        <% for(var i=0; i<data.profiles.item.length; i++) {%>
+                        <% for(var i=0; i<data.data[0].profiles.length; i++) {%>
                             <div id="profile_<%= i %>" class="collapse" data-parent="#profileSelect">
-                                <% if (data.profiles.item[i].employment && data.profiles.item[i].employment.item) { %>
-                                    <% data.profiles.item[i].employment.item.forEach((employment) => { %>
-                                        <% if (employment.positionHistories && employment.positionHistories.item && employment.positionHistories.item.length) { %>
+                                <% if (data.data[0].profiles[i].employment && data.data[0].profiles[i].employment) { %>
+                                    <% data.data[0].profiles[i].employment.forEach((employment) => { %>
+                                        <% if (employment.positionHistories && employment.positionHistories && employment.positionHistories.length) { %>
                                             <strong>Titel</strong><br>
-                                            <% employment.positionHistories.item.forEach((position) => { %>
+                                            <% employment.positionHistories.forEach((position) => { %>
                                                 <p><%= position.title %></p>
                                             <% }) %>
                                         <% } %>
@@ -99,7 +99,7 @@
                                         <% } %>
                                         <% if (employment.descriptions) { %>
                                             <strong>Beskrivning</strong><br>
-                                            <% employment.descriptions.item.forEach((description) => { %>
+                                            <% employment.descriptions.forEach((description) => { %>
                                                 <p><%= description %></p>
                                             <% }) %>
                                         <% } %>
@@ -118,10 +118,10 @@
                                     <% }) %>
                                 <% } %>
                                 
-                                <% if (data.profiles.item[i].qualifications && data.profiles.item[i].qualifications.item && data.profiles.item[i].qualifications.item.length > 0) { %>
+                                <% if (data.data[0].profiles[i].qualifications && data.data[0].profiles[i].qualifications && data.data[0].profiles[i].qualifications.length > 0) { %>
                                     <strong>Kvalifikationer</strong><br>
                                     <ul>
-                                        <% data.profiles.item[i].qualifications.item.forEach((qualification) => { %>
+                                        <% data.data[0].profiles[i].qualifications.forEach((qualification) => { %>
                                             <% if (qualification.competencyName) { %>
                                                 <li><%= qualification.competencyName %></li>
                                             <% } %>
@@ -137,8 +137,20 @@
         <hr>
         <div class="row">
             <div class="col-md-12">
+                <div style="margin-top: 24px; font-size: 16pt">Tredje partens databehandlingsändamål</div>
+                <ul style="margin-top: 16px">
+                    <% data.sink.purposeOfUse.forEach((purpose) => { %>
+                        <li><%= purpose %></li>
+                    <% }) %>
+                </ul>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-12">
                 <div style="margin-top: 24px; font-size: 16pt">Dela och slutför</div>
                 <div style="margin-top: 16px">Jag ger mitt uttryckliga medgivande att Arbetsförmedlingen får dela min valda profil med en tredje part.</div>
+                
                 <div style="margin-top: 16px">
                     <button style="background-color: #00005a; color: white; border: #00005a solid 1px; border-radius: 4px; padding-left: 12px; padding-right: 12px; padding-top: 6px; padding-bottom: 6px" onclick="onConsent();">
                         Jag samtycker och vill dela min profil
