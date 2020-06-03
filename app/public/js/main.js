@@ -76,11 +76,12 @@ window.onConsentRejection = function onConsentRejection() {
 window.onConsent = function onConsent() {
   // Clear out all but the selected profile before saving to Outbox
   if (
-    window.cv.data[0].profiles !== undefined &&
+    window.cv.transferObject.data[0].profiles !== undefined &&
     selectedProfile !== undefined
   ) {
-    const specificProfile = window.cv.data[0].profiles[selectedProfile];
-    window.cv.data[0].profiles = [specificProfile];
+    const specificProfile =
+      window.cv.transferObject.data[0].profiles[selectedProfile];
+    window.cv.transferObject.data[0].profiles = [specificProfile];
   } else {
     return new Promise((resolve, reject) => {
       resolve();

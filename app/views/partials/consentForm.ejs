@@ -21,13 +21,13 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <label for="name"><strong>Förnamn</strong></label>
-                                <div><%= data.data[0].person.name.given %></div>
+                                <div><%= data.transferObject.data[0].person.name.given %></div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <label for="name"><strong>Efternamn</strong></label>
-                                <div><%= data.data[0].person.name.family %></div>
+                                <div><%= data.transferObject.data[0].person.name.family %></div>
                             </div>
                         </div>
                     </div>
@@ -38,7 +38,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <label for="email"><strong>Email</strong></label>
-                                        <% data.data[0].person.communication.email.forEach((email) => { %>
+                                        <% data.transferObject.data[0].person.communication.email.forEach((email) => { %>
                                             <div><%= email.address %></div>
                                         <% }) %>
                                     </div>
@@ -46,7 +46,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <label for="phone"><strong>Telefon</strong></label>
-                                        <% data.data[0].person.communication.phone.forEach((phone) => { %>
+                                        <% data.transferObject.data[0].person.communication.phone.forEach((phone) => { %>
                                             <div><%= phone.formattedNumber %></div>
                                         <% }) %>
                                     </div>
@@ -62,11 +62,11 @@
             <div class="col-md-4">
                 <div style="margin-top: 24px; font-size: 16pt">Välj profil som du vill dela</div>
                 <div style="padding: 16px">
-                    <% if (data.data[0].profiles && data.data[0].profiles.length) { %>
-                        <% for(var i=0; i<data.data[0].profiles.length; i++) {%>
+                    <% if (data.transferObject.data[0].profiles && data.transferObject.data[0].profiles.length) { %>
+                        <% for(var i=0; i<data.transferObject.data[0].profiles.length; i++) {%>
                             <div>
                                 <label>
-                                        <input name="profileChoice" type="radio" type="button" data-toggle="collapse" data-target="#profile_<%= i %>" onclick="selectedProfile = <%= i %>;" /> <%= data.data[0].profiles[i].profileName %>    
+                                        <input name="profileChoice" type="radio" type="button" data-toggle="collapse" data-target="#profile_<%= i %>" onclick="selectedProfile = <%= i %>;" /> <%= data.transferObject.data[0].profiles[i].profileName %>    
                                 </label>
                             </div>
                         <% } %>
@@ -83,10 +83,10 @@
                 <div style="background-color: #f5f5f5; border-top: #00005a solid 8px; padding: 16px">
                     <div id="profileSelect" class="collapse show">
                         <div class="collapse show" data-parent="#profileSelect">Ingen profil vald</div>
-                        <% for(var i=0; i<data.data[0].profiles.length; i++) {%>
+                        <% for(var i=0; i<data.transferObject.data[0].profiles.length; i++) {%>
                             <div id="profile_<%= i %>" class="collapse" data-parent="#profileSelect">
-                                <% if (data.data[0].profiles[i].employment && data.data[0].profiles[i].employment) { %>
-                                    <% data.data[0].profiles[i].employment.forEach((employment) => { %>
+                                <% if (data.transferObject.data[0].profiles[i].employment && data.transferObject.data[0].profiles[i].employment) { %>
+                                    <% data.transferObject.data[0].profiles[i].employment.forEach((employment) => { %>
                                         <% if (employment.positionHistories && employment.positionHistories && employment.positionHistories.length) { %>
                                             <strong>Titel</strong><br>
                                             <% employment.positionHistories.forEach((position) => { %>
@@ -118,10 +118,10 @@
                                     <% }) %>
                                 <% } %>
                                 
-                                <% if (data.data[0].profiles[i].qualifications && data.data[0].profiles[i].qualifications && data.data[0].profiles[i].qualifications.length > 0) { %>
+                                <% if (data.transferObject.data[0].profiles[i].qualifications && data.transferObject.data[0].profiles[i].qualifications && data.transferObject.data[0].profiles[i].qualifications.length > 0) { %>
                                     <strong>Kvalifikationer</strong><br>
                                     <ul>
-                                        <% data.data[0].profiles[i].qualifications.forEach((qualification) => { %>
+                                        <% data.transferObject.data[0].profiles[i].qualifications.forEach((qualification) => { %>
                                             <% if (qualification.competencyName) { %>
                                                 <li><%= qualification.competencyName %></li>
                                             <% } %>
