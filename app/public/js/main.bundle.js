@@ -143,7 +143,7 @@ window.onTermsCancel = function onTermsCancel() {
   $("#termsModal").hide();
   $("#termsAgreement").prop("checked", false);
   $("#shareButton").prop("disabled", true);
-  $("#shareButton").css("background-color", "grey");
+  $("#shareButton").css("background-color", "#b9b9ca");
   $("#shareButton").css("border", "grey solid 1px;");
 };
 
