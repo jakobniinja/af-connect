@@ -136,27 +136,52 @@
         </div>
         <hr>
         <div class="row">
-            <div class="col-md-12">
-                <div style="margin-top: 24px; font-size: 16pt">Tredje partens databehandlingsändamål</div>
-                <ul style="margin-top: 16px">
-                    <% data.sink.purposeOfUse.forEach((purpose) => { %>
-                        <li><%= purpose %></li>
-                    <% }) %>
-                </ul>
-            </div>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-md-12">
-                <div style="margin-top: 24px; font-size: 16pt">Dela och slutför</div>
-                <div style="margin-top: 16px">Jag ger mitt uttryckliga medgivande att Arbetsförmedlingen får dela min valda profil med en tredje part.</div>
+            <div class="col-md-12" style="text-align: center;">
+                <div style="margin-top: 24px; font-size: 16pt; margin-bottom: 16px; font-weight: 500; font-size: 22pt;">Dela och slutför</div>
+                <div style="background-color: #f5f5f5; padding: 16px; width: 60%; margin: auto;">
+                    <div style="text-align: left;">
+                        <div>[företagets namn] får bara använda informationen för följande syfte:</div>
+                        <ul style="margin-top: 16px">
+                            <% data.sink.purposeOfUse.forEach((purpose) => { %>
+                                <li><%= purpose %></li>
+                            <% }) %>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div style="padding: 16px; width: 60%; margin: auto; text-align: left;">
+                    <input id="termsAgreement" type="checkbox" onclick="openTermsAgreement();"> Jag har läst och förstår <a href="#" onclick="openTermsAgreement(); return false">sekretessvarningen</a> och tillåter Arbetsförmedlingen att dela min valda profil med [företagets namn].
+                </div>
                 
                 <div style="margin-top: 16px">
-                    <button style="background-color: #00005a; color: white; border: #00005a solid 1px; border-radius: 4px; padding-left: 12px; padding-right: 12px; padding-top: 6px; padding-bottom: 6px" onclick="onConsent();">
+                    <button id="shareButton" style="background-color: #b9b9ca; color: white; border: grey solid 1px; border-radius: 4px; padding-left: 12px; padding-right: 12px; padding-top: 6px; padding-bottom: 6px" onclick="onConsent();" disabled>
                         Jag samtycker och vill dela min profil
                     </button>
                     <button style="background-color: white; color: black; border: #00005a solid 1px; border-radius: 4px; padding-left: 12px; padding-right: 12px; padding-top: 6px; padding-bottom: 6px" onclick="onConsentRejection();">
                         Nej, dela inte min profil
+                    </button>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div id="termsModal" style="display:none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100%; background-color: white; background-color: rgba(255,255,255,0.6);">
+            <div style="border-radius: 4px; border: #00005a solid 1px; background-color: #fefefe; margin: 8% auto; padding: 32px; width: 40%; min-width: 800px;">
+                <div style="font-size: 16pt; margin-bottom: 16px">Sekretessvarning</div>
+                <div style="background-color: #f5f5f5; padding: 16px">
+                    <ul style="margin-top: 16px">
+                        <li>Den här tjänsten gör det möjligt att skicka ditt valda CV till [företagets namn]. Arbetsförmedlingen ansvarar inte för uppgifterna när de har levererats.</li>
+                        <li>Klicka <a href="#">HÄR</a> för att lära dig mer om hur Arbetsförmedlingen behandlar dina uppgifter (där de lagras, hur länge och vem som har åtkomst till dem).</li>
+                        <li>[företagets namn] är skyldigt att använda dina uppgifter enligt GDPR-lagen. Klicka <a href="#">HÄR</a> om du vill veta mer om hur mottagningsföretaget behandlar dina uppgifter (var lagras under hur länge, vem som har tillgång till dem etc.).</li>
+                        <li>Efter att uppgifterna har levererats kan Arbetsformedlingen inte verifiera a) hur eller var informationen kommer att lagras, b) om dina uppgifter kommer att skickas till andra parter, c) om uppgifterna kommer att användas för ett annat syfte än en som anges ovan, eller d) som kommer att kunna komma åt uppgifterna. Om du känner att dina data "missbrukas" eller "missbrukas" på något sätt, vänligen kontakta "Datainspektionen" <a href="#">HÄR</a>.</li>
+                        <li>Om du vill ta bort eller justera någon av uppgifterna innan du skickar den, klicka <a href="#">HÄR</a>. OBS: Detta avslutar överföringsprocessen. För att skicka informationen måste du starta om programmet.</li>
+                    </ul>
+                </div>
+                <div style="margin-top: 16px">
+                    <button style="background-color: #00005a; color: white; border: #00005a solid 1px; border-radius: 4px; padding-left: 12px; padding-right: 12px; padding-top: 6px; padding-bottom: 6px" onclick="onTermsAgreement();">
+                        Jag förstår
+                    </button>
+                    <button style="background-color: white; color: black; border: #00005a solid 1px; border-radius: 4px; padding-left: 12px; padding-right: 12px; padding-top: 6px; padding-bottom: 6px" onclick="onTermsCancel();">
+                        Avbryt
                     </button>
                 </div>
             </div>

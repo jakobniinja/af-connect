@@ -125,6 +125,27 @@ window.onConsent = function onConsent() {
     });
 };
 
+window.openTermsAgreement = function openTermsAgreement() {
+  $("#termsModal").show();
+  $("#termsAgreement").prop("checked", !$("#termsAgreement").prop("checked"));
+};
+
+window.onTermsAgreement = function onTermsAgreement() {
+  $("#termsModal").hide();
+  $("#termsAgreement").prop("checked", true);
+  $("#shareButton").prop("disabled", false);
+  $("#shareButton").css("background-color", "#00005a");
+  $("#shareButton").css("border", "#00005a solid 1px;");
+};
+
+window.onTermsCancel = function onTermsCancel() {
+  $("#termsModal").hide();
+  $("#termsAgreement").prop("checked", false);
+  $("#shareButton").prop("disabled", true);
+  $("#shareButton").css("background-color", "#b9b9ca");
+  $("#shareButton").css("border", "grey solid 1px;");
+};
+
 new Promise((resolve, reject) => {
   // Start the AF login procedure if the cookie is not set
   let cookie = getCookie(config.cookie);
