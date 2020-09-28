@@ -1,5 +1,89 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
+module.exports = class Envelope {
+  constructor(build) {
+    this.source = {
+      sourceId: build.sourceId,
+      sourceName: build.sourceName,
+      allowsWrite: build.allowsWrite
+    };
+    this.consent = {
+      consentTimestamp: build.consentTimestamp,
+      consentStatus: build.consentStatus,
+      consentedTimePeriod: build.consentedTimePeriod
+    };
+    this.data = {
+      size: build.size,
+      documentType: build.documentType,
+      dataStructureLink: build.dataStructureLink,
+      data: build.data
+    };
+  }
+  static get Builder() {
+    class Builder {
+      constructor() {}
+
+      withSourceId(sourceId) {
+        this.sourceId = sourceId;
+        return this;
+      }
+
+      withSourceName(sourceName) {
+        this.sourceName = sourceName;
+        return this;
+      }
+
+      withAllowsWrite(allowsWrite) {
+        this.allowsWrite = allowsWrite;
+        return this;
+      }
+
+      withConsentTimestamp(consentTimestamp) {
+        this.consentTimestamp = consentTimestamp;
+        return this;
+      }
+
+      withConsentStatus(consentStatus) {
+        this.consentStatus = consentStatus;
+        return this;
+      }
+
+      withConsentedTimePeriod(consentedTimePeriod) {
+        this.consentedTimePeriod = consentedTimePeriod;
+        return this;
+      }
+
+      withSize(size) {
+        this.size = size;
+        return this;
+      }
+
+      withDocumentType(documentType) {
+        this.documentType = documentType;
+        return this;
+      }
+
+      withDataStructureLink(dataStructureLink) {
+        this.dataStructureLink = dataStructureLink;
+        return this;
+      }
+
+      withData(data) {
+        this.data = data;
+        return this;
+      }
+
+      build() {
+        return new Envelope(this);
+      }
+    }
+    return Builder;
+  }
+};
+
+},{}],2:[function(require,module,exports){
 "use strict";
+
+var cv;
 
 let configElement = document.getElementById("config");
 let config = {
@@ -32,7 +116,7 @@ let clearCookie = name => {
 };
 
 function onResponse(data) {
-  window.cv = data;
+  cv = data;
 
   // Render the consent form
   fetch(config.consentForm, {
@@ -60,20 +144,13 @@ function onResponse(data) {
     })
     .catch(err => console.log("Fetch Error :-S", err));
 
-  console.log(window.cv);
+  console.log(cv);
 }
 
 window.onChangeUser = function onChangeUser() {
   clearCookie(config.cookie);
   location.reload();
   return false;
-};
-
-window.isProfileSelected = function isProfileSelected() {
-  return (
-    window.cv.transferObject.data[0].profiles !== undefined &&
-    selectedProfile !== undefined
-  );
 };
 
 window.onConsentRejection = function onConsentRejection() {
@@ -83,102 +160,86 @@ window.onConsentRejection = function onConsentRejection() {
 
 window.onConsent = function onConsent() {
   // Clear out all but the selected profile before saving to Outbox
-  if (window.isProfileSelected()) {
-    const specificProfile =
-      window.cv.transferObject.data[0].profiles[selectedProfile];
-    window.cv.transferObject.data[0].profiles = [specificProfile];
-  } else {
-    return new Promise((resolve, reject) => {
-      resolve();
-    });
+  if (cv.profiles !== undefined && selectedProfile !== undefined) {
+    const specificProfile = cv.profiles[selectedProfile];
+    delete cv.profiles;
+    cv.profiles = [specificProfile];
   }
 
-  window.cv.consent.consentTimestamp = new Date();
-  window.cv.consent.consentStatus = true;
-
-  window.cv.consent.consentedTimePeriod = new Date(
-    window.cv.consent.consentTimestamp
-  );
-  window.cv.consent.consentedTimePeriod.setMonth(
-    window.cv.consent.consentedTimePeriod.getMonth() + 1
-  );
-  window.cv.consent.acceptedPurposes = window.cv.sink.purposeOfUse;
-  //console.log("Consented envelope: ", window.cv);
-
-  let save = JSON.stringify(window.cv);
-
   // Record CV in AF Connect OutBox
-  fetch(config.consent + "?sessionToken=" + getSessionToken(), {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: save
+  return new Promise((resolve, reject) => {
+    resolve();
   })
-    .then(response => {
-      if (response.status !== 200) {
-        console.log("Failed to consent. Status code: ", response.status);
-        return;
-      }
+    .then(() => {
+      // Build envelope
+      let consentTimestamp = new Date();
+      let consentedTimePeriod = new Date(consentTimestamp);
+      consentedTimePeriod.setMonth(consentedTimePeriod.getMonth() + 1);
 
-      console.log("Successfully saved to Outbox! session: ", getSessionToken());
+      let Envelope = require("../../lib/envelope");
+      let envelope = new Envelope.Builder()
+        .withSourceId("01")
+        .withSourceName("Arbetsformedlingen")
+        .withAllowsWrite(true)
+        .withConsentTimestamp(consentTimestamp.toISOString())
+        .withConsentStatus(true)
+        .withConsentedTimePeriod(consentedTimePeriod.toISOString())
+        .withSize("500")
+        .withDocumentType("CV")
+        .withDataStructureLink(
+          "https://github.com/MagnumOpuses/common-cv-model/tree/master/common%20data%20structure"
+        )
+        .withData(cv)
+        .build();
 
-      window.close();
+      // Validate cv against schemaes;
+      return envelope;
+    })
+    .then(envelope => {
+      // Validate envelope against schema
+      /*
+      let refParser = require("json-schema-ref-parser");
+      return refParser
+        .dereference("../../lib/common-cv-model/envelope/DataEnvelope.json", {})
+        .then(function(dereferencedSchema) {
+          let validatorResult = validator.validate(
+            envelope,
+            dereferencedSchema
+          );
+          if (validatorResult.errors.length > 0) {
+            throw "Envelope contains validation errors!";
+          }
+
+          return envelope;
+        });*/
+      return envelope;
+    })
+    .then(envelope => {
+      let save = JSON.stringify(envelope);
+
+      fetch(config.consent + "?sessionToken=" + getSessionToken(), {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: save
+      }).then(response => {
+        if (response.status !== 200) {
+          console.log("Failed to consent. Status code: ", response.status);
+          return;
+        }
+
+        console.log(
+          "Successfully saved to Outbox! session: ",
+          getSessionToken()
+        );
+
+        window.close();
+      });
     })
     .catch(err => {
       console.log("Unexpected failure: ", err);
     });
-};
-
-window.refreshShareButton = function refreshShareButton() {
-  const isSecrecyAgreementChecked = $("#secrecyAgreement").prop("checked");
-  const isTransferAgreementChecked = $("#transferAgreement").prop("checked");
-  const isReviewAgreementChecked = $("#reviewAgreement").prop("checked");
-  const isTermsAgreementChecked = $("#termsAgreement").prop("checked");
-
-  if (
-    isSecrecyAgreementChecked &&
-    isTransferAgreementChecked &&
-    isReviewAgreementChecked &&
-    isTermsAgreementChecked
-  ) {
-    $("#shareButton").prop("disabled", false);
-    $("#shareButton").css("background-color", "#00005a");
-    $("#shareButton").css("border", "#00005a solid 1px;");
-  } else {
-    $("#shareButton").prop("disabled", true);
-    $("#shareButton").css("background-color", "#b9b9ca");
-    $("#shareButton").css("border", "grey solid 1px;");
-  }
-};
-
-window.secrecyAgreement = function secrecyAgreement() {
-  window.refreshShareButton();
-};
-
-window.transferAgreement = function transferAgreement() {
-  window.refreshShareButton();
-};
-
-window.reviewAgreement = function reviewAgreement() {
-  window.refreshShareButton();
-};
-
-window.openTermsAgreement = function openTermsAgreement() {
-  $("#termsModal").show();
-  $("#termsAgreement").prop("checked", !$("#termsAgreement").prop("checked"));
-};
-
-window.onTermsAgreement = function onTermsAgreement() {
-  $("#termsModal").hide();
-  $("#termsAgreement").prop("checked", true);
-  window.refreshShareButton();
-};
-
-window.onTermsCancel = function onTermsCancel() {
-  $("#termsModal").hide();
-  $("#termsAgreement").prop("checked", false);
-  window.refreshShareButton();
 };
 
 new Promise((resolve, reject) => {
@@ -194,7 +255,7 @@ new Promise((resolve, reject) => {
   }
 })
   .then(cookie => {
-    return fetch(config.cvUrl + "/?sessionToken=" + getSessionToken());
+    return fetch(config.cvUrl);
   })
   .then(response => {
     switch (response.status) {
@@ -228,4 +289,4 @@ new Promise((resolve, reject) => {
   })
   .catch(err => console.log("Failed to fetch CV, error:", err));
 
-},{}]},{},[1]);
+},{"../../lib/envelope":1}]},{},[2]);
