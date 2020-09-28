@@ -69,6 +69,13 @@ window.onChangeUser = function onChangeUser() {
   return false;
 };
 
+window.isProfileSelected = function isProfileSelected() {
+  return (
+    window.cv.transferObject.data[0].profiles !== undefined &&
+    selectedProfile !== undefined
+  );
+};
+
 window.onConsentRejection = function onConsentRejection() {
   // TODO: Propagate an consent reject message to data consumer service.
   window.close();
@@ -76,10 +83,7 @@ window.onConsentRejection = function onConsentRejection() {
 
 window.onConsent = function onConsent() {
   // Clear out all but the selected profile before saving to Outbox
-  if (
-    window.cv.transferObject.data[0].profiles !== undefined &&
-    selectedProfile !== undefined
-  ) {
+  if (window.isProfileSelected()) {
     const specificProfile =
       window.cv.transferObject.data[0].profiles[selectedProfile];
     window.cv.transferObject.data[0].profiles = [specificProfile];
@@ -129,11 +133,13 @@ window.onConsent = function onConsent() {
 window.refreshShareButton = function refreshShareButton() {
   const isSecrecyAgreementChecked = $("#secrecyAgreement").prop("checked");
   const isTransferAgreementChecked = $("#transferAgreement").prop("checked");
+  const isReviewAgreementChecked = $("#reviewAgreement").prop("checked");
   const isTermsAgreementChecked = $("#termsAgreement").prop("checked");
 
   if (
     isSecrecyAgreementChecked &&
     isTransferAgreementChecked &&
+    isReviewAgreementChecked &&
     isTermsAgreementChecked
   ) {
     $("#shareButton").prop("disabled", false);
@@ -151,6 +157,10 @@ window.secrecyAgreement = function secrecyAgreement() {
 };
 
 window.transferAgreement = function transferAgreement() {
+  window.refreshShareButton();
+};
+
+window.reviewAgreement = function reviewAgreement() {
   window.refreshShareButton();
 };
 
