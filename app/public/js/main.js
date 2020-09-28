@@ -68,6 +68,13 @@ window.onChangeUser = function onChangeUser() {
   return false;
 };
 
+window.isProfileSelected = function isProfileSelected() {
+  return (
+    window.cv.transferObject.data[0].profiles !== undefined &&
+    selectedProfile !== undefined
+  );
+};
+
 window.onConsentRejection = function onConsentRejection() {
   // TODO: Propagate an consent reject message to data consumer service.
   window.close();
@@ -75,10 +82,7 @@ window.onConsentRejection = function onConsentRejection() {
 
 window.onConsent = function onConsent() {
   // Clear out all but the selected profile before saving to Outbox
-  if (
-    window.cv.transferObject.data[0].profiles !== undefined &&
-    selectedProfile !== undefined
-  ) {
+  if (window.isProfileSelected()) {
     const specificProfile =
       window.cv.transferObject.data[0].profiles[selectedProfile];
     window.cv.transferObject.data[0].profiles = [specificProfile];
@@ -125,6 +129,40 @@ window.onConsent = function onConsent() {
     });
 };
 
+window.refreshShareButton = function refreshShareButton() {
+  const isSecrecyAgreementChecked = $("#secrecyAgreement").prop("checked");
+  const isTransferAgreementChecked = $("#transferAgreement").prop("checked");
+  const isReviewAgreementChecked = $("#reviewAgreement").prop("checked");
+  const isTermsAgreementChecked = $("#termsAgreement").prop("checked");
+
+  if (
+    isSecrecyAgreementChecked &&
+    isTransferAgreementChecked &&
+    isReviewAgreementChecked &&
+    isTermsAgreementChecked
+  ) {
+    $("#shareButton").prop("disabled", false);
+    $("#shareButton").css("background-color", "#00005a");
+    $("#shareButton").css("border", "#00005a solid 1px;");
+  } else {
+    $("#shareButton").prop("disabled", true);
+    $("#shareButton").css("background-color", "#b9b9ca");
+    $("#shareButton").css("border", "grey solid 1px;");
+  }
+};
+
+window.secrecyAgreement = function secrecyAgreement() {
+  window.refreshShareButton();
+};
+
+window.transferAgreement = function transferAgreement() {
+  window.refreshShareButton();
+};
+
+window.reviewAgreement = function reviewAgreement() {
+  window.refreshShareButton();
+};
+
 window.openTermsAgreement = function openTermsAgreement() {
   $("#termsModal").show();
   $("#termsAgreement").prop("checked", !$("#termsAgreement").prop("checked"));
@@ -133,17 +171,13 @@ window.openTermsAgreement = function openTermsAgreement() {
 window.onTermsAgreement = function onTermsAgreement() {
   $("#termsModal").hide();
   $("#termsAgreement").prop("checked", true);
-  $("#shareButton").prop("disabled", false);
-  $("#shareButton").css("background-color", "#00005a");
-  $("#shareButton").css("border", "#00005a solid 1px;");
+  window.refreshShareButton();
 };
 
 window.onTermsCancel = function onTermsCancel() {
   $("#termsModal").hide();
   $("#termsAgreement").prop("checked", false);
-  $("#shareButton").prop("disabled", true);
-  $("#shareButton").css("background-color", "#b9b9ca");
-  $("#shareButton").css("border", "grey solid 1px;");
+  window.refreshShareButton();
 };
 
 new Promise((resolve, reject) => {
