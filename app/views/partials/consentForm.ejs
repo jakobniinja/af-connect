@@ -5,9 +5,10 @@
                 <div style="background-color: #f5f5f5; border-left: #00005a solid 8px; padding: 16px">
                     På denna sida finner du dina personuppgifter samt dina profiler som du har sparade hos Arbetsförmedlingen.<br>
                     <br>
-                    Vänligen granska dina uppgifter innan du väljer att dela med dig av uppgifterna till tredje part.<br>
+                    Vänligen granska dina uppgifter och se till att ingen önskad information ingår innan du väljer att dela med dig av uppgifterna till tredje part.<br>
                     <br>
-                    För att korrigera dina uppgifter <a href="https://www.arbetsformedlingen.se/For-arbetssokande/Mina-sidor/Mina-profiler/">Klicka här</a>.<br>
+                    För att ta bort eller justera dina uppgifter: <a href="https://www.arbetsformedlingen.se/For-arbetssokande/Mina-sidor/Mina-profiler/">Klicka här</a>.<br>
+                    <b>OBS:</b> Detta avslutar överföringsprocessen.<br>
                 </div>
             </div>
             <div class="col-md-6">
@@ -18,16 +19,16 @@
                                 <div style="margin-top: 24px; font-size: 16pt">Personuppgifter</div>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row" style="margin-top: 12px;">
                             <div class="col-md-12">
                                 <label for="name"><strong>Förnamn</strong></label>
-                                <div><%= data.person.name.given %></div>
+                                <div><%= data.transferObject.data[0].person.name.given %></div>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row" style="margin-top: 12px;">
                             <div class="col-md-12">
                                 <label for="name"><strong>Efternamn</strong></label>
-                                <div><%= data.person.name.family %></div>
+                                <div><%= data.transferObject.data[0].person.name.family %></div>
                             </div>
                         </div>
                     </div>
@@ -35,18 +36,18 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div style="margin-top: 24px; font-size: 16pt">Kontaktuppgifter</div>
-                                <div class="row">
+                                <div class="row" style="margin-top: 12px;">
                                     <div class="col-md-12">
                                         <label for="email"><strong>Email</strong></label>
-                                        <% data.person.communication.email.item.forEach((email) => { %>
+                                        <% data.transferObject.data[0].person.communication.email.forEach((email) => { %>
                                             <div><%= email.address %></div>
                                         <% }) %>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div class="row" style="margin-top: 12px;">
                                     <div class="col-md-12">
                                         <label for="phone"><strong>Telefon</strong></label>
-                                        <% data.person.communication.phone.item.forEach((phone) => { %>
+                                        <% data.transferObject.data[0].person.communication.phone.forEach((phone) => { %>
                                             <div><%= phone.formattedNumber %></div>
                                         <% }) %>
                                     </div>
@@ -62,11 +63,11 @@
             <div class="col-md-4">
                 <div style="margin-top: 24px; font-size: 16pt">Välj profil som du vill dela</div>
                 <div style="padding: 16px">
-                    <% if (data.profiles && data.profiles.item && data.profiles.item.length) { %>
-                        <% for(var i=0; i<data.profiles.item.length; i++) {%>
+                    <% if (data.transferObject.data[0].profiles && data.transferObject.data[0].profiles.length) { %>
+                        <% for(var i=0; i<data.transferObject.data[0].profiles.length; i++) {%>
                             <div>
                                 <label>
-                                        <input name="profileChoice" type="radio" type="button" data-toggle="collapse" data-target="#profile_<%= i %>" onclick="selectedProfile = <%= i %>;" /> <%= data.profiles.item[i].profileName %>    
+                                        <input name="profileChoice" type="radio" type="button" data-toggle="collapse" data-target="#profile_<%= i %>" onclick="selectedProfile = <%= i %>;" /> <%= data.transferObject.data[0].profiles[i].profileName %>    
                                 </label>
                             </div>
                         <% } %>
@@ -83,13 +84,13 @@
                 <div style="background-color: #f5f5f5; border-top: #00005a solid 8px; padding: 16px">
                     <div id="profileSelect" class="collapse show">
                         <div class="collapse show" data-parent="#profileSelect">Ingen profil vald</div>
-                        <% for(var i=0; i<data.profiles.item.length; i++) {%>
+                        <% for(var i=0; i<data.transferObject.data[0].profiles.length; i++) {%>
                             <div id="profile_<%= i %>" class="collapse" data-parent="#profileSelect">
-                                <% if (data.profiles.item[i].employment && data.profiles.item[i].employment.item) { %>
-                                    <% data.profiles.item[i].employment.item.forEach((employment) => { %>
-                                        <% if (employment.positionHistories && employment.positionHistories.item && employment.positionHistories.item.length) { %>
+                                <% if (data.transferObject.data[0].profiles[i].employment && data.transferObject.data[0].profiles[i].employment) { %>
+                                    <% data.transferObject.data[0].profiles[i].employment.forEach((employment) => { %>
+                                        <% if (employment.positionHistories && employment.positionHistories && employment.positionHistories.length) { %>
                                             <strong>Titel</strong><br>
-                                            <% employment.positionHistories.item.forEach((position) => { %>
+                                            <% employment.positionHistories.forEach((position) => { %>
                                                 <p><%= position.title %></p>
                                             <% }) %>
                                         <% } %>
@@ -99,7 +100,7 @@
                                         <% } %>
                                         <% if (employment.descriptions) { %>
                                             <strong>Beskrivning</strong><br>
-                                            <% employment.descriptions.item.forEach((description) => { %>
+                                            <% employment.descriptions.forEach((description) => { %>
                                                 <p><%= description %></p>
                                             <% }) %>
                                         <% } %>
@@ -118,10 +119,10 @@
                                     <% }) %>
                                 <% } %>
                                 
-                                <% if (data.profiles.item[i].qualifications && data.profiles.item[i].qualifications.item && data.profiles.item[i].qualifications.item.length > 0) { %>
+                                <% if (data.transferObject.data[0].profiles[i].qualifications && data.transferObject.data[0].profiles[i].qualifications && data.transferObject.data[0].profiles[i].qualifications.length > 0) { %>
                                     <strong>Kvalifikationer</strong><br>
                                     <ul>
-                                        <% data.profiles.item[i].qualifications.item.forEach((qualification) => { %>
+                                        <% data.transferObject.data[0].profiles[i].qualifications.forEach((qualification) => { %>
                                             <% if (qualification.competencyName) { %>
                                                 <li><%= qualification.competencyName %></li>
                                             <% } %>
@@ -136,15 +137,63 @@
         </div>
         <hr>
         <div class="row">
-            <div class="col-md-12">
-                <div style="margin-top: 24px; font-size: 16pt">Dela och slutför</div>
-                <div style="margin-top: 16px">Jag ger mitt uttryckliga medgivande att Arbetsförmedlingen får dela min valda profil med en tredje part.</div>
+            <div class="col-md-12" style="text-align: center;">
+                <div style="margin-top: 24px; font-size: 16pt; margin-bottom: 16px; font-weight: 500; font-size: 22pt;">Dela och slutför</div>
+                <div style="background-color: #f5f5f5; padding: 16px; width: 60%; margin: auto;">
+                    <div style="text-align: left;">
+                        <div><b>JobTechDev</b> får bara använda informationen för följande syfte:</div>
+                        <ul style="margin-top: 16px">
+                            <% data.sink.purposeOfUse.forEach((purpose) => { %>
+                                <li><%= purpose %></li>
+                            <% }) %>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div style="padding: 16px; width: 60%; margin: auto; text-align: left;">
+                    <div><input id="secrecyAgreement" type="checkbox" onclick="secrecyAgreement();"> Jag förstår att denna process häver sekretessen för de uppgifter jag väljer att dela.</div>
+                    <div><input id="transferAgreement" type="checkbox" onclick="transferAgreement();"> Jag ger mitt medgivande att Arbetsförmedlingen får hantera och överföra dessa uppgifter till <b>JobTechDev</b>.</div>
+                    <div><input id="reviewAgreement" type="checkbox" onclick="reviewAgreement();"> Jag har granskat uppgifterna och bekräftar att inga oönskade uppgifter ingår i överföringen till <b>JobTechDev</b>.</div>
+                    <div><input id="termsAgreement" type="checkbox" onclick="openTermsAgreement();"> Jag har läst och förstår bilagan: <a href="#" onclick="openTermsAgreement(); return false">Sekretessinformation</a>.</div>
+                </div>
+                
                 <div style="margin-top: 16px">
-                    <button style="background-color: #00005a; color: white; border: #00005a solid 1px; border-radius: 4px; padding-left: 12px; padding-right: 12px; padding-top: 6px; padding-bottom: 6px" onclick="onConsent();">
+                    <button id="shareButton" style="background-color: #b9b9ca; color: white; border: grey solid 1px; border-radius: 4px; padding-left: 12px; padding-right: 12px; padding-top: 6px; padding-bottom: 6px" onclick="onConsent();" disabled>
                         Jag samtycker och vill dela min profil
                     </button>
                     <button style="background-color: white; color: black; border: #00005a solid 1px; border-radius: 4px; padding-left: 12px; padding-right: 12px; padding-top: 6px; padding-bottom: 6px" onclick="onConsentRejection();">
                         Nej, dela inte min profil
+                    </button>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div id="termsModal" style="display:none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100%; background-color: white; background-color: rgba(255,255,255,0.6);">
+            <div style="border-radius: 4px; border: #00005a solid 1px; background-color: #fefefe; margin: 8% auto; padding: 32px; width: 40%; min-width: 800px;">
+                <div style="font-size: 16pt; margin-bottom: 16px">Sekretessinformation</div>
+                <div style="background-color: #f5f5f5; padding: 16px">
+                    <ul style="margin-top: 16px">
+                        <li>Den här tjänsten gör det möjligt att skicka ditt valda CV till <b>JobTechDev</b>. Arbetsförmedlingen ansvarar inte för uppgifterna när de har levererats.</li>
+                        <li>Ingen ytterligare data förknippat med dig lagras i samband med detta medgivande.</li>
+                        <li>Klicka <a href="#">HÄR</a> för att lära dig mer om hur Arbetsförmedlingen behandlar dina uppgifter där de lagras, hur länge och vem som har åtkomst till dem.</li>
+                        <li><b>JobTechDev</b> är skyldigt att använda dina uppgifter enligt EU:s allmänna dataskyddsförordning. Klicka <a href="#">HÄR</a> om du vill veta mer om hur mottagningsföretaget behandlar dina uppgifter var lagras under hur länge, vem som har tillgång till dem etc.</li>
+                        <li>Efter att uppgifterna har levererats kan Arbetsformedlingen inte verifiera
+                            <ul>
+                                <li>hur eller var informationen kommer att lagras;</li>
+                                <li>om dina uppgifter kommer att skickas till andra parter;</li>
+                                <li>om uppgifterna kommer att användas för ett annat syfte än en som anges ovan; eller</li>
+                                <li>som kommer att kunna komma åt uppgifterna.</li>
+                            </ul>
+                        </li>
+                        <li>Om du känner att dina data "missbrukas" eller "missbrukas" på något sätt, vänligen kontakta "Datainspektionen" <a href="#">HÄR</a>.</li>
+                    </ul>
+                </div>
+                <div style="margin-top: 16px">
+                    <button style="background-color: #00005a; color: white; border: #00005a solid 1px; border-radius: 4px; padding-left: 12px; padding-right: 12px; padding-top: 6px; padding-bottom: 6px" onclick="onTermsAgreement();">
+                        Jag förstår
+                    </button>
+                    <button style="background-color: white; color: black; border: #00005a solid 1px; border-radius: 4px; padding-left: 12px; padding-right: 12px; padding-top: 6px; padding-bottom: 6px" onclick="onTermsCancel();">
+                        Avbryt
                     </button>
                 </div>
             </div>
