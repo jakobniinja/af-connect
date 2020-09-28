@@ -1,5 +1,7 @@
 "use strict";
 
+var cv;
+
 let configElement = document.getElementById("config");
 let config = {
   cookie: "AMV_SSO_COOKIE",
@@ -31,7 +33,7 @@ let clearCookie = name => {
 };
 
 function onResponse(data) {
-  window.cv = data;
+  cv = data;
 
   // Render the consent form
   fetch(config.consentForm, {
@@ -59,20 +61,13 @@ function onResponse(data) {
     })
     .catch(err => console.log("Fetch Error :-S", err));
 
-  console.log(window.cv);
+  console.log(cv);
 }
 
 window.onChangeUser = function onChangeUser() {
   clearCookie(config.cookie);
   location.reload();
   return false;
-};
-
-window.isProfileSelected = function isProfileSelected() {
-  return (
-    window.cv.transferObject.data[0].profiles !== undefined &&
-    selectedProfile !== undefined
-  );
 };
 
 window.onConsentRejection = function onConsentRejection() {
@@ -82,102 +77,93 @@ window.onConsentRejection = function onConsentRejection() {
 
 window.onConsent = function onConsent() {
   // Clear out all but the selected profile before saving to Outbox
-  if (window.isProfileSelected()) {
-    const specificProfile =
-      window.cv.transferObject.data[0].profiles[selectedProfile];
-    window.cv.transferObject.data[0].profiles = [specificProfile];
+  if (
+    cv.profiles !== undefined &&
+    cv.profiles.item !== undefined &&
+    selectedProfile !== undefined
+  ) {
+    const specificProfile = cv.profiles.item[selectedProfile];
+    cv.profiles.item = [specificProfile];
   } else {
     return new Promise((resolve, reject) => {
       resolve();
     });
   }
 
-  window.cv.consent.consentTimestamp = new Date();
-  window.cv.consent.consentStatus = true;
-
-  window.cv.consent.consentedTimePeriod = new Date(
-    window.cv.consent.consentTimestamp
-  );
-  window.cv.consent.consentedTimePeriod.setMonth(
-    window.cv.consent.consentedTimePeriod.getMonth() + 1
-  );
-  window.cv.consent.acceptedPurposes = window.cv.sink.purposeOfUse;
-  //console.log("Consented envelope: ", window.cv);
-
-  let save = JSON.stringify(window.cv);
-
   // Record CV in AF Connect OutBox
-  fetch(config.consent + "?sessionToken=" + getSessionToken(), {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: save
+  return new Promise((resolve, reject) => {
+    resolve();
   })
-    .then(response => {
-      if (response.status !== 200) {
-        console.log("Failed to consent. Status code: ", response.status);
-        return;
-      }
+    .then(() => {
+      // Build envelope
+      let consentTimestamp = new Date();
+      let consentedTimePeriod = new Date(consentTimestamp);
+      consentedTimePeriod.setMonth(consentedTimePeriod.getMonth() + 1);
 
-      console.log("Successfully saved to Outbox! session: ", getSessionToken());
+      let Envelope = require("../../lib/envelope");
+      let envelope = new Envelope.Builder()
+        .withSourceId("01")
+        .withSourceName("Arbetsformedlingen")
+        .withAllowsWrite(true)
+        .withConsentTimestamp(consentTimestamp.toISOString())
+        .withConsentStatus(true)
+        .withConsentedTimePeriod(consentedTimePeriod.toISOString())
+        .withSize("500")
+        .withDocumentType("CV")
+        .withDataStructureLink(
+          "https://github.com/MagnumOpuses/common-cv-model/tree/master/common%20data%20structure"
+        )
+        .withData(cv)
+        .build();
 
-      window.close();
+      // Validate cv against schemaes;
+      return envelope;
+    })
+    .then(envelope => {
+      // Validate envelope against schema
+      /*
+      let refParser = require("json-schema-ref-parser");
+      return refParser
+        .dereference("../../lib/common-cv-model/envelope/DataEnvelope.json", {})
+        .then(function(dereferencedSchema) {
+          let validatorResult = validator.validate(
+            envelope,
+            dereferencedSchema
+          );
+          if (validatorResult.errors.length > 0) {
+            throw "Envelope contains validation errors!";
+          }
+
+          return envelope;
+        });*/
+      return envelope;
+    })
+    .then(envelope => {
+      let save = JSON.stringify(envelope);
+
+      fetch(config.consent + "?sessionToken=" + getSessionToken(), {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: save
+      }).then(response => {
+        if (response.status !== 200) {
+          console.log("Failed to consent. Status code: ", response.status);
+          return;
+        }
+
+        console.log(
+          "Successfully saved to Outbox! session: ",
+          getSessionToken()
+        );
+
+        window.close();
+      });
     })
     .catch(err => {
       console.log("Unexpected failure: ", err);
     });
-};
-
-window.refreshShareButton = function refreshShareButton() {
-  const isSecrecyAgreementChecked = $("#secrecyAgreement").prop("checked");
-  const isTransferAgreementChecked = $("#transferAgreement").prop("checked");
-  const isReviewAgreementChecked = $("#reviewAgreement").prop("checked");
-  const isTermsAgreementChecked = $("#termsAgreement").prop("checked");
-
-  if (
-    isSecrecyAgreementChecked &&
-    isTransferAgreementChecked &&
-    isReviewAgreementChecked &&
-    isTermsAgreementChecked
-  ) {
-    $("#shareButton").prop("disabled", false);
-    $("#shareButton").css("background-color", "#00005a");
-    $("#shareButton").css("border", "#00005a solid 1px;");
-  } else {
-    $("#shareButton").prop("disabled", true);
-    $("#shareButton").css("background-color", "#b9b9ca");
-    $("#shareButton").css("border", "grey solid 1px;");
-  }
-};
-
-window.secrecyAgreement = function secrecyAgreement() {
-  window.refreshShareButton();
-};
-
-window.transferAgreement = function transferAgreement() {
-  window.refreshShareButton();
-};
-
-window.reviewAgreement = function reviewAgreement() {
-  window.refreshShareButton();
-};
-
-window.openTermsAgreement = function openTermsAgreement() {
-  $("#termsModal").show();
-  $("#termsAgreement").prop("checked", !$("#termsAgreement").prop("checked"));
-};
-
-window.onTermsAgreement = function onTermsAgreement() {
-  $("#termsModal").hide();
-  $("#termsAgreement").prop("checked", true);
-  window.refreshShareButton();
-};
-
-window.onTermsCancel = function onTermsCancel() {
-  $("#termsModal").hide();
-  $("#termsAgreement").prop("checked", false);
-  window.refreshShareButton();
 };
 
 new Promise((resolve, reject) => {
@@ -193,7 +179,7 @@ new Promise((resolve, reject) => {
   }
 })
   .then(cookie => {
-    return fetch(config.cvUrl + "/?sessionToken=" + getSessionToken());
+    return fetch(config.cvUrl);
   })
   .then(response => {
     switch (response.status) {

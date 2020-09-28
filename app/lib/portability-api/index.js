@@ -2,9 +2,9 @@
 const config = require("../config");
 const request = require("request-promise");
 
-function cv(ssoCookie, sessionToken) {
+function cv(ssoCookie) {
   return request({
-    url: config.portabilityUrl + "/profile?sessionToken=" + sessionToken,
+    url: config.portabilityUrl + "/profile",
     resolveWithFullResponse: true,
     headers: {
       AMV_SSO_COOKIE: ssoCookie,
