@@ -25,9 +25,10 @@ let getCookie = name => {
 };
 
 let clearCookie = name => {
+  // Only keep the top-level domain from the hostname.
   const split = location.hostname.split(".");
   const tld = split.slice(split.length - 2).join(".");
-  document.cookie = name + "=; path=/; domain=." + tld;
+  document.cookie = name + "=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; domain=." + tld;
 };
 
 function onResponse(data) {
