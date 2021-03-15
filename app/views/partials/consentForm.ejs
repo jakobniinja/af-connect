@@ -67,7 +67,7 @@
                         <% for(var i=0; i<data.transferObject.data[0].profiles.length; i++) {%>
                             <div>
                                 <label>
-                                        <input name="profileChoice" type="radio" type="button" data-toggle="collapse" data-target="#profile_<%= i %>" onclick="selectedProfile = <%= i %>;" /> <%= data.transferObject.data[0].profiles[i].profileName %>    
+                                        <input name="profileChoice" type="radio" type="button" data-toggle="collapse" data-target="#profile_<%= i %>" onclick="selectedProfile = <%= i %>;" /> <%= data.transferObject.data[0].profiles[i].profileName %>
                                 </label>
                             </div>
                         <% } %>
@@ -106,7 +106,7 @@
                                         <% } %>
                                         <% if (employment.start) { %>
                                             <strong>Period</strong><br>
-                                            <%= employment.start %> - 
+                                            <%= employment.start %> -
 
                                             <% if (employment.current) { %>
                                                 Pågående
@@ -118,7 +118,7 @@
                                         <hr>
                                     <% }) %>
                                 <% } %>
-                                
+
                                 <% if (data.transferObject.data[0].profiles[i].qualifications && data.transferObject.data[0].profiles[i].qualifications && data.transferObject.data[0].profiles[i].qualifications.length > 0) { %>
                                     <strong>Kvalifikationer</strong><br>
                                     <ul>
@@ -141,22 +141,20 @@
                 <div style="margin-top: 24px; font-size: 16pt; margin-bottom: 16px; font-weight: 500; font-size: 22pt;">Dela och slutför</div>
                 <div style="background-color: #f5f5f5; padding: 16px; width: 60%; margin: auto;">
                     <div style="text-align: left;">
-                        <div><b>JobTechDev</b> får bara använda informationen för följande syfte:</div>
+                        <div><b><%= data.sink.companyName %></b> får bara använda informationen för följande syfte:</div>
                         <ul style="margin-top: 16px">
-                            <% data.sink.purposeOfUse.forEach((purpose) => { %>
-                                <li><%= purpose %></li>
-                            <% }) %>
+                            <li>Ansökan till roll '<%= data.sink.jobTitle %>' på '<%= data.sink.companyName %>'</li>
                         </ul>
                     </div>
                 </div>
-                
+
                 <div style="padding: 16px; width: 60%; margin: auto; text-align: left;">
                     <div><input id="secrecyAgreement" type="checkbox" onclick="secrecyAgreement();"> Jag förstår att denna process häver sekretessen för de uppgifter jag väljer att dela.</div>
-                    <div><input id="transferAgreement" type="checkbox" onclick="transferAgreement();"> Jag ger mitt medgivande att Arbetsförmedlingen får hantera och överföra dessa uppgifter till <b>JobTechDev</b>.</div>
-                    <div><input id="reviewAgreement" type="checkbox" onclick="reviewAgreement();"> Jag har granskat uppgifterna och bekräftar att inga oönskade uppgifter ingår i överföringen till <b>JobTechDev</b>.</div>
+                    <div><input id="transferAgreement" type="checkbox" onclick="transferAgreement();"> Jag ger mitt medgivande att Arbetsförmedlingen får hantera och överföra dessa uppgifter till <b><%= data.sink.companyName %></b>.</div>
+                    <div><input id="reviewAgreement" type="checkbox" onclick="reviewAgreement();"> Jag har granskat uppgifterna och bekräftar att inga oönskade uppgifter ingår i överföringen till <b><%= data.sink.companyName %></b>.</div>
                     <div><input id="termsAgreement" type="checkbox" onclick="openTermsAgreement();"> Jag har läst och förstår bilagan: <a href="#" onclick="openTermsAgreement(); return false">Sekretessinformation</a>.</div>
                 </div>
-                
+
                 <div style="margin-top: 16px">
                     <button id="shareButton" style="background-color: #b9b9ca; color: white; border: grey solid 1px; border-radius: 4px; padding-left: 12px; padding-right: 12px; padding-top: 6px; padding-bottom: 6px" onclick="onConsent();" disabled>
                         Jag samtycker och vill dela min profil
