@@ -141,28 +141,28 @@
                 <div style="margin-top: 24px; font-size: 16pt; margin-bottom: 16px; font-weight: 500; font-size: 22pt;">Dela och slutför</div>
                 <div style="background-color: #f5f5f5; padding: 16px; width: 60%; margin: auto;">
                     <div style="text-align: left;">
-                        <div><b><%= data.sink.companyName %></b> får bara använda informationen för följande syfte:</div>
-                        <ul style="margin-top: 16px">
-                            <li>Ansökan till roll '<%= data.sink.jobTitle %>' på '<%= data.sink.companyName %>'</li>
-                        </ul>
-                    </div>
-                </div>
+                      <div><b><%= data.sink.companyName %></b> får bara använda informationen för följande syfte:</div>
+                      <ul style="margin-top: 16px">
+                          <li>Ansökan till roll '<%= data.sink.jobTitle %>' på '<%= data.sink.companyName %>'</li>
+                      </ul>
+                  </div>
+              </div>
 
-                <div style="padding: 16px; width: 60%; margin: auto; text-align: left;">
-                    <div><input id="secrecyAgreement" type="checkbox" onclick="secrecyAgreement();"> Jag förstår att denna process häver sekretessen för de uppgifter jag väljer att dela.</div>
-                    <div><input id="transferAgreement" type="checkbox" onclick="transferAgreement();"> Jag ger mitt medgivande att Arbetsförmedlingen får hantera och överföra dessa uppgifter till <b><%= data.sink.companyName %></b>.</div>
-                    <div><input id="reviewAgreement" type="checkbox" onclick="reviewAgreement();"> Jag har granskat uppgifterna och bekräftar att inga oönskade uppgifter ingår i överföringen till <b><%= data.sink.companyName %></b>.</div>
-                    <div><input id="termsAgreement" type="checkbox" onclick="openTermsAgreement();"> Jag har läst och förstår bilagan: <a href="#" onclick="openTermsAgreement(); return false">Sekretessinformation</a>.</div>
-                </div>
+              <div style="padding: 16px; width: 60%; margin: auto; text-align: left;">
+                  <div><input id="secrecyAgreement" type="checkbox" onclick="secrecyAgreement();"> Jag förstår att denna process häver sekretessen för de uppgifter jag väljer att dela.</div>
+                  <div><input id="transferAgreement" type="checkbox" onclick="transferAgreement();"> Jag ger mitt medgivande att Arbetsförmedlingen får hantera och överföra dessa uppgifter till <b><%= data.sink.companyName %></b>.</div>
+                  <div><input id="reviewAgreement" type="checkbox" onclick="reviewAgreement();"> Jag har granskat uppgifterna och bekräftar att inga oönskade uppgifter ingår i överföringen till <b><%= data.sink.companyName %></b>.</div>
+                  <div><input id="termsAgreement" type="checkbox" onclick="openTermsAgreement();"> Jag har läst och förstår bilagan: <a href="#" onclick="openTermsAgreement(); return false">Sekretessinformation</a>.</div>
+              </div>
 
-                <div style="margin-top: 16px">
-                    <button id="shareButton" style="background-color: #b9b9ca; color: white; border: grey solid 1px; border-radius: 4px; padding-left: 12px; padding-right: 12px; padding-top: 6px; padding-bottom: 6px" onclick="onConsent();" disabled>
-                        Jag samtycker och vill dela min profil
-                    </button>
-                    <button style="background-color: white; color: black; border: #00005a solid 1px; border-radius: 4px; padding-left: 12px; padding-right: 12px; padding-top: 6px; padding-bottom: 6px" onclick="onConsentRejection();">
-                        Nej, dela inte min profil
-                    </button>
-                </div>
+              <div style="margin-top: 16px">
+                  <button id="shareButton" style="background-color: #b9b9ca; color: white; border: grey solid 1px; border-radius: 4px; padding-left: 12px; padding-right: 12px; padding-top: 6px; padding-bottom: 6px" onclick="onConsent();" disabled>
+                      Jag samtycker och vill dela min profil
+                  </button>
+                  <button style="background-color: white; color: black; border: #00005a solid 1px; border-radius: 4px; padding-left: 12px; padding-right: 12px; padding-top: 6px; padding-bottom: 6px" onclick="onConsentRejection();">
+                      Nej, dela inte min profil
+                  </button>
+              </div>
             </div>
         </div>
         <hr>
@@ -171,10 +171,10 @@
                 <div style="font-size: 16pt; margin-bottom: 16px">Sekretessinformation</div>
                 <div style="background-color: #f5f5f5; padding: 16px">
                     <ul style="margin-top: 16px">
-                        <li>Den här tjänsten gör det möjligt att skicka ditt valda CV till <b>JobTechDev</b>. Arbetsförmedlingen ansvarar inte för uppgifterna när de har levererats.</li>
+                        <li>Den här tjänsten gör det möjligt att skicka ditt valda CV till <b><%= data.sink.sinkName %></b>. Arbetsförmedlingen ansvarar inte för uppgifterna när de har levererats.</li>
                         <li>Ingen ytterligare data förknippat med dig lagras i samband med detta medgivande.</li>
                         <li>Klicka <a href="#">HÄR</a> för att lära dig mer om hur Arbetsförmedlingen behandlar dina uppgifter där de lagras, hur länge och vem som har åtkomst till dem.</li>
-                        <li><b>JobTechDev</b> är skyldigt att använda dina uppgifter enligt EU:s allmänna dataskyddsförordning. Klicka <a href="#">HÄR</a> om du vill veta mer om hur mottagningsföretaget behandlar dina uppgifter var lagras under hur länge, vem som har tillgång till dem etc.</li>
+                        <li><b><%= data.sink.sinkName %></b> är skyldigt att använda dina uppgifter enligt EU:s allmänna dataskyddsförordning. Klicka <a href="#">HÄR</a> om du vill veta mer om hur mottagningsföretaget behandlar dina uppgifter var lagras under hur länge, vem som har tillgång till dem etc.</li>
                         <li>Efter att uppgifterna har levererats kan Arbetsformedlingen inte verifiera
                             <ul>
                                 <li>hur eller var informationen kommer att lagras;</li>
