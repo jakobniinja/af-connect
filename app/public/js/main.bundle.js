@@ -11,6 +11,7 @@ let config = {
 };
 
 let getSessionToken = () => {
+  console.log("GF:getSessionToken");
   var url = new URL(window.location.href);
   return url.searchParams.get("sessionToken");
 };

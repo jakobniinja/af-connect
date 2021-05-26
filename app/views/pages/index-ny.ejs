@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel=”stylesheet”
+        href=”https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link
+          href="vendor/bootstrap-4.3.1-dist/css/bootstrap.min.css"
+          rel="stylesheet"
+  />
+  <link href="css/main.css" rel="stylesheet" />
+  <title>AF Connect</title>
+  <style>
+    body {
+      background-color: #efefef;
+    }
+    .af-button {
+      background-color: rgb(48, 64, 196);
+      color: rgb(238, 238, 238);
+      border: 0px;
+      padding: 6px 20px;
+      border-radius: 3px;
+      text-align: center;
+      font-weight: 600;
+      display: inline-block;
+      margin: 12px;
+      margin-left: 16px;
+      cursor: pointer;
+    }
+    .logo {
+      margin: 8px;
+    }
+    .l {
+      margin-left: 16px;
+    }
+  </style>
+</head>
+<body>
+<img class="logo" src="/img/af-logo.svg" />
+<div id="page-1" display="none">
+  <div class="l">Välj profil att dela</div>
+  <div>Välj den profil du tycker passar bäst till jobbet du vill söka.</div>
+  <div>Andreas</div>
+
+    <div>
+      <input type="radio" id="profile-1" name="profile-list" value="profile-1">
+      <label for="profile-1">PROFILE_NAME</label>
+    </div>
+
+    <div>
+      <input type="radio" id="profile-2" name="profile-list" value="profile-2">
+      <label for="profile-2">PROFILE_NAME</label>
+    </div>
+
+    <div>
+      <input type="radio" id="profile-3" name="profile-list" value="profile-3">
+      <label for="profile-3">PROFILE_NAME</label>
+    </div>
+
+  <button id="button-1" class="af-button" onclick="showPage(2);">Nästa</button>
+</div>
+<div id="page-2" display="none">
+  <div class="l">Detaljer vald profil</div>
+  <button id="button-2" class="af-button" onclick="showPage(3);">Nästa</button>
+  <button class="af-button" onclick="showPage(1);">Åter</button>
+</div>
+<div id="page-3" display="none">
+  <div class="l">Ge godkännande för överföring</div>
+  <button id="button-3" class="af-button" onclick="consent();">Godkänn</button>
+  <button class="af-button" onclick="showPage(2);">Åter</button>
+</div>
+</body>
+<script>
+  function showPage(number) {
+    window.document.getElementById("page-1").style.display = "none";
+    window.document.getElementById("page-2").style.display = "none";
+    window.document.getElementById("page-3").style.display = "none";
+    window.document.getElementById("page-" + number).style.display = "block";
+  }
+
+  function consent() {
+    // TODO
+    console.log("Consented!");
+  }
+
+  showPage(1);
+</script>
+</html>
