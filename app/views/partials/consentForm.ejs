@@ -215,7 +215,7 @@
      </div>
 
     <div class="scrollable">
-        <div id="profile-list"; style="margin-left: 14px; padding: 12px">
+        <div id="profile-list"; style="font-size: 20px; margin-left: 14px; padding: 12px">
             <% for(var i=0; i<data.transferObject.data[0].profiles.length; i++) {%>
                 <div style="display:none" id="profile_<%= i %>" data-parent="#profileSelect">
                     <% if (data.transferObject.data[0].profiles[i].employment && data.transferObject.data[0].profiles[i].employment) { %>
@@ -249,17 +249,6 @@
                             <% } %>
                             <hr>
                         <% }) %>
-                    <% } %>
-
-                    <% if (data.transferObject.data[0].profiles[i].qualifications && data.transferObject.data[0].profiles[i].qualifications && data.transferObject.data[0].profiles[i].qualifications.length > 0) { %>
-                        <strong>Kvalifikationer</strong><br>
-                        <ul class="list">
-                            <% data.transferObject.data[0].profiles[i].qualifications.forEach((qualification) => { %>
-                                <% if (qualification.description) { %>
-                                    <li><%= qualification.description %></li>
-                                <% } %>
-                            <% }) %>
-                        </ul>
                     <% } %>
                 </div>
             <% } %>
