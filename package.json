@@ -29,7 +29,6 @@
   },
   "scripts": {
     "start": "node app/src/index.js",
-    "local": "node app/src/index.js localhost",
     "dev": "nodemon",
     "test": "jest --runInBand --detectOpenHandles",
     "coverage": "npx c8 --reporter=html --reporter=text npm test",

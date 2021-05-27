@@ -1,5 +1,4 @@
 "use strict";
-
 let configElement = document.getElementById("config");
 let config = {
   cookie: "AMV_SSO_COOKIE",
@@ -131,6 +130,12 @@ window.onConsent = function onConsent() {
     });
 };
 
+// Control button active status, inactive if no selection
+window.refreshFwdButton = function refreshFwdButton() {
+  $("#button-1").prop("disabled", false);
+  $("#button-1").css("background-color", "#00005a");
+  $("#button-1").css("border", "#00005a solid 1px;");
+}
 window.refreshShareButton = function refreshShareButton() {
   const isSecrecyAgreementChecked = $("#secrecyAgreement").prop("checked");
   const isTransferAgreementChecked = $("#transferAgreement").prop("checked");
@@ -154,29 +159,35 @@ window.refreshShareButton = function refreshShareButton() {
 };
 
 window.secrecyAgreement = function secrecyAgreement() {
+  console.log("secrecyAgreement");
   window.refreshShareButton();
 };
 
 window.transferAgreement = function transferAgreement() {
+  console.log("transferAgreement");
   window.refreshShareButton();
 };
 
 window.reviewAgreement = function reviewAgreement() {
+  console.log("reviewAgreement");
   window.refreshShareButton();
 };
 
 window.openTermsAgreement = function openTermsAgreement() {
+  console.log("openTermsAgreement");
   $("#termsModal").show();
   $("#termsAgreement").prop("checked", !$("#termsAgreement").prop("checked"));
 };
 
 window.onTermsAgreement = function onTermsAgreement() {
+  console.log("onTermsAgreement");
   $("#termsModal").hide();
   $("#termsAgreement").prop("checked", true);
   window.refreshShareButton();
 };
 
 window.onTermsCancel = function onTermsCancel() {
+  console.log("onTermsCancel");
   $("#termsModal").hide();
   $("#termsAgreement").prop("checked", false);
   window.refreshShareButton();
