@@ -175,6 +175,7 @@
             }
             .terms {
                 margin-left: 0;
+                margin-top: 2px;
                 text-align: left;
             }
             .name {
@@ -192,6 +193,7 @@
                 overflow-y:auto;
                 margin-left: 36px;
                 height: 311px;
+                scrollbar-width: auto;
             }
             .transfer-step-navigation {
                 margin: 8px 0 0 22px;
@@ -293,7 +295,7 @@
         <div class="container" id="page-3" display="none">
 
             <img class="logo" id="lo" src="/img/af-logo.svg" />
-            <div class="header-approve-xfer">Godkänn överföringen och Dela</div>
+            <div class="header-approve-xfer">Godkänn överföringen.</div>
             <div class="info-use-limitation">
                 <%= data.sink.sinkName %> får bara använda informationen för ansökan till roll <%= data.sink.jobTitle %> på <%= data.sink.companyName %>
             </div>
@@ -310,11 +312,11 @@
             </div>
 
             <div>
-                <div class="scrollable" id="share-terms">
+                <div class="scrollable" style="height: 313px;" id="share-terms">
                     <div class="terms">
                         <ul class="list">
                             <li style="margin-top: 0">Den här tjänsten gör det möjligt att skicka ditt valda CV
-                                till <%= data.sink.sinkName %>.
+                                till <%= data.sink.sinkName %>.<br/>
                                 Arbetsförmedlingen är personuppgiftsansvarig fram till
                                 att uppgifterna skickas från tjänsten till <%= data.sink.sinkName %>.
                                 Arbetsförmedlingen ansvarar inte för uppgifterna efter de
@@ -331,15 +333,17 @@
                                 <%= data.sink.sinkName %> är skyldigt att använda dina uppgifter enligt EU:s allmänna dataskyddsförordning.
                             </li>
                             <li style="margin-top: 16px">
-                                Efter att uppgifterna har levererats till <%= data.sink.sinkName %> kan Arbetsförmedlingen inte verifieraKlicka HÄR för att lära dig mer om hur Arbetsförmedlingen behandlar dina uppgifter.
-                                - hur eller var informationen kommer att lagras;
-                                - om din uppgifter kommer skickas till andra parter;
-                                - om uppgifterna kommer att användas för ett annat syfte än ett som anges ovan; eller
-                                - vem som kommer att kunna komma åt uppgifterna.
+                                Efter att uppgifterna har levererats till <%= data.sink.sinkName %> kan Arbetsförmedlingen inte verifiera
+                                <ul>
+                                    <li>hur eller var informationen kommer att lagras;</li>
+                                    <li>om din uppgifter kommer skickas till andra parter;</li>
+                                    <li>om uppgifterna kommer att användas för ett annat syfte än ett som anges ovan; eller</li>
+                                    <li>vem som kommer att kunna komma åt uppgifterna.</li>
+                                </ul>
                             </li>
-                            <li style="margin-top: 16px">
+
+                            <li style="margin-top: 14px">
                                 Om du känner att dina uppgifter missbrukas på något sätt, vänligen kontakta Datainspektionen (https://www.datainspektionen.se/).
-                                Klicka HÄR för att lära dig mer om hur Arbetsförmedlingen behandlar dina uppgifter.
                             </li>
                         </ul>
                     </div>
@@ -358,12 +362,12 @@
                     </p>
 
                     <p class="par"><input class="inp" type="checkbox" id="termsAgreement"
-                                          onclick="reviewAgreement();">Jag har läst och förstår bilagan: Behandling av dina personuppgifter.
+                                          onclick="reviewAgreement();">Jag har läst och förstår hur Arbetsförmedlingen behandlar mina personuppgifter.
                     </p>
                 </div>
             </div>
 
-            <div style="margin: 30px 0px 0px 70px;">
+            <div style="margin: 23px 0px 0px 70px;">
                 <button class="back-button" onclick="showPage(2);clearBoxes();">Tillbaka</button>
                 <button id="shareButton" class="fwd-button" style="padding: 11px 100px;" onclick="onConsent();" disabled>
                     Överför
