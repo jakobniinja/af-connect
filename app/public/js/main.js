@@ -9,7 +9,6 @@ let config = {
 };
 
 let getSessionToken = () => {
-  console.log("GF:getSessionToken");
   var url = new URL(window.location.href);
   return url.searchParams.get("sessionToken");
 };
@@ -59,8 +58,6 @@ function onResponse(data) {
       $("#consentControl").show();
     })
     .catch(err => console.log("Fetch Error :-S", err));
-
-  console.log(window.cv);
 }
 
 window.onChangeUser = function onChangeUser() {
@@ -103,7 +100,6 @@ window.onConsent = function onConsent() {
     window.cv.consent.consentedTimePeriod.getMonth() + 1
   );
   window.cv.consent.acceptedPurposes = window.cv.sink.purposeOfUse;
-  //console.log("Consented envelope: ", window.cv);
 
   let save = JSON.stringify(window.cv);
 
@@ -159,39 +155,78 @@ window.refreshShareButton = function refreshShareButton() {
 };
 
 window.secrecyAgreement = function secrecyAgreement() {
-  console.log("secrecyAgreement");
   window.refreshShareButton();
 };
 
 window.transferAgreement = function transferAgreement() {
-  console.log("transferAgreement");
   window.refreshShareButton();
 };
 
 window.reviewAgreement = function reviewAgreement() {
-  console.log("reviewAgreement");
   window.refreshShareButton();
 };
 
 window.openTermsAgreement = function openTermsAgreement() {
-  console.log("openTermsAgreement");
   $("#termsModal").show();
   $("#termsAgreement").prop("checked", !$("#termsAgreement").prop("checked"));
 };
 
 window.onTermsAgreement = function onTermsAgreement() {
-  console.log("onTermsAgreement");
   $("#termsModal").hide();
   $("#termsAgreement").prop("checked", true);
   window.refreshShareButton();
 };
 
 window.onTermsCancel = function onTermsCancel() {
-  console.log("onTermsCancel");
   $("#termsModal").hide();
   $("#termsAgreement").prop("checked", false);
   window.refreshShareButton();
 };
+
+function showPage(number) {
+  window.document.getElementById("page-1").style.display = "none";
+  window.document.getElementById("page-2").style.display = "none";
+  window.document.getElementById("page-3").style.display = "none";
+  window.document.getElementById("page-" + number).style.display = "block";
+
+  if (number==2) {
+    let profileList = window.document.getElementById("profile-list");
+    // Iterate all children in profile list and set display = none
+    let array = [ ...profileList.childNodes ];
+    let x=0;
+    array.forEach((profile,index) => {
+      if (profile.style) {
+        if (window.selectedProfile==x)
+          profile.style.display = "block";
+        else
+          profile.style.display = "none";
+        x++;
+      }
+    });
+  }
+}
+// Clear consent when moving from consent page
+function clearBoxes() {
+  window.document.getElementById("secrecyAgreement").checked=false;
+  window.document.getElementById("transferAgreement").checked=false;
+  window.document.getElementById("reviewAgreement").checked=false;
+  window.document.getElementById("termsAgreement").checked=false;
+  refreshShareButton();
+}
+
+function consent() {
+  // TODO
+  console.log("Consented! CV=",window.cv);
+}
+
+$("#button-1").css("background-color", "#b9b9ca");
+$("#button-1").css("border", "grey solid 1px;");
+$("#button-1").prop("disabled", true);
+
+$("#shareButton").css("background-color", "#b9b9ca");
+$("#shareButton").css("border", "grey solid 1px;");
+$("#shareButton").prop("disabled", true);
+showPage(1);
 
 new Promise((resolve, reject) => {
   // Start the AF login procedure if the cookie is not set
