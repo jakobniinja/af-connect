@@ -13,7 +13,7 @@
     <link href="css/main.css" rel="stylesheet" />
     <title>AF Connect</title>
     <style>
-        html, body { height:100%; margin: 0; padding: 0; background-color: #efefef; overflow: hidden; }
+        html, body { height:100%; margin: 0; padding: 0; background-color: white; overflow: hidden; }
 
         div { margin: 0; padding: 0;  }
 
@@ -104,6 +104,7 @@
           width: 90%;
           font-size: 28px;
           cursor: pointer;
+          margin-left: 2px;
         }
 
         .back-button {
@@ -117,7 +118,7 @@
            display: inline-block;
            width: 90%;
            font-size: 28px;
-           margin: 0px 0px 4px 2px;
+           margin: 4px 0px 4px 2px;
            cursor: pointer;
         }
 
@@ -126,12 +127,12 @@
             color: rgb(254, 255, 254);
             border: 0px;
             width: 500px;
-            padding: 6px 10px;
-            border-radius: 4px;
+            padding: 14px 10px;
+            border-radius: 7px;
             text-align: left;
+            font-size: 20px;
             display: inline-block;
-            margin: 0px;
-            margin-left: 16px;
+            margin: 0 0 11px 13px;
             cursor: pointer;
         }
         
@@ -212,9 +213,9 @@
             </div>
         <% } %>
     </div>
-    <div style="margin: 30px 0px 0px 70px;">
+    <div style="margin: 23px 0px 0px 70px;">
         <button id="button-1" class="fwd-button"
-            onclick="if (selectedProfile != null) { showPage(2) };" disabled>
+            onclick="if (selectedProfile != null) { window.showPage(2) };" disabled>
             Nästa
         </button>
     </div>
@@ -270,9 +271,9 @@
             <% } %>
         </div>
     </div>
-    <div style="margin: 30px 0px 0px 70px;">
-        <button class="back-button" onclick="showPage(1);">Tillbaka</button>
-        <button id="button-2" class="fwd-button" onclick="showPage(3);"> Nästa  </button>
+    <div style="margin: 19px 0px 0px 70px;">
+        <button id="button-2" class="fwd-button" onclick="window.showPage(3);"> Nästa  </button>
+        <button class="back-button" onclick="window.showPage(1);">Tillbaka</button>
     </div>
 </div>
 
@@ -295,40 +296,64 @@
                     Arbetsförmedlingen är personuppgiftsansvarig fram till
                     att uppgifterna skickas från tjänsten till <%= data.sink.sinkName %>.
                     Arbetsförmedlingen ansvarar inte för uppgifterna efter de
-                    har levererats.</li>
+                    har levererats.
+                </li>
                 <li>Arbetsförmedlingen kommer att lagra all samtyckeinformation
                     som en del av deras processer, inklusive vilket jobb du har
                     ansökt om och när. Den loggade informationen betraktas som
                     av allmänt intresse och kan begäras ut till allmänheten på
-                    begäran.</li>
+                    begäran.
+                </li>
+                <li style="margin-top: 18px">
+                    Klicka HÄR för att lära dig mer om hur Arbetsförmedlingen behandlar dina uppgifter.
+                </li>
+                <li style="margin-top: 18px">
+                    <%= data.sink.sinkName %> är skyldigt att använda dina uppgifter enligt EU:s allmänna dataskyddsförordning.
+                </li>
+                <li style="margin-top: 18px">
+                    Efter att uppgifterna har levererats till <%= data.sink.sinkName %> kan Arbetsförmedlingen inte verifiera
+                    <ul>
+                        <li>hur eller var informationen kommer att lagras;</li>
+                        <li>om din uppgifter kommer skickas till andra parter;</li>
+                        <li>om uppgifterna kommer att användas för ett annat syfte än ett som anges ovan; eller</li>
+                        <li>vem som kommer att kunna komma åt uppgifterna.</li>
+                    </ul>
+                </li>
+
+                <li style="margin-top: 14px">
+                    Om du känner att dina uppgifter missbrukas på något sätt, vänligen kontakta Datainspektionen (https://www.datainspektionen.se/).
+                </li>
             </ul>
 
             <hr class="solid">
 
             <p class="par"><input class="inp" type="checkbox" id="transferAgreement"
-                onclick="transferAgreement();">Jag ger mitt medgivande till att Arbetsförmedlingen får hantera och överföra dessa uppgifter under ett tillfälle till <%= data.sink.sinkName %>.
+                onclick="window.transferAgreement();">Jag ger mitt medgivande till att Arbetsförmedlingen får hantera och överföra dessa uppgifter under ett tillfälle till <%= data.sink.sinkName %>.
             </p>
 
             <p class="par"><input class="inp" type="checkbox" id="secrecyAgreement"
-                onclick="secrecyAgreement();">Jag samtycker att denna process häver sekretessen för de uppgifter jag väljer att dela med <%= data.sink.sinkName %>.
+                onclick="window.secrecyAgreement();">Jag samtycker att denna process häver sekretessen för de uppgifter jag väljer att dela med <%= data.sink.sinkName %>.
             </p>
 
             <p class="par"><input class="inp" type="checkbox" id="reviewAgreement"
-                onclick="reviewAgreement();">Jag har granskat uppgifterna och bekräftar att inga oönskade uppgifter ingår i överföringen till <%= data.sink.sinkName %>.
+                onclick="window.reviewAgreement();">Jag har granskat uppgifterna och bekräftar att inga oönskade uppgifter ingår i överföringen till <%= data.sink.sinkName %>.
             </p>
 
             <p class="par"><input class="inp" type="checkbox" id="termsAgreement"
-                onclick="reviewAgreement();">Jag har läst och förstår bilagan: Behandling av dina personuppgifter.
+                onclick="window.reviewAgreement();">Jag har läst och förstår bilagan: Behandling av dina personuppgifter.
             </p>
         </div>
     </div>
 
-    <div style="margin: 30px 0px 0px 70px;">
-        <button class="back-button" onclick="showPage(2);clearBoxes();">Tillbaka</button>
-        <button id="shareButton" class="fwd-button" style="padding: 11px 100px;" onclick="onConsent();" disabled>
+    <div style="margin: 18px 0px 0px 70px;">
+        <button class="back-button" onclick="window.showPage(2);window.clearBoxes();">Tillbaka</button>
+        <button id="shareButton" class="fwd-button" style="padding: 11px 100px;" onclick="window.onConsent();" disabled>
             Godkänn
         </button>
     </div>
 </div>
 </body>
 </html>
+<script>
+    window.afConnectInit();
+</script>

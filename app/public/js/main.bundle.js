@@ -1,5 +1,6 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 "use strict";
+
 let configElement = document.getElementById("config");
 let config = {
   cookie: "AMV_SSO_COOKIE",
@@ -127,6 +128,19 @@ window.onConsent = function onConsent() {
     });
 };
 
+window.afConnectInit = function afConnectInit () {
+
+  $("#button-1").css("background-color", "#b9b9ca");
+  $("#button-1").css("border", "grey solid 1px;");
+  $("#button-1").prop("disabled", true);
+
+  $("#shareButton").css("background-color", "#b9b9ca");
+  $("#shareButton").css("border", "grey solid 1px;");
+  $("#shareButton").prop("disabled", true);
+
+  window.showPage(1);
+}
+
 // Control button active status, inactive if no selection
 window.refreshFwdButton = function refreshFwdButton() {
   $("#button-1").prop("disabled", false);
@@ -184,7 +198,7 @@ window.onTermsCancel = function onTermsCancel() {
   window.refreshShareButton();
 };
 
-function showPage(number) {
+window.showPage = function showPage(number) {
   window.document.getElementById("page-1").style.display = "none";
   window.document.getElementById("page-2").style.display = "none";
   window.document.getElementById("page-3").style.display = "none";
@@ -207,27 +221,18 @@ function showPage(number) {
   }
 }
 // Clear consent when moving from consent page
-function clearBoxes() {
+window.clearBoxes = function clearBoxes() {
   window.document.getElementById("secrecyAgreement").checked=false;
   window.document.getElementById("transferAgreement").checked=false;
   window.document.getElementById("reviewAgreement").checked=false;
   window.document.getElementById("termsAgreement").checked=false;
-  refreshShareButton();
+  window.refreshShareButton();
 }
 
 function consent() {
-  // TODO
+  // TODO or remove ?
   console.log("Consented! CV=",window.cv);
 }
-
-$("#button-1").css("background-color", "#b9b9ca");
-$("#button-1").css("border", "grey solid 1px;");
-$("#button-1").prop("disabled", true);
-
-$("#shareButton").css("background-color", "#b9b9ca");
-$("#shareButton").css("border", "grey solid 1px;");
-$("#shareButton").prop("disabled", true);
-showPage(1);
 
 new Promise((resolve, reject) => {
   // Start the AF login procedure if the cookie is not set
