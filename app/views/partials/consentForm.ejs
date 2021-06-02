@@ -189,7 +189,7 @@
 
 <div class="container" id="page-1" display="none">
     <img class="logo" src="/img/af-logo.svg" />
-    <div style="margin: 7px 24px; font-size: 28pt">Välj din profil.</div>
+    <div style="margin: 7px 24px; font-size: 28pt">Välj din profil. </div>
     <div style="margin: 16px 0px 0px 24px; font-size: 17pt">Välj den profil du tycker passar bäst till jobbet du vill söka.</div>
     <div style="margin: 0px 0px 5px 24px">
         <div class="name"><%= data.transferObject.data[0].person.name.given %> <%= data.transferObject.data[0].person.name.family %></div>
@@ -280,9 +280,9 @@
 <div class="container" id="page-3" display="none">
 
     <img class="logo" id="lo" src="/img/af-logo.svg" />
-    <div style="margin: 8px 24px; font-size: 28pt">Godkänn överföringen</div>
-    <div style="margin: 10px 0px 0px 24px; font-size: 17pt"><%= data.sink.sinkName %> får bara använda informationen för följande syfte:</div>
-    <div style="margin: 0px 0px 0px 24px; font-size: 17pt">Ansökan till roll <%= data.sink.jobTitle %> <br/>på <%= data.sink.companyName %></div>
+    <div style="margin: 8px 24px; font-size: 28pt">Godkänn överföringen.</div>
+    <div style="margin: 10px 0px 0px 24px; font-size: 17pt"><%= data.sink.sinkName %> får bara använda informationen i följande syfte:</div>
+    <div style="margin: 0px 0px 0px 24px; font-size: 17pt">Ansökan till <%= data.sink.jobTitle %> <br/>till <%= data.sink.companyName %></div>
 
     <div style="margin: 26px 0px 10px 24px">
         <img class="name-divider" src="/img/label-af-user-name.png" />
@@ -305,7 +305,7 @@
                     begäran.
                 </li>
                 <li style="margin-top: 18px">
-                    Klicka HÄR för att lära dig mer om hur Arbetsförmedlingen behandlar dina uppgifter.
+                    Klicka <a href="https://arbetsformedlingen.se/om-webbplatsen/juridisk-information/sa-hanterar-vi-dina-personuppgifter" target="_blank" rel="noopener noreferrer">HÄR</a> för att lära dig mer om hur Arbetsförmedlingen behandlar dina uppgifter.
                 </li>
                 <li style="margin-top: 18px">
                     <%= data.sink.sinkName %> är skyldigt att använda dina uppgifter enligt EU:s allmänna dataskyddsförordning.
@@ -321,7 +321,7 @@
                 </li>
 
                 <li style="margin-top: 14px">
-                    Om du känner att dina uppgifter missbrukas på något sätt, vänligen kontakta Datainspektionen (https://www.datainspektionen.se/).
+                    Om du känner att dina uppgifter missbrukas på något sätt, vänligen kontakta <a href="https://www.datainspektionen.se/" target="_blank" rel="noopener noreferrer">Datainspektionen</a>.
                 </li>
             </ul>
 
@@ -340,7 +340,7 @@
             </p>
 
             <p class="par"><input class="inp" type="checkbox" id="termsAgreement"
-                onclick="window.reviewAgreement();">Jag har läst och förstår bilagan: Behandling av dina personuppgifter.
+                onclick="window.reviewAgreement();">Jag har läst och förstår hur Arbetsförmedlingen behandlar mina personuppgifter.
             </p>
         </div>
     </div>
