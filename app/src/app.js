@@ -43,7 +43,7 @@ module.exports = function() {
     this.app.set("view engine", "ejs");
     this.app.engine("html", ejs.__express);
     this.app.use(bodyParser.urlencoded({ limit: "50mb", extended: false }));
-    this.app.use(bodyParser.json({limit: "50mb"}));
+    this.app.use(bodyParser.json({ limit: "50mb" }));
 
     this.app.use(this.cc.middleware());
     this.app.use("/css", express.static(__dirname + "/../public/css"));
@@ -87,7 +87,7 @@ module.exports = function() {
       }
 
       portabilityApi
-        .cv(cookie)
+        .cv(cookie, req.query.sessionToken)
         .then(cv => res.send(cv))
         .catch(err => {
           console.log(err);

@@ -46,8 +46,6 @@ _Read move about environment configuration here: [dotenv](https://github.com/mot
 
 1. Create an `.env` file at the root of the `af-connect` directory with the following content.
 
-   This `.env` file is ignored by the rules set in `.gitignore`, therefore in this file you may freely customizable the deployment to your own needs.
-
    ```
    ##Only Localhost config
    LOCAL_PORT=443

@@ -1,153 +1,359 @@
-<div class="card">
-    <div id="personalData" class="p-2">
-        <div class="row">
-            <div class="col-md-6">
-                <div style="background-color: #f5f5f5; border-left: #00005a solid 8px; padding: 16px">
-                    På denna sida finner du dina personuppgifter samt dina profiler som du har sparade hos Arbetsförmedlingen.<br>
-                    <br>
-                    Vänligen granska dina uppgifter innan du väljer att dela med dig av uppgifterna till tredje part.<br>
-                    <br>
-                    För att korrigera dina uppgifter <a href="https://www.arbetsformedlingen.se/For-arbetssokande/Mina-sidor/Mina-profiler/">Klicka här</a>.<br>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div style="margin-top: 24px; font-size: 16pt">Personuppgifter</div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <label for="name"><strong>Förnamn</strong></label>
-                                <div><%= data.person.name.given %></div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <label for="name"><strong>Efternamn</strong></label>
-                                <div><%= data.person.name.family %></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div style="margin-top: 24px; font-size: 16pt">Kontaktuppgifter</div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <label for="email"><strong>Email</strong></label>
-                                        <% data.person.communication.email.item.forEach((email) => { %>
-                                            <div><%= email.address %></div>
-                                        <% }) %>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <label for="phone"><strong>Telefon</strong></label>
-                                        <% data.person.communication.phone.item.forEach((phone) => { %>
-                                            <div><%= phone.formattedNumber %></div>
-                                        <% }) %>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-md-4">
-                <div style="margin-top: 24px; font-size: 16pt">Välj profil som du vill dela</div>
-                <div style="padding: 16px">
-                    <% if (data.profiles && data.profiles.item && data.profiles.item.length) { %>
-                        <% for(var i=0; i<data.profiles.item.length; i++) {%>
-                            <div>
-                                <label>
-                                        <input name="profileChoice" type="radio" type="button" data-toggle="collapse" data-target="#profile_<%= i %>" onclick="selectedProfile = <%= i %>;" /> <%= data.profiles.item[i].profileName %>    
-                                </label>
-                            </div>
-                        <% } %>
-                    <% } else { %>
-                        <div>
-                            Du har ingen profil på Arbetsförmedlingen<br>
-                            <a href="https://www.arbetsformedlingen.se/For-arbetssokande/Mina-sidor/Mina-profiler/">Klicka här för att skapa profil</a>
-                        </div>
-                    <% } %>
-                </div>
-            </div>
-            <div class="col-md-8">
-                <div style="margin-top: 24px; font-size: 16pt">Vald profil</div>
-                <div style="background-color: #f5f5f5; border-top: #00005a solid 8px; padding: 16px">
-                    <div id="profileSelect" class="collapse show">
-                        <div class="collapse show" data-parent="#profileSelect">Ingen profil vald</div>
-                        <% for(var i=0; i<data.profiles.item.length; i++) {%>
-                            <div id="profile_<%= i %>" class="collapse" data-parent="#profileSelect">
-                                <% if (data.profiles.item[i].employment && data.profiles.item[i].employment.item) { %>
-                                    <% data.profiles.item[i].employment.item.forEach((employment) => { %>
-                                        <% if (employment.positionHistories && employment.positionHistories.item && employment.positionHistories.item.length) { %>
-                                            <strong>Titel</strong><br>
-                                            <% employment.positionHistories.item.forEach((position) => { %>
-                                                <p><%= position.title %></p>
-                                            <% }) %>
-                                        <% } %>
-                                        <% if (employment.organization) { %>
-                                            <strong>Organisation</strong><br>
-                                            <p><%= employment.organization.legalId.value %></p>
-                                        <% } %>
-                                        <% if (employment.descriptions) { %>
-                                            <strong>Beskrivning</strong><br>
-                                            <% employment.descriptions.item.forEach((description) => { %>
-                                                <p><%= description %></p>
-                                            <% }) %>
-                                        <% } %>
-                                        <% if (employment.start) { %>
-                                            <strong>Period</strong><br>
-                                            <%= employment.start %> - 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel=”stylesheet”
+          href=”https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link
+            href="vendor/bootstrap-4.3.1-dist/css/bootstrap.min.css"
+            rel="stylesheet"
+    />
+    <link href="css/main.css" rel="stylesheet" />
+    <title>AF Connect</title>
+    <style>
+        html, body { height:100%; margin: 0; padding: 0; background-color: white; overflow: hidden; }
 
-                                            <% if (employment.current) { %>
-                                                Pågående
-                                            <% } else if (employment.end) { %>
-                                                <%= employment.end %>
-                                            <% } %>
-                                            <br>
-                                        <% } %>
-                                        <hr>
-                                    <% }) %>
-                                <% } %>
-                                
-                                <% if (data.profiles.item[i].qualifications && data.profiles.item[i].qualifications.item && data.profiles.item[i].qualifications.item.length > 0) { %>
-                                    <strong>Kvalifikationer</strong><br>
-                                    <ul>
-                                        <% data.profiles.item[i].qualifications.item.forEach((qualification) => { %>
-                                            <% if (qualification.competencyName) { %>
-                                                <li><%= qualification.competencyName %></li>
-                                            <% } %>
-                                        <% }) %>
-                                    </ul>
-                                <% } %>
-                            </div>
-                        <% } %>
-                    </div>
+        div { margin: 0; padding: 0;  }
+
+        input[type=checkbox] {
+            transform: scale(1.5);
+        }
+
+        ::-webkit-scrollbar {
+            -webkit-appearance: none;
+            width: 7px;
+        }
+        ::-webkit-scrollbar-thumb {
+            border-radius: 4px;
+            background-color: rgba(0, 0, 0, .5);
+            -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+        }
+
+        html {
+            overflow: -moz-scrollbars-vertical;
+            overflow-y: scroll;
+        }
+
+    .check_box {
+        display:none;
+    }
+
+    hr.solid {
+        border-top: 3px solid #bbb;
+    }
+
+    .check_box + label{
+    	background:url(app/public/img/unchecked.png) no-repeat;
+    	height: 73px;
+    	width: 73px;
+    	display:inline-block;
+        padding: 0 0 0 0px;
+    }
+
+    .check_box:checked + label {
+        background: url(app/public/img/checked.png) no-repeat;
+        height: 73px;
+        width:73px;
+        display:inline-block;
+        padding: 0 0 0 0px;
+    }
+
+        .container {
+            margin-left: 20px;
+        }
+        .af-button {
+            background-color: rgb(0, 4, 86);
+            color: rgb(238, 238, 238);
+            border: 0px;
+            padding: 6px 20px;
+            border-radius: 4px;
+            text-align: center;
+            font-weight: 600;
+            display: inline-block;
+            margin: 12px;
+            margin-left: 16px;
+            cursor: pointer;
+        }
+
+        .next-button {
+            background-color: rgb(0, 4, 86);
+            color: rgb(254, 255, 254);
+            border: 0px;
+            width: 150px;
+            padding: 7px 17px;
+            border-radius: 8px;
+            font-size: 24px;
+            text-align: center;
+            display: inline-block;
+            margin-top: 50px;
+            margin-left: 70px;
+            cursor: pointer;
+        }
+
+        .fwd-button {
+          background-color: rgb(0, 4, 86);
+          border-color: white;
+          border-radius: 10px;
+          color: white;
+          padding: 13px 120px;
+          text-align: center;
+
+          display: inline-block;
+          width: 90%;
+          font-size: 28px;
+          cursor: pointer;
+          margin-left: 2px;
+        }
+
+        .back-button {
+           background-color:  white;
+           border-color: rgb(0, 4, 86);
+           border-radius: 10px;
+           color: rgb(0, 4, 86);
+           padding: 11px 107px;
+           text-align: center;
+           text-decoration: none;
+           display: inline-block;
+           width: 90%;
+           font-size: 28px;
+           margin: 4px 0px 4px 2px;
+           cursor: pointer;
+        }
+
+        .radio-button {
+            background-color: rgb(0, 4, 86);
+            color: rgb(254, 255, 254);
+            border: 0px;
+            width: 500px;
+            padding: 14px 10px;
+            border-radius: 7px;
+            text-align: left;
+            font-size: 20px;
+            display: inline-block;
+            margin: 0 0 11px 13px;
+            cursor: pointer;
+        }
+        
+        ul {
+          list-style-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='-1 -1 2 2'><circle r='1' /></svg>");
+        }
+
+        .logo {
+
+
+            margin: 48px 0px 24px 24px;
+            width: 295px;
+        }
+
+        .list {
+            margin-left: -20px;
+            font-size: 23px;
+        }
+
+        .par {
+            font-size: 20px;
+        }
+
+        .inp {
+            margin-right: 10px;
+        }
+
+        #lo:hover ~ .scrollable {
+            -webkit-box-shadow: inset 5px 6px 17px -15px rgba(0,0,0,0.98);
+            box-shadow: inset 5px 6px 17px -15px rgba(0,0,0,0.6);
+            border: solid #BBBBBB 1px;
+            border-radius: 10px;
+            padding: 30px;
+        }
+        .name {
+            margin: 20px 0px 0px 30px;
+            font-size: 18pt;
+        }
+        .name-divider {
+            width: 82%;
+              margin-bottom: 10px;
+              margin-top: 0px;
+          }
+        .scrollable {
+            position: static;
+            padding: 10px;
+            overflow-y:auto;
+            margin-left: 36px;
+            height: 393px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="page-1" display="none">
+    <img class="logo" src="/img/af-logo.svg" />
+    <div style="margin: 7px 24px; font-size: 28pt">Välj din profil. </div>
+    <div style="margin: 16px 0px 0px 24px; font-size: 17pt">Välj den profil du tycker passar bäst till jobbet du vill söka.</div>
+    <div style="margin: 0px 0px 5px 24px">
+        <div class="name"><%= data.transferObject.data[0].person.name.given %> <%= data.transferObject.data[0].person.name.family %></div>
+        <img class="name-divider" src="/img/label-af-user-name.png" />
+    </div>
+    <div class="scrollable">
+        <% if (data.transferObject.data[0].profiles && data.transferObject.data[0].profiles.length) { %>
+            <% for(var i=0; i<data.transferObject.data[0].profiles.length; i++) {%>
+                <div>
+                    <label>
+                        <input name="profileChoice" id="<%= 'prof-'+(i) %>" type="radio" style="size:120px; margin:2px" onclick="selectedProfile = '<%= i %>'; document.getElementById('prof-'+selectedProfile).checked = true; window.refreshFwdButton();" data-toggle="collapse" data-target="#profile_<%= i %>">
+                          <button id="<% 'bprof-'+(i) %>" class="radio-button" onclick="selectedProfile = '<%= i %>'; document.getElementById('prof-'+selectedProfile).checked = true; window.refreshFwdButton();" ><%= data.transferObject.data[0].profiles[i].profileName %></button>
+                        </input>
+                    </label>
                 </div>
+            <% } %>
+        <% } else { %>
+            <div>
+                Du har ingen profil på Arbetsförmedlingen<br>
+                <a href="https://www.arbetsformedlingen.se/For-arbetssokande/Mina-sidor/Mina-profiler/">Klicka här för att skapa profil</a>
             </div>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-md-12">
-                <div style="margin-top: 24px; font-size: 16pt">Dela och slutför</div>
-                <div style="margin-top: 16px">Jag ger mitt uttryckliga medgivande att Arbetsförmedlingen får dela min valda profil med en tredje part.</div>
-                <div style="margin-top: 16px">
-                    <button style="background-color: #00005a; color: white; border: #00005a solid 1px; border-radius: 4px; padding-left: 12px; padding-right: 12px; padding-top: 6px; padding-bottom: 6px" onclick="onConsent();">
-                        Jag samtycker och vill dela min profil
-                    </button>
-                    <button style="background-color: white; color: black; border: #00005a solid 1px; border-radius: 4px; padding-left: 12px; padding-right: 12px; padding-top: 6px; padding-bottom: 6px" onclick="onConsentRejection();">
-                        Nej, dela inte min profil
-                    </button>
-                </div>
-            </div>
-        </div>
+        <% } %>
+    </div>
+    <div style="margin: 23px 0px 0px 70px;">
+        <button id="button-1" class="fwd-button"
+            onclick="if (selectedProfile != null) { window.showPage(2) };" disabled>
+            Nästa
+        </button>
     </div>
 </div>
+
+<div class="container" id="page-2" display="none">
+
+    <img class="logo" src="/img/af-logo.svg" />                                                                                      
+    <div style="margin: 8px 24px; font-size: 28pt">Förhandsvisning av din profil</div>
+    <div style="margin: 14px 0px 0px 24px; font-size: 17pt">Gå till Min Profil på Arbetsförmedlingen för att ändra dina uppgifter.</div>
+
+     <div style="margin: 56px 0px 10px 24px">
+        <img class="name-divider" src="/img/label-af-user-name.png" />
+     </div>
+
+    <div class="scrollable">
+        <div id="profile-list"; style="font-size: 23px; margin-left: 14px; padding: 12px">
+            <% for(var i=0; i<data.transferObject.data[0].profiles.length; i++) {%>
+                <div style="display:none" id="profile_<%= i %>" data-parent="#profileSelect">
+                    <% if (data.transferObject.data[0].profiles[i].employment && data.transferObject.data[0].profiles[i].employment) { %>
+                        <% data.transferObject.data[0].profiles[i].employment.forEach((employment) => { %>
+                            <% if (employment.positionHistories && employment.positionHistories && employment.positionHistories.length) { %>
+                                <strong>Titel</strong><br>
+                                <% employment.positionHistories.forEach((position) => { %>
+                                    <p><%= position.title %></p>
+                                <% }) %>
+                            <% } %>
+                            <% if (employment.organization) { %>
+                                <strong>Organisation</strong><br>
+                                <p><%= employment.organization.legalId.value %></p>
+                            <% } %>
+                            <% if (employment.descriptions) { %>
+                                <strong>Beskrivning</strong><br>
+                                <% employment.descriptions.forEach((description) => { %>
+                                    <p><%= description %></p>
+                                <% }) %>
+                            <% } %>
+                            <% if (employment.start) { %>
+                                <strong>Period</strong><br>
+                                <%= employment.start %> -
+
+                                <% if (employment.current) { %>
+                                    Pågående
+                                <% } else if (employment.end) { %>
+                                    <%= employment.end %>
+                                <% } %>
+                                <br>
+                            <% } %>
+                            <hr>
+                        <% }) %>
+                    <% } %>
+                </div>
+            <% } %>
+        </div>
+    </div>
+    <div style="margin: 19px 0px 0px 70px;">
+        <button id="button-2" class="fwd-button" onclick="window.showPage(3);"> Nästa  </button>
+        <button class="back-button" onclick="window.showPage(1);">Tillbaka</button>
+    </div>
+</div>
+
+<div class="container" id="page-3" display="none">
+
+    <img class="logo" id="lo" src="/img/af-logo.svg" />
+    <div style="margin: 8px 24px; font-size: 28pt">Godkänn överföringen.</div>
+    <div style="margin: 10px 0px 0px 24px; font-size: 17pt"><%= data.sink.sinkName %> får bara använda informationen i följande syfte:</div>
+    <div style="margin: 0px 0px 0px 24px; font-size: 17pt">Ansökan till <%= data.sink.jobTitle %> <br/>till <%= data.sink.companyName %></div>
+
+    <div style="margin: 26px 0px 10px 24px">
+        <img class="name-divider" src="/img/label-af-user-name.png" />
+    </div>
+
+    <div class="scrollable" style="height:360px">
+        <div style="margin-left: 0px; margin: auto; text-align: left;">
+            <ul class="list">
+                <li>Den här tjänsten gör det möjligt att skicka ditt valda CV
+                    till <%= data.sink.sinkName %>.
+                    Arbetsförmedlingen är personuppgiftsansvarig fram till
+                    att uppgifterna skickas från tjänsten till <%= data.sink.sinkName %>.
+                    Arbetsförmedlingen ansvarar inte för uppgifterna efter de
+                    har levererats.
+                </li>
+                <li>Arbetsförmedlingen kommer att lagra all samtyckeinformation
+                    som en del av deras processer, inklusive vilket jobb du har
+                    ansökt om och när. Den loggade informationen betraktas som
+                    av allmänt intresse och kan begäras ut till allmänheten på
+                    begäran.
+                </li>
+                <li style="margin-top: 18px">
+                    Klicka <a href="https://arbetsformedlingen.se/om-webbplatsen/juridisk-information/sa-hanterar-vi-dina-personuppgifter" target="_blank" rel="noopener noreferrer">HÄR</a> för att lära dig mer om hur Arbetsförmedlingen behandlar dina uppgifter.
+                </li>
+                <li style="margin-top: 18px">
+                    <%= data.sink.sinkName %> är skyldigt att använda dina uppgifter enligt EU:s allmänna dataskyddsförordning.
+                </li>
+                <li style="margin-top: 18px">
+                    Efter att uppgifterna har levererats till <%= data.sink.sinkName %> kan Arbetsförmedlingen inte verifiera
+                    <ul>
+                        <li>hur eller var informationen kommer att lagras;</li>
+                        <li>om din uppgifter kommer skickas till andra parter;</li>
+                        <li>om uppgifterna kommer att användas för ett annat syfte än ett som anges ovan; eller</li>
+                        <li>vem som kommer att kunna komma åt uppgifterna.</li>
+                    </ul>
+                </li>
+
+                <li style="margin-top: 14px">
+                    Om du känner att dina uppgifter missbrukas på något sätt, vänligen kontakta <a href="https://www.datainspektionen.se/" target="_blank" rel="noopener noreferrer">Datainspektionen</a>.
+                </li>
+            </ul>
+
+            <hr class="solid">
+
+            <p class="par"><input class="inp" type="checkbox" id="transferAgreement"
+                onclick="window.transferAgreement();">Jag ger mitt medgivande till att Arbetsförmedlingen får hantera och överföra dessa uppgifter under ett tillfälle till <%= data.sink.sinkName %>.
+            </p>
+
+            <p class="par"><input class="inp" type="checkbox" id="secrecyAgreement"
+                onclick="window.secrecyAgreement();">Jag samtycker att denna process häver sekretessen för de uppgifter jag väljer att dela med <%= data.sink.sinkName %>.
+            </p>
+
+            <p class="par"><input class="inp" type="checkbox" id="reviewAgreement"
+                onclick="window.reviewAgreement();">Jag har granskat uppgifterna och bekräftar att inga oönskade uppgifter ingår i överföringen till <%= data.sink.sinkName %>.
+            </p>
+
+            <p class="par"><input class="inp" type="checkbox" id="termsAgreement"
+                onclick="window.reviewAgreement();">Jag har läst och förstår hur Arbetsförmedlingen behandlar mina personuppgifter.
+            </p>
+        </div>
+    </div>
+
+    <div style="margin: 18px 0px 0px 70px;">
+        <button class="back-button" onclick="window.showPage(2);window.clearBoxes();">Tillbaka</button>
+        <button id="shareButton" class="fwd-button" style="padding: 11px 100px;" onclick="window.onConsent();" disabled>
+            Godkänn
+        </button>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    window.afConnectInit();
+</script>
