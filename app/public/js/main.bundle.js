@@ -7,6 +7,7 @@ let config = {
   afLoginUrl: configElement.getAttribute("data-af_login_url"),
   cvUrl: "/fetchCV",
   consentForm: "/consentForm",
+  consent2: "/consent2",
   consent: "/consent"
 };
 
@@ -202,7 +203,18 @@ window.showPage = function showPage(number) {
   window.document.getElementById("page-1").style.display = "none";
   window.document.getElementById("page-2").style.display = "none";
   window.document.getElementById("page-3").style.display = "none";
+
+  window.document.getElementById("page-1-footer").style.display = "none";
+  window.document.getElementById("page-2-footer").style.display = "none";
+  window.document.getElementById("page-3-footer").style.display = "none";
+
+  window.document.getElementById("page-1-header").style.display = "none";
+  window.document.getElementById("page-2-header").style.display = "none";
+  window.document.getElementById("page-3-header").style.display = "none";
+
   window.document.getElementById("page-" + number).style.display = "block";
+  window.document.getElementById("page-" + number+"-header").style.display = "block";
+  window.document.getElementById("page-" + number+"-footer").style.display = "block";
 
   if (number==2) {
     let profileList = window.document.getElementById("profile-list");
