@@ -74,6 +74,7 @@ module.exports = function() {
         });
     });
 
+    // /index = for testing only
       this.app.get("/index", (req, res) => {
       // Create dummy data for use during development
       let debugData = {
@@ -229,12 +230,16 @@ module.exports = function() {
         }
       };
       res.render("partials/consentForm", { data: debugData});
-      // res.render("partials/consentForm", { data: req.body });
     });
 
-
+    // Production consent form
     this.app.post("/consentForm", (req, res) => {
       res.render("partials/consentForm", { data: req.body });
+    });
+
+    // Experimental consent form
+    this.app.post("/consent2", (req, res) => {
+      res.render("partials/consent2", { data: req.body });
     });
 
     this.app.get("/fetchCV", (req, res) => {
