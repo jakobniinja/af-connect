@@ -70,21 +70,18 @@
         color: transparent;
         border-color: transparent;
     }
+
     .radio-button {
         background-color: rgb(0, 4, 86);
         color: rgb(254, 255, 254);
         border: 0px;
+        width: 250px;
+        padding: 10px 10px;
+        border-radius: 7px;
         text-align: left;
         font-size: 20px;
         display: inline-block;
         margin: 0 0 11px 13px;
-        width: 300em;
-        min-height: 44px;
-        max-width: 320px;
-        box-sizing: border-box;
-        padding: 6px 24px;
-        border-radius: 7px;
-        outline: none;
         cursor: pointer;
     }
 
@@ -173,10 +170,7 @@
     <div class ="hdr">
         <img class="logo" src="/img/af-logo.svg" />
 
-        <!-- Test smaller font for xs -->
-        <div class="d-block d-sm-none" style="margin: 7px 24px; font-size: 20pt">Välj din profil. </div>
-        <div class="d-none d-sm-block" style="margin: 7px 28px; font-size: 26pt">Välj din profil. </div>
-
+        <div style="margin: 0 24px; font-size: 20pt">Välj profil</div>
         <div class="sans text-smaller" style="margin: 16px 0px 0px 24px">Välj den profil du tycker passar bäst till jobbet du vill söka.</div>
 
         <div style="margin: 0 0 0 5px">
@@ -190,9 +184,9 @@
     <div class="hdr">
         <img class="logo" src="/img/af-logo.svg" />
 
-        <div style="margin: 8px 24px; font-size: 28pt">Förhandsvisning av din profil</div>
-        <div style="margin: 14px 0px 0px 24px; font-size: 17pt">Gå till <a href="https://arbetsformedlingen.se/for-arbetssokande/mina-sidor/#/" target="_blank" onclick="window.open('','_parent',''); window.close(); return true;">Min Profil</a> på Arbetsförmedlingen</div>
-        <div style="margin: 0 0 0 24px; font-size: 17pt">för att ändra din information (detta avslutar applikationen).</div>
+        <div style="margin: 0 24px; font-size: 20pt">Förhandsvisning av din profil</div>
+        <div style="margin: 14px 0px 0px 24px; font-size: 14pt">Gå till <a href="https://arbetsformedlingen.se/for-arbetssokande/mina-sidor/#/" target="_blank" onclick="window.open('','_parent',''); window.close(); return true;">Min Profil</a> på Arbetsförmedlingen</div>
+        <div style="margin: 0 0 0 24px; font-size: 14pt">för att ändra din information (detta avslutar applikationen).</div>
         <hr class="rule">
     </div>
 </header>
@@ -200,14 +194,11 @@
 <header id="page-3-header" style="display: none">
     <div class="hdr">
         <img class="logo" src="/img/af-logo.svg" />
-
-        <div style="margin: 8px 24px; font-size: 28pt">Godkänn överföringen.</div>
-        <div style="margin: 10px 0px 0px 24px; font-size: 17pt"><b><%= data.sink.sinkName %></b> får bara använda informationen i följande syfte:</div>
+        <div style="margin: 0 24px; font-size: 20pt">Godkänn överföringen</div>
+        <div style="margin: 0px 0px 0px 24px; font-size: 14pt"><b><%= data.sink.sinkName %></b> får bara använda informationen i följande syfte:</div>
         <div style="margin: 0px 0px 0px 24px; font-size: 17pt">Ansökan till roll <b><%= data.sink.jobTitle %></b> hos <b><%= data.sink.companyName %></b></div>
 
-        <div style="margin: 56px 0px 10px 24px">
-            <hr class="rule">
-        </div>
+        <hr class="rule">
     </div>
 </header>
 
@@ -275,7 +266,7 @@
         </div>
 
         <div id="page-3" style="display:none">
-            <div style="margin-left: 0px; margin: auto; text-align: left;">
+            <div style="margin-left: 10px; text-align: left;">
                 <ul class="list">
                     <li>Den här tjänsten gör det möjligt att skicka ditt valda CV
                         till <%= data.sink.sinkName %>.
