@@ -234,10 +234,6 @@
                         <a href="https://www.arbetsformedlingen.se/For-arbetssokande/Mina-sidor/Mina-profiler/">Klicka här för att skapa profil</a>
                     </div>
                 <% } %>
-                <footer id="page-1-footer" class="d-xs-block d-lg-none py-2 container-fluid flex-grow-0 flex-shrink-1" style="background: white; display: none">
-                    <button id="button-1" class="fwd-button" onclick="window.showPage(2);"> Nästa  </button>
-                    <button id="page1-button-back" style="scroll-margin-bottom: 15px" class="back-button hidden-button" disabled>Tillbaka</button>
-                </footer>
         </div>
 
         <div class="container" id="page-2" style="display:none">
@@ -280,10 +276,6 @@
                         </div>
                     <% } %>
                 </div>
-                <footer id="page-2-footer" class="d-xs-block d-lg-none py-2 container-fluid flex-grow-0 flex-shrink-1" style="background: white; display: none">
-                    <button id="button-2" class="fwd-button" onclick="window.showPage(3);"> Nästa  </button>
-                    <button id="page2-button-back" style="scroll-margin-bottom: 15px" class="back-button" onclick="window.showPage(1);">Tillbaka</button>
-                </footer>
         </div>
 
         <div id="page-3" style="display:none">
@@ -341,31 +333,25 @@
                     onclick="window.reviewAgreement();">Jag har läst och förstår hur Arbetsförmedlingen behandlar mina personuppgifter.
                 </p>
             </div>
-            <footer id="page-3-footer" class="d-xs-block d-lg-none py-2 container-fluid flex-grow-0 flex-shrink-1" style="background: white; display: none">
-                <button id="shareButton" class="fwd-button" style="padding: 11px 100px;" onclick="window.onConsent();" disabled>
-                    Godkänn
-                </button>
-                <button id="page3-button-back" style="scroll-margin-bottom: 15px" class="back-button" onclick="window.showPage(2);window.clearBoxes();">Tillbaka</button>
-            </footer>
         </div>
     </div>
 </main>
 
-<footer class="d-none d-lg-block py-2 container-fluid flex-grow-0 flex-shrink-1" style="background: white">
-    <div id="footer-1b" style="display:none">
-        <button id="button-1" class="fwd-button" onclick="window.showPage(2);"> Nästa  </button>
-        <button class="back-button hidden-button" disabled>Tillbaka</button>
-    </div>
-    <div id="footer-2b" style="display:none">
-        <button id="button-2" class="fwd-button" onclick="window.showPage(3);"> Nästa  </button>
-        <button class="back-button" onclick="window.showPage(1);">Tillbaka</button>
-    </div>
-    <div id="footer-3b" style="display:none">
-        <button id="shareButton" class="fwd-button" style="padding: 11px 100px;" onclick="window.onConsent();" disabled>
-            Godkänn
-        </button>
-        <button class="back-button" onclick="window.showPage(2);window.clearBoxes();">Tillbaka</button>
-    </div>
+<footer id="page-1-footer" class="py-2 container-fluid flex-grow-0 flex-shrink-1" style="background: white; display: none">
+    <button id="button-1" class="fwd-button" onclick="window.showPage(2);"> Nästa  </button>
+    <button class="back-button hidden-button" disabled>Tillbaka</button>
+</footer>
+
+<footer id="page-2-footer" class="py-2 container-fluid flex-grow-0 flex-shrink-1" style="background: white; display: none">
+    <button id="button-2" class="fwd-button" onclick="window.showPage(3);"> Nästa  </button>
+    <button class="back-button" onclick="window.showPage(1);">Tillbaka</button>
+</footer>
+
+<footer id="page-3-footer" class="py-2 container-fluid flex-grow-0 flex-shrink-1" style="background: white; display: none">
+    <button id="shareButton" class="fwd-button" style="padding: 11px 100px;" onclick="window.onConsent();" disabled>
+        Godkänn
+    </button>
+    <button class="back-button" onclick="window.showPage(2);window.clearBoxes();">Tillbaka</button>
 </footer>
 
 <script>
