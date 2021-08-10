@@ -200,6 +200,14 @@ window.onTermsCancel = function onTermsCancel() {
   window.refreshShareButton();
 };
 
+// Scroll to show top position of scrollable container for a page
+window.scrollToTop = function scrollToTop (page) {
+  let element = window.document.getElementById("main");
+
+  element.scrollTop = 0;
+  element.scrollLeft = 0;
+
+}
 // Scroll to show inline footer buttons if any.
 // This is to increase usability of the suggested mobile mode where
 // navigation buttons float at the bottom of scrolled content..
@@ -244,9 +252,10 @@ window.showPage = function showPage(number) {
         x++;
       }
     });
+
   }
   // Scroll to end so 'mobile inline button footer mode' aligns buttons..
-  scrollToBottom(number);
+  // scrollToBottom(number);
 }
 // Clear consent when moving from consent page
 window.clearBoxes = function clearBoxes() {

@@ -36,33 +36,34 @@
     }
 
     .fwd-button {
-      background-color: rgb(0, 4, 86);
-      border-color: white;
-      border-radius: 10px;
-      color: white;
-      padding: 10px 120px;
-      text-align: center;
-
-      display: inline-block;
-      width: 90%;
-      font-size: 28px;
-      cursor: pointer;
-      margin: 0 0 10px 24px;
+        background-color: rgb(0, 4, 86);
+        border-color: white;
+        border-radius: 10px;
+        color: white;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        text-align: center;
+        display: inline-block;
+        width: 90%;
+        font-size: 28px;
+        cursor: pointer;
+        margin: 0 0 10px 24px;
     }
 
     .back-button {
-       background-color:  white;
-       border-color: rgb(0, 4, 86);
-       border-radius: 10px;
-       color: rgb(0, 4, 86);
-       padding: 10px 107px;
-       text-align: center;
-       text-decoration: none;
-       display: inline-block;
-       width: 90%;
-       font-size: 28px;
-       margin: 4px 0px 4px 24px;
-       cursor: pointer;
+        background-color:  white;
+        border-color: rgb(0, 4, 86);
+        border-radius: 10px;
+        color: rgb(0, 4, 86);
+        padding-top: 10px;
+        padding-bottom: 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        width: 90%;
+        font-size: 28px;
+        margin: 4px 0px 4px 24px;
+        cursor: pointer;
     }
 
     .hidden-button {
@@ -184,7 +185,10 @@
             </div>
         </div>
 
-        <div class="sans text-smaller" style="margin: 16px 0px 0px 24px">Välj den profil du tycker passar bäst till jobbet du vill söka.</div>
+        <div class="sans text-smaller" style="margin: 16px 0px 0px 24px; font-size: 14pt">
+            <p>Välj den profil du tycker passar bäst till jobbet du vill söka.<br>
+                Tryck sedan på 'Nästa' för att fortsätta.</p>
+        </div>
 
         <div style="margin: 0 0 0 5px">
             <div class="name"><%= data.transferObject.data[0].person.name.given %> <%= data.transferObject.data[0].person.name.family %></div>
@@ -215,15 +219,28 @@
     </div>
 </header>
 
-<main role="main" class="flex-grow-1 overflow-auto">
+<main role="main" id="main" class="flex-grow-1 overflow-auto">
     <div class="container">
         <div class="container" id="page-1">
                 <% if (data.transferObject.data[0].profiles && data.transferObject.data[0].profiles.length) { %>
                     <% for(var i=0; i<data.transferObject.data[0].profiles.length; i++) {%>
                         <div class="p2">
                             <label style="white-space:nowrap">
-                                <input name="profileChoice" id="<%= 'prof-'+(i) %>" type="radio" style="display:inline-block; size:120px; margin:2px" onclick="selectedProfile = '<%= i %>'; document.getElementById('prof-'+selectedProfile).checked = true; window.refreshFwdButton();" data-toggle="collapse" data-target="#profile_<%= i %>">
-                                <button id="<% 'bprof-'+(i) %>" class="radio-button" onclick="selectedProfile = '<%= i %>'; document.getElementById('prof-'+selectedProfile).checked = true; window.refreshFwdButton();" ><%= data.transferObject.data[0].profiles[i].profileName %></button>
+                                <input
+                                    name="profileChoice"
+                                    id="<%= 'prof-'+(i) %>"
+                                    type="radio"
+                                    style="display:inline-block; size:120px; margin:2px"
+                                    onclick="selectedProfile = '<%= i %>'; document.getElementById('prof-'+selectedProfile).checked = true; window.refreshFwdButton();/* window.scrollToBottom(1); */"
+                                    data-toggle="collapse"
+                                    data-target="#profile_<%= i %>"
+                                >
+                                    <button
+                                        id="<% 'bprof-'+(i) %>"
+                                        class="radio-button"
+                                        onclick="selectedProfile = '<%= i %>'; document.getElementById('prof-'+selectedProfile).checked = true; window.refreshFwdButton();/* window.scrollToBottom(1); */" >
+                                        <%= data.transferObject.data[0].profiles[i].profileName %>
+                                    </button>
                                 </input>
                             </label>
                         </div>
@@ -235,13 +252,12 @@
                     </div>
                 <% } %>
                 <footer id="page-1-footer" class="d-xs-block d-lg-none py-2 container-fluid flex-grow-0 flex-shrink-1" style="background: white; display: none">
-                    <button id="button-1" class="fwd-button" onclick="window.showPage(2);"> Nästa  </button>
+                    <button id="button-1" class="fwd-button" onclick="window.showPage(2);window.scrollToTop(2)"> Nästa  </button>
                     <button id="page1-button-back" style="scroll-margin-bottom: 15px" class="back-button hidden-button" disabled>Tillbaka</button>
                 </footer>
         </div>
 
-        <div class="container" id="page-2" style="display:none">
-
+        <div class="container" id="page-2" style="display:none; height:80%">
                 <div id="profile-list"; style="font-size: 23px; margin-left: 14px; padding: 12px">
                     <% for(var i=0; i<data.transferObject.data[0].profiles.length; i++) {%>
                         <div id="profile_<%= i %>" data-parent="#profileSelect">
