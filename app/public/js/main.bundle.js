@@ -148,7 +148,6 @@ window.refreshFwdButton = function refreshFwdButton() {
   $("#button-1").css("background-color", "#00005a");
   $("#button-1").css("border", "#00005a solid 1px;");
 }
-
 window.refreshShareButton = function refreshShareButton() {
   const isSecrecyAgreementChecked = $("#secrecyAgreement").prop("checked");
   const isTransferAgreementChecked = $("#transferAgreement").prop("checked");
@@ -217,7 +216,6 @@ window.scrollToBottom = function scrollToBottom (page) {
 }
 
 window.showPage = function showPage(number) {
-  // Set all header/footer sections invisible
   window.document.getElementById("page-1").style.display = "none";
   window.document.getElementById("page-2").style.display = "none";
   window.document.getElementById("page-3").style.display = "none";
@@ -225,9 +223,6 @@ window.showPage = function showPage(number) {
   window.document.getElementById("page-1-footer").style.display = "none";
   window.document.getElementById("page-2-footer").style.display = "none";
   window.document.getElementById("page-3-footer").style.display = "none";
-  window.document.getElementById("footer-1b").style.display = "none";
-  window.document.getElementById("footer-2b").style.display = "none";
-  window.document.getElementById("footer-3b").style.display = "none";
 
   window.document.getElementById("page-1-header").style.display = "none";
   window.document.getElementById("page-2-header").style.display = "none";
@@ -236,7 +231,6 @@ window.showPage = function showPage(number) {
   window.document.getElementById("page-" + number).style.display = "block";
   window.document.getElementById("page-" + number+"-header").style.display = "block";
   window.document.getElementById("page-" + number+"-footer").style.display = "block";
-  window.document.getElementById("footer-" + number+"b").style.display = "block";
 
   if (number==2) {
     let profileList = window.document.getElementById("profile-list");
@@ -254,8 +248,6 @@ window.showPage = function showPage(number) {
     });
 
   }
-  // Scroll to end so 'mobile inline button footer mode' aligns buttons..
-  // scrollToBottom(number);
 }
 // Clear consent when moving from consent page
 window.clearBoxes = function clearBoxes() {
