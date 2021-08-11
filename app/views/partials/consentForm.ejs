@@ -230,14 +230,14 @@
                                     id="<%= 'prof-'+(i) %>"
                                     type="radio"
                                     style="display:inline-block; size:120px; margin:2px"
-                                    onclick="selectedProfile = '<%= i %>'; document.getElementById('prof-'+selectedProfile).checked = true; window.refreshFwdButton();/* window.scrollToBottom(1); */"
+                                    onclick="selectedProfile = '<%= i %>'; document.getElementById('prof-'+selectedProfile).checked = true; window.refreshFwdButton();"
                                     data-toggle="collapse"
                                     data-target="#profile_<%= i %>"
                                 >
                                     <button
                                         id="<% 'bprof-'+(i) %>"
                                         class="radio-button"
-                                        onclick="selectedProfile = '<%= i %>'; document.getElementById('prof-'+selectedProfile).checked = true; window.refreshFwdButton();/* window.scrollToBottom(1); */" >
+                                        onclick="selectedProfile = '<%= i %>'; document.getElementById('prof-'+selectedProfile).checked = true; window.refreshFwdButton();" >
                                         <%= data.transferObject.data[0].profiles[i].profileName %>
                                     </button>
                                 </input>
@@ -251,7 +251,7 @@
                     </div>
                 <% } %>
                 <footer id="page-1-footer" class="d-xs-block d-lg-none py-2 container-fluid flex-grow-0 flex-shrink-1" style="background: white; display: none">
-                    <button id="button-1" class="fwd-button" onclick="window.showPage(2);window.scrollToTop(2)"> Nästa  </button>
+                    <button id="button-1" class="fwd-button" onclick="window.showPage(2);"> Nästa  </button>
                     <button id="page1-button-back" style="scroll-margin-bottom: 15px" class="back-button hidden-button" disabled>Tillbaka</button>
                 </footer>
         </div>
@@ -303,7 +303,7 @@
 
         <div id="page-3" style="display:none">
             <div style="margin-left: 10px; text-align: left;">
-                <ul class="list">
+                <ul class="list" id="uli">
                     <li>Den här tjänsten gör det möjligt att skicka ditt valda CV
                         till <%= data.sink.sinkName %>.
                         Arbetsförmedlingen är personuppgiftsansvarig fram till
@@ -376,7 +376,7 @@
         <button class="back-button" onclick="window.showPage(1);">Tillbaka</button>
     </div>
     <div id="footer-3b" style="display:none">
-        <button id="shareButton" class="fwd-button" style="padding: 11px 100px;" onclick="window.onConsent();" disabled>
+        <button id="shareButton2" class="fwd-button" style="padding: 11px 100px;" onclick="window.onConsent();" disabled>
             Godkänn
         </button>
         <button class="back-button" onclick="window.showPage(2);window.clearBoxes();">Tillbaka</button>

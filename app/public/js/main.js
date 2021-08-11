@@ -162,10 +162,16 @@ window.refreshShareButton = function refreshShareButton() {
     $("#shareButton").prop("disabled", false);
     $("#shareButton").css("background-color", "#00005a");
     $("#shareButton").css("border", "#00005a solid 1px;");
+    $("#shareButton2").prop("disabled", false);
+    $("#shareButton2").css("background-color", "#00005a");
+    $("#shareButton2").css("border", "#00005a solid 1px;");
   } else {
     $("#shareButton").prop("disabled", true);
     $("#shareButton").css("background-color", "#b9b9ca");
     $("#shareButton").css("border", "grey solid 1px;");
+    $("#shareButton2").prop("disabled", true);
+    $("#shareButton2").css("background-color", "#b9b9ca");
+    $("#shareButton2").css("border", "grey solid 1px;");
   }
 };
 
@@ -199,8 +205,8 @@ window.onTermsCancel = function onTermsCancel() {
 };
 
 // Scroll to show top position of scrollable container for a page
-window.scrollToTop = function scrollToTop (page) {
-  let element = window.document.getElementById("main");
+window.scrollToTop = function scrollToTop (id) {
+  let element = window.document.getElementById(id);
 
   element.scrollTop = 0;
   element.scrollLeft = 0;
@@ -222,6 +228,9 @@ window.showPage = function showPage(number) {
   window.document.getElementById("page-1-footer").style.display = "none";
   window.document.getElementById("page-2-footer").style.display = "none";
   window.document.getElementById("page-3-footer").style.display = "none";
+  window.document.getElementById("footer-1b").style.display = "none";
+  window.document.getElementById("footer-2b").style.display = "none";
+  window.document.getElementById("footer-3b").style.display = "none";
 
   window.document.getElementById("page-1-header").style.display = "none";
   window.document.getElementById("page-2-header").style.display = "none";
@@ -230,6 +239,7 @@ window.showPage = function showPage(number) {
   window.document.getElementById("page-" + number).style.display = "block";
   window.document.getElementById("page-" + number+"-header").style.display = "block";
   window.document.getElementById("page-" + number+"-footer").style.display = "block";
+  window.document.getElementById("footer-" + number+"b").style.display = "block";
 
   if (number==2) {
     let profileList = window.document.getElementById("profile-list");
@@ -247,6 +257,7 @@ window.showPage = function showPage(number) {
     });
 
   }
+  window.document.getElementById("main").scrollTop = 0;
 }
 // Clear consent when moving from consent page
 window.clearBoxes = function clearBoxes() {
