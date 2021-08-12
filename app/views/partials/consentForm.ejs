@@ -109,8 +109,8 @@
         padding: 30px;
     }
     .name {
-        margin: 20px 0px 2px 30px;
-        font-size: 18pt;
+        margin: 20px 0px 10px 30px;
+        font-size: 16pt;
     }
     .text-responsive {
         font-size: calc(100% + 1vw + 1vh);
@@ -149,8 +149,13 @@
     } */
     .hdr {
         position: relative;
-        height: 300px;
-        max-height: 300px;
+        min-height: 340px;
+        /* background: #005cbf; */
+        margin-bottom: 10px;
+    }
+    .hdr3 {
+        position: relative;
+        min-height: 360px;
         /* background: #005cbf; */
         margin-bottom: 10px;
     }
@@ -161,7 +166,7 @@
         width: 80%;
         bottom:0;
         left: 0;
-        margin: 0;
+        margin:0;
         margin-left: 30px;
     }
 </style>
@@ -184,15 +189,15 @@
             </div>
         </div>
 
-        <div class="sans text-smaller" style="margin: 16px 0px 0px 24px; font-size: 14pt">
-            <p>Välj den profil du tycker passar bäst till jobbet du vill söka.<br>
-                Tryck sedan på 'Nästa' för att fortsätta.</p>
+        <div style="margin: 5px 0px 0px 24px; font-size: 14pt">
+            <p>Välj den profil du tycker passar bäst<br>till jobbet du vill söka.&nbsp;Tryck sedan på 'Nästa' för att fortsätta.</p>
         </div>
-
-        <div style="margin: 0 0 0 5px">
-            <div class="name"><%= data.transferObject.data[0].person.name.given %> <%= data.transferObject.data[0].person.name.family %></div>
+        <div>
+            <div style="margin: 0 0 0 5px;position: absolute; bottom: 0px;left: 0px;";>
+                <div class="name"><%= data.transferObject.data[0].person.name.given %> <%= data.transferObject.data[0].person.name.family %></div>
+            </div>
+            <hr class="rule">
         </div>
-        <hr class="rule">
     </div>
 </header>
 
@@ -200,10 +205,15 @@
     <div class="hdr">
         <img class="logo" src="/img/af-logo.svg" />
 
-        <div style="margin: 0 24px; font-size: 20pt">Förhandsvisning av din profil</div>
-        <div style="margin: 14px 0px 0px 24px; font-size: 14pt">Gå till <a href="https://arbetsformedlingen.se/for-arbetssokande/mina-sidor/#/" target="_blank" onclick="window.open('','_parent',''); window.close(); return true;">Min Profil</a> på Arbetsförmedlingen</div>
+        <div style="margin: 0 24px; font-size: 20pt">Förhandsvisning av profil</div>
+        <div style="margin: 5px 0px 0px 24px; font-size: 12pt">Gå till <a href="https://arbetsformedlingen.se/for-arbetssokande/mina-sidor/#/" target="_blank" onclick="window.open('','_parent',''); window.close(); return true;">Min Profil</a> på Arbetsförmedlingen</div>
         <div style="margin: 0 0 0 24px; font-size: 14pt">för att ändra din information (detta avslutar applikationen).</div>
-        <hr class="rule">
+        <div>
+            <div style="margin: 0 0 0 5px;position: absolute; bottom: 0px;left: 0px;";>
+                <div class="name"><%= data.transferObject.data[0].person.name.given %> <%= data.transferObject.data[0].person.name.family %></div>
+            </div>
+            <hr class="rule">
+        </div>
     </div>
 </header>
 
@@ -211,10 +221,18 @@
     <div class="hdr">
         <img class="logo" src="/img/af-logo.svg" />
         <div style="margin: 0 24px; font-size: 20pt">Godkänn överföringen</div>
-        <div style="margin: 0px 0px 0px 24px; font-size: 14pt"><b><%= data.sink.sinkName %></b> får bara använda informationen i följande syfte:</div>
-        <div style="margin: 0px 0px 0px 24px; font-size: 17pt">Ansökan till roll <b><%= data.sink.jobTitle %></b> hos <b><%= data.sink.companyName %></b></div>
-
-        <hr class="rule">
+        <div style="max-height:400px">
+            <div style="margin: 0px 0px 0px 24px; font-size: 14pt"><b><%= data.sink.sinkName %></b> får bara använda informationen i följande syfte: Ansökan till roll</div>
+            <div>
+                <div style="margin: 0px 0px 30px 24px; font-size: 15pt"><b><%= data.sink.jobTitle %></b> hos <b><%= data.sink.companyName %></b></div>
+                <div>
+                    <div style="margin: 0 0 0 5px;position: absolute; bottom: 0px;left: 0px;";>
+                        <div class="name"><%= data.transferObject.data[0].person.name.given %> <%= data.transferObject.data[0].person.name.family %></div>
+                    </div>
+                    <hr class="rule">
+                </div>
+            </div>
+        </div>
     </div>
 </header>
 
@@ -296,7 +314,7 @@
                     <% } %>
                 </div>
                 <footer id="page-2-footer" class="d-xs-block d-lg-none py-2 container-fluid flex-grow-0 flex-shrink-1" style="background: white; display: none">
-                    <button id="button-2" class="fwd-button" onclick="window.showPage(3);"> Nästa  </button>
+                    <button id="button-2" class="fwd-button" onclick="window.showPage(3);">Nästa</button>
                     <button id="page2-button-back" style="scroll-margin-bottom: 15px" class="back-button" onclick="window.showPage(1);">Tillbaka</button>
                 </footer>
         </div>
@@ -357,7 +375,7 @@
                 </p>
             </div>
             <footer id="page-3-footer" class="d-xs-block d-lg-none py-2 container-fluid flex-grow-0 flex-shrink-1" style="background: white; display: none">
-                <button id="shareButton" class="fwd-button" style="padding: 11px 100px;" onclick="window.onConsent();" disabled>
+                <button id="shareButton" class="fwd-button"  onclick="window.onConsent();" disabled>
                     Godkänn
                 </button>
                 <button id="page3-button-back" style="scroll-margin-bottom: 15px" class="back-button" onclick="window.showPage(2);window.clearBoxes();">Tillbaka</button>
