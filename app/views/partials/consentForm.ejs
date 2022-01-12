@@ -61,6 +61,7 @@
     }
 
         .container {
+            zoom: 75%;
             margin-left: 20px;
         }
         .af-button {
@@ -106,6 +107,34 @@
           cursor: pointer;
           margin-left: 2px;
         }
+        .fwd-button {
+          background-color: rgb(0, 4, 86);
+          border-color: white;
+          border-radius: 10px;
+          color: white;
+          padding: 13px 120px;
+          text-align: center;
+          display: inline-block;
+          width: 90%;
+          font-size: 28px;
+          cursor: pointer;
+          margin-left: 2px;
+        }
+        @media screen and (max-width: 575px) {
+        .fwd-button {
+          background-color: rgb(0, 4, 86);
+          border-color: white;
+          border-radius: 10px;
+          color: white;
+          padding: 13px 10px;
+          text-align: center;
+          display: inline-block;
+          width: 140px;
+          font-size: 28px;
+          cursor: pointer;
+          margin-left: 2px;
+        }
+        }
 
         .back-button {
            background-color:  white;
@@ -122,11 +151,12 @@
            cursor: pointer;
         }
 
-        .radio-button {
+    @media screen and (max-width: 576px) {
+        .radio-button{
             background-color: rgb(0, 4, 86);
             color: rgb(254, 255, 254);
             border: 0px;
-            width: 500px;
+            width: calc(100% +150px);
             padding: 14px 10px;
             border-radius: 7px;
             text-align: left;
@@ -135,6 +165,69 @@
             margin: 0 0 11px 13px;
             cursor: pointer;
         }
+    }
+    @media screen and (min-width: 576px)  and (max-width: 768px)  {
+        .radio-button{
+            background-color: rgb(0, 4, 86);
+            color: rgb(254, 255, 254);
+            border: 0px;
+            width: 375px;
+            padding: 14px 10px;
+            border-radius: 7px;
+            text-align: left;
+            font-size: 20px;
+            display: inline-block;
+            margin: 0 0 11px 13px;
+            cursor: pointer;
+        }
+    }
+    @media screen and (min-width: 768px)  and (max-width: 991px)  {
+        .radio-button{
+            background-color: rgb(0, 4, 86);
+            color: rgb(254, 255, 254);
+            border: 0px;
+            width: 540px;
+            padding: 14px 10px;
+            border-radius: 7px;
+            text-align: left;
+            font-size: 20px;
+            display: inline-block;
+            margin: 0 0 11px 13px;
+            cursor: pointer;
+        }
+    }
+    @media screen and (min-width: 991px)  and (max-width: 1200px)  {
+        .radio-button{
+            background-color: rgb(0, 4, 86);
+            color: rgb(254, 255, 254);
+            border: 0px;
+            width: 760px;
+            padding: 14px 10px;
+            border-radius: 7px;
+            text-align: left;
+            font-size: 20px;
+            display: inline-block;
+            margin: 0 0 11px 13px;
+            cursor: pointer;
+        }
+    }
+
+    @media screen and (min-width: 1200px) {
+      .radio-button{
+        background-color: rgb(0, 4, 86);
+        color: rgb(254, 255, 254);
+        border: 0px;
+        width: 920px;
+        padding: 14px 10px;
+        border-radius: 7px;
+        text-align: left;
+        font-size: 20px;
+        display: inline-block;
+        margin: 0 0 11px 13px;
+        cursor: pointer;
+      }
+    }
+
         
         ul {
           list-style-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='-1 -1 2 2'><circle r='1' /></svg>");
@@ -178,7 +271,7 @@
           }
         .scrollable {
             position: static;
-            padding: 10px;
+            padding: 17px;
             overflow-y:auto;
             margin-left: 36px;
             height: 393px;
@@ -289,7 +382,7 @@
     </div>
 
     <div class="scrollable" style="height:360px">
-        <div style="margin-left: 0px; margin: auto; text-align: left;">
+        <div style="margin-left: 0px; margin: auto; text-align: left; zoom: 75% ">
             <ul class="list">
                 <li>Den här tjänsten gör det möjligt att skicka ditt valda CV
                     till <%= data.sink.sinkName %>.
