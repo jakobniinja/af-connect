@@ -123,6 +123,24 @@
            cursor: pointer;
         }
 
+        @media screen and (max-width: 576px) {
+        .back-button {
+           background-color:  white;
+           border-color: rgb(0, 4, 86);
+           border-radius: 10px;
+           color: rgb(0, 4, 86);
+           padding: 11px 107px;
+           text-align: center;
+           text-decoration: none;
+           display: inline-block;
+           width: 385px;
+           font-size: 28px;
+           margin: 4px 0px 4px 2px;
+           cursor: pointer;
+        }
+            
+        }
+
     @media screen and (max-width: 576px) {
         .radio-button{
             background-color: rgb(0, 4, 86);
@@ -233,6 +251,7 @@
 
         .par {
             font-size: 20px;
+            cursor: pointer;
         }
 
         .inp {
@@ -405,22 +424,22 @@
             </ul>
 
             <hr class="solid">
-
-            <p class="par"><input class="inp" type="checkbox" id="transferAgreement"
+            
+            <label class="par" for="transferAgreement" ><input class="inp" type="checkbox" id="transferAgreement"
                 onclick="window.transferAgreement();">Jag ger mitt medgivande till att Arbetsförmedlingen får hantera och överföra dessa uppgifter under ett tillfälle till <%= data.sink.sinkName %>.
-            </p>
+            </l>
 
-            <p class="par"><input class="inp" type="checkbox" id="secrecyAgreement"
+            <label class="par" for="secrecyAgreement" ><input class="inp" type="checkbox" id="secrecyAgreement"
                 onclick="window.secrecyAgreement();">Jag samtycker att denna process häver sekretessen för de uppgifter jag väljer att dela med <%= data.sink.sinkName %>.
-            </p>
+            </label>
 
-            <p class="par"><input class="inp" type="checkbox" id="reviewAgreement"
+            <label class="par" for="reviewAgreement" ><input class="inp" type="checkbox" id="reviewAgreement"
                 onclick="window.reviewAgreement();">Jag har granskat uppgifterna och bekräftar att inga oönskade uppgifter ingår i överföringen till <%= data.sink.sinkName %>.
-            </p>
+            </label>
 
-            <p class="par"><input class="inp" type="checkbox" id="termsAgreement"
-                onclick="window.reviewAgreement();">Jag har läst och förstår hur Arbetsförmedlingen behandlar mina personuppgifter.
-            </p>
+            <label class="par" for="termsAgreement" ><input class="inp" type="checkbox" id="termsAgreement"
+                onclick="window.termsAgreement();">Jag har läst och förstår hur Arbetsförmedlingen behandlar mina personuppgifter.
+            </label>
         </div>
     </div>
 
